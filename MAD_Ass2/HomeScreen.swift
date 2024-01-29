@@ -31,4 +31,10 @@ class HomeScreen: UIViewController {
             navigationController?.pushViewController(nextVC, animated: true)
         }
     }
+    
+    @IBAction func setUpDailyProgramPressed(_ sender: Any) {
+        if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpDailyProgramScreen") as? SetUpDailyProgramScreen{
+            navigationController?.pushViewController(nextVC, animated: true)
+        }
+    }
 }

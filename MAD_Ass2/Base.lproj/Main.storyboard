@@ -148,6 +148,9 @@
                                     <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="setUpDailyProgramPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GsT-eB-IYF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNX-H7-TDU">
                                 <rect key="frame" x="37" y="515" width="147" height="35"/>
@@ -192,13 +195,28 @@
             </objects>
             <point key="canvasLocation" x="925.60000000000002" y="-27.339901477832512"/>
         </scene>
-        <!--View Controller-->
+        <!--Set Up Daily Program Screen-->
         <scene sceneID="A9c-yu-cm4">
             <objects>
-                <viewController id="t3L-xX-k0f" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetUpDailyProgramScreen" id="t3L-xX-k0f" customClass="SetUpDailyProgramScreen" customModule="MAD_Ass2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I3f-ef-y23">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQS-DX-nVD">
+                                <rect key="frame" x="144" y="661" width="88" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Go Back">
+                                    <backgroundConfiguration key="background" cornerRadius="30"/>
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goBackPressed:" destination="t3L-xX-k0f" eventType="touchUpInside" id="BCr-OH-Z7X"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="lmk-sC-uue"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
