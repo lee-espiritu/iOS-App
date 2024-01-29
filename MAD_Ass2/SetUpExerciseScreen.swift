@@ -296,4 +296,18 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
         editWeightButton.isHidden = false;
     }
     
+    
+    @IBAction func saveExerciseButtonPressed(_ sender: Any) {
+        //Notify User that exercise has been saved
+        let alert = UIAlertController(title: "Exercise Saved", message: "Your exercise has been successfully saved.", preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            // Return to the home screen or perform any other action
+            self.navigationController?.popViewController(animated: true)
+        })
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
