@@ -258,7 +258,7 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
     
     @IBAction func confirmSets(_ sender: Any) {
         //Set the sets
-        sets = Int(repetitionsStepper.value)
+        sets = Int(setsStepper.value)
         
         //Hide UI for sets
         setsStepper.isHidden = true
@@ -303,16 +303,20 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
             print("\(categoryDisplay.text!) exists in the database under Categories table")
         } else {
             print("\(categoryDisplay.text!) does not exist in the database under Categories table")
+            //Add category otherwise
             DBManager.addCategory(categoryName: categoryDisplay.text!)
         }
         
-        //Check if the exercise exists
+        //Check if the exercise exists in the specified category
         if DBManager.exerciseExists(exercise: exerciseDisplay.text!, exerciseCategory: categoryDisplay.text!) {
             print("\(exerciseDisplay.text!) exists in the database under Exercises table with category \(categoryDisplay.text!)")
         } else {
             print("\(exerciseDisplay.text!) does not exist in the database under Exercises table with category \(categoryDisplay.text!)")
+            //Add exercise otherwise
             DBManager.addExercise(exerciseName: exerciseDisplay.text!, exerciseCategory: categoryDisplay.text!)
         }
+        
+        DBManager.addExerciseDetails(exerciseName: exerciseDisplay.text!, exerciseCategory: categoryDisplay.text!, sets: sets, repetitions: repetitions, weight: weight)
         
         //Notify User that exercise has been saved
         let alert = UIAlertController(title: "Exercise Saved", message: "Your exercise has been successfully saved.", preferredStyle: .alert)

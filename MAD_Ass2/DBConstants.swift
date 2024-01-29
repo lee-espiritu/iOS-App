@@ -23,4 +23,11 @@ struct DBConstants {
     static let exerciseBicepCurl = "Bicep Curl" //Arms
     static let exerciseCrunches = "Crunches" //Abs
     
+    static let exerciseNames: [String: [String]] = [
+            categoryLegs: ["Squats", "Leg Press", "Calf Raise"],
+            categoryShoulders: ["Shoulder Press"],
+            categoryChest: ["Bench Press"],
+            categoryArms: ["Bicep Curl"],
+            categoryAbs: ["Crunches"]
+        ]
 }

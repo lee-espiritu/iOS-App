@@ -4,6 +4,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <entity name="ExerciseDetails" representedClassName="ExerciseDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="initialWeight" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="repetitions" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

@@ -14,6 +14,7 @@ class ViewDatabaseScreen: UIViewController, UITableViewDataSource, UITableViewDe
     //Connect Table Views to display database tables.
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var categoriesTableView: UITableView!
+    @IBOutlet weak var exerciseDetailsTableView: UITableView!
     
     
     override func viewDidLoad() {
@@ -22,8 +23,10 @@ class ViewDatabaseScreen: UIViewController, UITableViewDataSource, UITableViewDe
         //Required
         categoriesTableView.delegate = self
         exercisesTableView.delegate = self
+        exerciseDetailsTableView.delegate = self
         categoriesTableView.dataSource = self
         exercisesTableView.dataSource = self
+        exerciseDetailsTableView.dataSource = self
 
         //Apply background gradient
         GradientHelper.addGradient(to: view, colors: [UIColor.cyan, UIColor.systemBlue], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y:1.0))
@@ -37,11 +40,13 @@ class ViewDatabaseScreen: UIViewController, UITableViewDataSource, UITableViewDe
     func reloadData(){
         categoriesTableView.reloadData()
         exercisesTableView.reloadData()
+        exerciseDetailsTableView.reloadData()
     }
 
     @IBAction func deleteDBButtonPressed(_ sender: Any) {
         DBManager.deleteAllCategories()
         DBManager.deleteAllExercises()
+        DBManager.deleteAllExerciseDetails()
         reloadData()
     }
     
@@ -52,6 +57,7 @@ class ViewDatabaseScreen: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func prefillButtonPressed(_ sender: Any) {
         DBManager.prefillCategories()
         DBManager.prefillExercises()
+        DBManager.prefillExerciseDetails()
         reloadData()
     }
     
@@ -60,6 +66,8 @@ class ViewDatabaseScreen: UIViewController, UITableViewDataSource, UITableViewDe
             return DBManager.retrieveCategoriesCount()
         } else if tableView == exercisesTableView {
             return DBManager.retrieveExercisesCount()
+        } else if tableView == exerciseDetailsTableView {
+            return DBManager.retrieveExerciseDetailsCount()
         } else {
             return 0
         }
@@ -85,6 +93,20 @@ class ViewDatabaseScreen: UIViewController, UITableViewDataSource, UITableViewDe
             cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? UIColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 1.0) : UIColor(red: 1.0, green: 1.0, blue: 0.9, alpha: 1.0)
             
             return cell
+        } else if tableView == exerciseDetailsTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseDetailsCell", for: indexPath) as! ExerciseDetailsTableViewCell
+            let exerciseDetails = DBManager.retrieveExerciseDetails()
+            print(exerciseDetails)
+            cell.exerciseName?.text = exerciseDetails[indexPath.row].name
+            cell.exerciseCategory?.text = exerciseDetails[indexPath.row].category
+            cell.exerciseSets?.text = String(exerciseDetails[indexPath.row].sets)
+            cell.exerciseRepetitions?.text = String(exerciseDetails[indexPath.row].repetitions)
+            cell.exerciseWeight?.text = String(exerciseDetails[indexPath.row].weight)
+            
+            //Alternate colours between records
+            cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? UIColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 1.0) : UIColor(red: 1.0, green: 1.0, blue: 0.9, alpha: 1.0)
+            
+            return cell
         }
         return UITableViewCell()
     }
@@ -99,6 +121,8 @@ class ViewDatabaseScreen: UIViewController, UITableViewDataSource, UITableViewDe
             return "Categories"
         } else if tableView == exercisesTableView {
             return "Exercises"
+        } else if tableView == exerciseDetailsTableView {
+            return "Exercise Details"
         }
         return nil
     }

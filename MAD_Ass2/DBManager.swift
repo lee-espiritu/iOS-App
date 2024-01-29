@@ -77,6 +77,40 @@ class DBManager: NSObject {
         }
     }
     
+    static func prefillExerciseDetails() {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            
+            let managedContext = appDelegate.persistentContainer.viewContext
+
+            for _ in 1...10 {
+                let exerciseDetailsEntity = NSEntityDescription.entity(forEntityName: "ExerciseDetails", in: managedContext)!
+                let exerciseDetails = NSManagedObject(entity: exerciseDetailsEntity, insertInto: managedContext)
+                
+                // Random values for sets, repetitions, and initialWeight
+                let sets = Int.random(in: 3...5)
+                let repetitions = Int.random(in: 8...12)
+                let initialWeight = Int.random(in: 20...50)
+                
+                // Select a random category and exercise name
+                let category = DBConstants.categoryNames.randomElement() ?? ""
+                let exerciseName = DBConstants.exerciseNames[category]?.randomElement() ?? ""
+                
+                // Set values for attributes
+                exerciseDetails.setValue(exerciseName, forKey: "name")
+                exerciseDetails.setValue(category, forKey: "category")
+                exerciseDetails.setValue(sets, forKey: "sets")
+                exerciseDetails.setValue(repetitions, forKey: "repetitions")
+                exerciseDetails.setValue(initialWeight, forKey: "initialWeight")
+            }
+
+            do {
+                try managedContext.save()
+                print("DBManager: Prefilled ExerciseDetails")
+            } catch let error as NSError {
+                print("Error saving prefill data: \(error.localizedDescription)")
+            }
+        }
+    
     static func retrieveCategoriesCount() -> Int {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return 0 }
         
@@ -213,6 +247,67 @@ class DBManager: NSObject {
         }
     }
     
+    static func retrieveExerciseDetailsCount() -> Int {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return 0 }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseDetails")
+        
+        do {
+            let categories = try managedContext.fetch(fetchRequest)
+            return categories.count
+        } catch let error as NSError {
+            print("Error retrieving exerciseDetails count: \(error.localizedDescription)")
+            return 0
+        }
+    }
+    
+    static func addExerciseDetails(exerciseName: String, exerciseCategory: String, sets: Int, repetitions: Int, weight: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let exerciseDetailsEntity = NSEntityDescription.entity(forEntityName: "ExerciseDetails", in: managedContext)!
+        
+        let newCategory = NSManagedObject(entity: exerciseDetailsEntity, insertInto: managedContext)
+        newCategory.setValue(exerciseName, forKey: "name")
+        newCategory.setValue(exerciseCategory, forKey: "category")
+        newCategory.setValue(sets, forKey: "sets")
+        newCategory.setValue(repetitions, forKey: "repetitions")
+        newCategory.setValue(weight, forKey: "initialWeight")
+        
+        do {
+            try managedContext.save()
+            print("'\(exerciseName)' '\(exerciseCategory)' '\(sets)' '\(repetitions)' '\(weight)' added successfully to exerciseDetails.")
+        } catch let error as NSError {
+            print("Error adding category: \(error.localizedDescription)")
+        }
+    }
+    
+    static func retrieveExerciseDetails() -> [(name: String, category: String, sets: Int, repetitions: Int, weight: Int)] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseDetails")
+        
+        do {
+            let exerciseDetails = try managedContext.fetch(fetchRequest)
+            return exerciseDetails.compactMap { exercise in
+                guard
+                    let name = exercise.value(forKeyPath: "name") as? String,
+                    let category = exercise.value(forKeyPath: "category") as? String,
+                    let sets = exercise.value(forKeyPath: "sets") as? Int,
+                    let repetitions = exercise.value(forKeyPath: "repetitions") as? Int,
+                    let weight = exercise.value(forKeyPath: "initialWeight") as? Int
+                else {
+                    return nil
+                }
+                return (name: name, category: category, sets: sets, repetitions: repetitions, weight: weight)
+            }
+        } catch let error as NSError {
+            print("Error retrieving exerciseDetails: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
     static func deleteAllCategories(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -232,6 +327,21 @@ class DBManager: NSObject {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Exercises")
+        do {
+            let exercises = try managedContext.fetch(fetchRequest)
+            for exercise in exercises {
+                managedContext.delete(exercise)
+            }
+            try managedContext.save()
+        } catch {
+            print("Error deleting categories: \(error)")
+        }
+    }
+    
+    static func deleteAllExerciseDetails(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExerciseDetails")
         do {
             let exercises = try managedContext.fetch(fetchRequest)
             for exercise in exercises {
