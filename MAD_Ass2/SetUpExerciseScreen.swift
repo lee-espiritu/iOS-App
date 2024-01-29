@@ -298,6 +298,22 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
     
     
     @IBAction func saveExerciseButtonPressed(_ sender: Any) {
+        //Check if the category exists
+        if DBManager.categoryExists(category: categoryDisplay.text!) {
+            print("\(categoryDisplay.text!) exists in the database under Categories table")
+        } else {
+            print("\(categoryDisplay.text!) does not exist in the database under Categories table")
+            DBManager.addCategory(categoryName: categoryDisplay.text!)
+        }
+        
+        //Check if the exercise exists
+        if DBManager.exerciseExists(exercise: exerciseDisplay.text!, exerciseCategory: categoryDisplay.text!) {
+            print("\(exerciseDisplay.text!) exists in the database under Exercises table with category \(categoryDisplay.text!)")
+        } else {
+            print("\(exerciseDisplay.text!) does not exist in the database under Exercises table with category \(categoryDisplay.text!)")
+            DBManager.addExercise(exerciseName: exerciseDisplay.text!, exerciseCategory: categoryDisplay.text!)
+        }
+        
         //Notify User that exercise has been saved
         let alert = UIAlertController(title: "Exercise Saved", message: "Your exercise has been successfully saved.", preferredStyle: .alert)
 

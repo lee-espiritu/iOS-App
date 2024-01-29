@@ -106,6 +106,39 @@ class DBManager: NSObject {
         }
     }
     
+    static func categoryExists(category: String) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Categories")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", category)
+        
+        do {
+            let matchingCategories = try managedContext.fetch(fetchRequest)
+            return !matchingCategories.isEmpty
+        } catch let error as NSError {
+            print("Error retrieving category: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    static func addCategory(categoryName: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let categoryEntity = NSEntityDescription.entity(forEntityName: "Categories", in: managedContext)!
+        
+        let newCategory = NSManagedObject(entity: categoryEntity, insertInto: managedContext)
+        newCategory.setValue(categoryName, forKey: "name")
+        
+        do {
+            try managedContext.save()
+            print("Category '\(categoryName)' added successfully.")
+        } catch let error as NSError {
+            print("Error adding category: \(error.localizedDescription)")
+        }
+    }
+    
     static func retrieveExercisesCount() -> Int {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return 0 }
         
@@ -118,6 +151,43 @@ class DBManager: NSObject {
         } catch let error as NSError {
             print("Error retrieving exercises count: \(error.localizedDescription)")
             return 0
+        }
+    }
+    
+    static func exerciseExists(exercise: String, exerciseCategory: String) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Exercises")
+        
+        // Combine conditions for name and category
+        fetchRequest.predicate = NSPredicate(format: "name == %@ AND category == %@", exercise, exerciseCategory)
+        
+        do {
+            let matchingExercises = try managedContext.fetch(fetchRequest)
+            return !matchingExercises.isEmpty
+        } catch let error as NSError {
+            print("Error retrieving exercise: \(error.localizedDescription)")
+            return false
+        }
+    }
+
+    
+    static func addExercise(exerciseName: String, exerciseCategory: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let exercisesEntity = NSEntityDescription.entity(forEntityName: "Exercises", in: managedContext)!
+        
+        let newCategory = NSManagedObject(entity: exercisesEntity, insertInto: managedContext)
+        newCategory.setValue(exerciseName, forKey: "name")
+        newCategory.setValue(exerciseCategory, forKey: "category")
+        
+        do {
+            try managedContext.save()
+            print("Exercise '\(exerciseName)' with category '\(exerciseCategory)' added successfully.")
+        } catch let error as NSError {
+            print("Error adding category: \(error.localizedDescription)")
         }
     }
     
