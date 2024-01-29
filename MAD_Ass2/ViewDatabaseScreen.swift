@@ -90,6 +90,7 @@ class ViewDatabaseScreen: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
+        //Test
         return 1
     }
     
