@@ -10,6 +10,7 @@
 		508E99EA2B611B51002337AC /* DBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99E92B611B51002337AC /* DBConstants.swift */; };
 		508E99EC2B611B85002337AC /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99EB2B611B85002337AC /* DBManager.swift */; };
 		508E99EE2B611E44002337AC /* ViewDatabaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */; };
+		50A7269A2B68E075007706E8 /* SelectDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A726992B68E075007706E8 /* SelectDayCell.swift */; };
 		50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */; };
 		50BA60DD2B624B3300D7A099 /* ExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BA60DC2B624B3300D7A099 /* ExercisesTableViewCell.swift */; };
 		50DA5DAB2B61019E00566B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DAA2B61019E00566B73 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		508E99E92B611B51002337AC /* DBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConstants.swift; sourceTree = "<group>"; };
 		508E99EB2B611B85002337AC /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDatabaseScreen.swift; sourceTree = "<group>"; };
+		50A726992B68E075007706E8 /* SelectDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDayCell.swift; sourceTree = "<group>"; };
 		50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientHelper.swift; sourceTree = "<group>"; };
 		50BA60DC2B624B3300D7A099 /* ExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		50DA5DA72B61019E00566B73 /* MAD_Ass2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAD_Ass2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				50DA5DB02B61019E00566B73 /* Main.storyboard */,
+				50A726992B68E075007706E8 /* SelectDayCell.swift */,
 				50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */,
 				50DA5DAA2B61019E00566B73 /* AppDelegate.swift */,
 				50DA5DAC2B61019E00566B73 /* SceneDelegate.swift */,
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50DA5DAF2B61019E00566B73 /* HomeScreen.swift in Sources */,
+				50A7269A2B68E075007706E8 /* SelectDayCell.swift in Sources */,
 				50DA5DAB2B61019E00566B73 /* AppDelegate.swift in Sources */,
 				50DA5DDE2B610A5900566B73 /* SetUpExerciseScreen.swift in Sources */,
 				50BA60DD2B624B3300D7A099 /* ExercisesTableViewCell.swift in Sources */,
