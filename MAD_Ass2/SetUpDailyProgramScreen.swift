@@ -7,100 +7,25 @@
 
 import UIKit
 
-class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDelegate, UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "day1Cell", for: indexPath) as! SelectDayCell
-        return cell
-    }
-    
-    /*
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "day1Cell", for: indexPath) as! SelectDayCell
-        switch indexPath.section {
-        case 0:
-            if indexPath.row == 0 {
-                cell.leftLabel?.text = "Select Day 1"
-                cell.rightLabel?.text = "---------"
-                cell.accessoryType = .disclosureIndicator
-            } else if indexPath.row == 1 {
-                cell.leftLabel?.text = "Select Exercise"
-                cell.rightLabel?.text = "---------"
-                cell.accessoryType = .disclosureIndicator
-            }
-        case 1:
-            if indexPath.row == 0 {
-                cell.leftLabel?.text = "Select Day 2"
-                cell.rightLabel?.text = "---------"
-                cell.accessoryType = .disclosureIndicator
-            } else if indexPath.row == 1 {
-                cell.leftLabel?.text = "Select Exercise"
-                cell.rightLabel?.text = "---------"
-                cell.accessoryType = .disclosureIndicator
-            }
-        case 2:
-            if indexPath.row == 0 {
-                cell.leftLabel?.text = "Select Day 3"
-                cell.rightLabel?.text = "---------"
-                cell.accessoryType = .disclosureIndicator
-            } else if indexPath.row == 1 {
-                cell.leftLabel?.text = "Select Exercise"
-                cell.rightLabel?.text = "---------"
-                cell.accessoryType = .disclosureIndicator
-            }
-        default:
-            break
-        }
-        
-        return cell
-    }
-     */
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let customCell = cell as? SelectDayCell else {
-                return
-            }
+class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDelegate, UITableViewDataSource, UITableViewDelegate{
 
-            let totalRowsInSection = tableView.numberOfRows(inSection: indexPath.section)
-
-            if indexPath.row == 0 {
-                // First row, round top corners
-                customCell.roundCorners(corners: [.topLeft, .topRight])
-            } else if indexPath.row == totalRowsInSection - 1 {
-                // Last row, round bottom corners
-                customCell.roundCorners(corners: [.bottomLeft, .bottomRight])
-            } else {
-                // Middle rows, reset corners
-                customCell.roundCorners(corners: [])
-            }
+    @IBOutlet weak var tableView: UITableView!
+    var selectedDay: String = ""
+    
+    struct Exercise {
+        let name: String
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        //Specify the height for the header (gap) between sections
-        return 10.0
-    }
-    
-
-    @IBOutlet weak var dayExerciseTableView: UITableView!
+    let data: [Exercise] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Set background
         GradientHelper.addGradient(to: view, colors: [UIColor.cyan, UIColor.systemBlue], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y:1.0))
         
-        //Clear the background colour ofthe tableview
-        dayExerciseTableView.backgroundColor = UIColor.clear
-        
-        //Set the delegate
-        dayExerciseTableView.delegate = self
+        //Required
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
     @IBAction func goBackPressed(_ sender: Any) {
@@ -108,5 +33,62 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         navigationController?.popViewController(animated: true)
     }
     
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //If the section is the day section
+        if section == 0 {
+            return 1
+        } else if section == 1 {//Else if the section is the exercises section
+            return data.count + 1
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 { //If the section is the day cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "dayCell", for: indexPath) as! ProgramDayCell
+            cell.buttonTappedHandler = { title in
+                if ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"].contains(title) {
+                    self.selectedDay = title
+                } else {
+                    self.selectedDay = ""
+                }
+                tableView.reloadData()
+            }
+            return cell
+        } else if indexPath.section == 1 { //Else if the section is the exercises cell
+            if indexPath.row == data.count { //If the end of the list is reached
+                //Create an additional row for 'Add Exercise'
+                let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ProgramExerciseCell
+                cell.label.text = "Add Exercise"
+                cell.iconImageView.image = UIImage(named: "plus")
+                return cell
+            } else {
+                //Fill existing exercise details
+                var exercise: Exercise
+                if selectedDay == "" {
+                    exercise = data[indexPath.row]
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ProgramExerciseCell
+                    cell.label.text = exercise.name
+                    cell.iconImageView.image = UIImage(named: "plus")
+                    return cell
+                }
+                
+            }
+        }
+        print("ViewController (tableView) : Returning UITableViewCell")
+        return UITableViewCell()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 {
+            return 80
+        } else {
+            return 50
+        }
+    }
 }
+

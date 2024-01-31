@@ -1,35 +1,30 @@
 //
-//  SelectDayCell.swift
+//  DayTableViewCell.swift
 //  MAD_Ass2
 //
-//  Created by Lee Espiritu on 30/1/2024.
-//  Version: 1.0
-//  Description: Prototype Cell class
+//  Created by Lee Espiritu on 31/1/2024.
 //
 
 import UIKit
 
-class SelectDayCell: UITableViewCell {
+class ProgramDayCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    
     @IBOutlet weak var horizontalScrollView: UIScrollView!
+    @IBOutlet weak var addDayButton: UIButton!
     
     private var selectedButton: UIButton?
+    var buttonTappedHandler: ((String) -> Void)?
     
-    // Declare plusButton as a property
-    private lazy var plusButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("+", for: .normal)
-        button.frame = CGRect(x: 0, y: (horizontalScrollView.frame.height - horizontalScrollView.frame.height*0.75)/2, width: 20, height: horizontalScrollView.frame.height*0.75)
-        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
-        
-        // Set border properties
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = button.frame.width / 2.0
-        button.layer.borderColor = UIColor.systemBlue.cgColor
-            
-        
-        return button
-    }()
+    let days: [String] = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,21 +34,18 @@ class SelectDayCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
-
+    
     private func configureHorizontalScrolling() {
-        // Add "+" button
-        horizontalScrollView.addSubview(plusButton)
-
         // Disable vertical scrolling
         horizontalScrollView.showsVerticalScrollIndicator = false
         horizontalScrollView.showsHorizontalScrollIndicator = true
         horizontalScrollView.isScrollEnabled = true
     }
     
-    @objc private func plusButtonTapped() {
-        // Handle "+" button tap
-        
+    @IBAction func plusButtonPressed(_ sender: Any) {
         // Create a UIPickerView
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -70,7 +62,7 @@ class SelectDayCell: UITableViewCell {
         pickerView.leadingAnchor.constraint(equalTo: alertController.view.leadingAnchor, constant: 8).isActive = true
         pickerView.trailingAnchor.constraint(equalTo: alertController.view.trailingAnchor, constant: -8).isActive = true
         pickerView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 20).isActive = true
-        pickerView.bottomAnchor.constraint(equalTo: alertController.view.bottomAnchor, constant: -30).isActive = true
+        pickerView.bottomAnchor.constraint(equalTo: alertController.view.bottomAnchor, constant: -50).isActive = true
         
         // Add a cancel button
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -79,6 +71,7 @@ class SelectDayCell: UITableViewCell {
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             // Handle the selected day
             let selectedDayIndex = pickerView.selectedRow(inComponent: 0)
+            print(selectedDayIndex)
             switch selectedDayIndex {
                 case 0:
                     self.addNewButton(title: "MON")
@@ -97,6 +90,7 @@ class SelectDayCell: UITableViewCell {
                 default:
                     break
             }
+             
             
         }))
         
@@ -105,15 +99,27 @@ class SelectDayCell: UITableViewCell {
             viewController.present(alertController, animated: true, completion: nil)
         }
     }
-    
+
     func getTopMostViewController() -> UIViewController? {
-        var topViewController = UIApplication.shared.windows.first?.rootViewController
-        
-        while let presentedViewController = topViewController?.presentedViewController {
-            topViewController = presentedViewController
+        // Use the connected scenes to find the appropriate UIWindowScene
+        if let windowScene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first,
+            let window = windowScene.windows.first {
+            
+            // Start from the root view controller of the main window
+            var topViewController = window.rootViewController
+            
+            // Traverse the presented view controllers
+            while let presentedViewController = topViewController?.presentedViewController {
+                topViewController = presentedViewController
+            }
+            
+            return topViewController
         }
         
-        return topViewController
+        // Return nil if no suitable window scene is found
+        return nil
     }
 
     func addNewButton(title: String) {
@@ -126,7 +132,7 @@ class SelectDayCell: UITableViewCell {
         newButton.addGestureRecognizer(tapGesture)
 
         // Calculate the position of the + button
-        let newPosition = CGPoint(x: plusButton.frame.minX, y: (horizontalScrollView.frame.height - horizontalScrollView.frame.height*0.75)/2)
+        let newPosition = CGPoint(x: addDayButton.frame.minX, y: (horizontalScrollView.frame.height - horizontalScrollView.frame.height*0.75)/2)
         
         // Position newButton at the + button position
         newButton.frame = CGRect(origin: newPosition, size: CGSize(width: 50, height: horizontalScrollView.frame.height*0.75))
@@ -140,68 +146,45 @@ class SelectDayCell: UITableViewCell {
         horizontalScrollView.addSubview(newButton)
         
         // Move the + button to the right of newButton
-        plusButton.frame.origin.x = newButton.frame.maxX + 3
+        addDayButton.frame.origin.x = newButton.frame.maxX + 3
         
         // Update content size
         updateContentSize()
     }
     
+    
     @objc private func dayTapped(_ sender: UITapGestureRecognizer) {
         // Handle button tap
         if let tappedButton = sender.view as? UIButton {
-            // Highlight the tapped button
-            tappedButton.layer.borderColor = UIColor.systemGreen.cgColor
-            tappedButton.layer.borderWidth = 2.0
-            
             // Unhighlight the previously selected button
             selectedButton?.layer.borderColor = UIColor.systemBlue.cgColor
             selectedButton?.layer.borderWidth = 1.0
             
+            // Highlight the tapped button
+            tappedButton.layer.borderColor = UIColor.systemGreen.cgColor
+            tappedButton.layer.borderWidth = 2.0
+            
             // Update the selectedButton reference
             selectedButton = tappedButton
+            
+            buttonTappedHandler?((tappedButton.titleLabel?.text)!)
         }
     }
-
-
+    
     private func updateContentSize() {
         let totalWidth = horizontalScrollView.subviews.reduce(0) { $0 + $1.frame.width }
         horizontalScrollView.contentSize = CGSize(width: totalWidth, height: horizontalScrollView.frame.height)
     }
     
-    //Public function to round corners
-    func roundCorners(corners: UIRectCorner) {
-        let cornerRadius: CGFloat = 10
-        let maskPath = UIBezierPath(
-            roundedRect: bounds,
-            byRoundingCorners: corners,
-            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)
-        )
-
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = maskPath.cgPath
-        layer.mask = maskLayer
-    }
-
-
-}
-
-extension SelectDayCell: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 7 // Number of days
+        return days.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        // Return the day names (e.g., Monday, Tuesday, etc.)
-        let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         return days[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // Handle the selected day, if needed
-        // You may update the newButton title or perform any other actions
     }
 }

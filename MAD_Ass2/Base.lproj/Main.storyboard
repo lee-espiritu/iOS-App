@@ -268,7 +268,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQS-DX-nVD">
-                                <rect key="frame" x="143" y="611" width="88" height="35"/>
+                                <rect key="frame" x="143" y="743" width="89" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Go Back">
@@ -280,42 +280,85 @@
                                     <action selector="goBackPressed:" destination="t3L-xX-k0f" eventType="touchUpInside" id="BCr-OH-Z7X"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gY7-qU-4Oh">
-                                <rect key="frame" x="16" y="105" width="343" height="488"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pH8-tg-rSd">
+                                <rect key="frame" x="16" y="50" width="351" height="685"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="day1Cell" id="9TB-Pm-0F1" customClass="SelectDayCell" customModule="MAD_Ass2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="343" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dayCell" id="XwF-Vd-k6Q" customClass="ProgramDayCell" customModule="MAD_Ass2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="351" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9TB-Pm-0F1" id="UT4-cp-3ez">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XwF-Vd-k6Q" id="wmi-2d-VkT">
+                                            <rect key="frame" x="0.0" y="0.0" width="351" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHG-1b-yfU">
-                                                    <rect key="frame" x="20" y="0.0" width="323" height="44"/>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C01-OR-NlX">
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <viewLayoutGuide key="contentLayoutGuide" id="mit-VH-E0c"/>
-                                                    <viewLayoutGuide key="frameLayoutGuide" id="XTm-ge-BhX"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qf2-c4-Nu9">
+                                                            <rect key="frame" x="8" y="5" width="89" height="35"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="filled" title="Add Day"/>
+                                                            <connections>
+                                                                <action selector="plusButtonPressed:" destination="XwF-Vd-k6Q" eventType="touchUpInside" id="4Fh-Sz-a2O"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <viewLayoutGuide key="contentLayoutGuide" id="Kf8-na-1TJ"/>
+                                                    <viewLayoutGuide key="frameLayoutGuide" id="LhB-gE-WWE"/>
                                                 </scrollView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="horizontalScrollView" destination="xHG-1b-yfU" id="d9d-8R-o40"/>
+                                            <outlet property="addDayButton" destination="qf2-c4-Nu9" id="PVw-WG-mTH"/>
+                                            <outlet property="horizontalScrollView" destination="C01-OR-NlX" id="8Y0-7L-eqm"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exerciseCell" rowHeight="117" id="7Ez-hE-HkI" customClass="ProgramExerciseCell" customModule="MAD_Ass2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="93.666667938232422" width="351" height="117"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Ez-hE-HkI" id="58o-lH-5PN">
+                                            <rect key="frame" x="0.0" y="0.0" width="351" height="117"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="syG-vm-dcC">
+                                                    <rect key="frame" x="10" y="10" width="100" height="97"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="6nx-r4-mwT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axh-QN-txu">
+                                                    <rect key="frame" x="120" y="10" width="221" height="97"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="axh-QN-txu" secondAttribute="bottom" constant="10" id="0Rl-ov-t5Q"/>
+                                                <constraint firstAttribute="trailing" secondItem="axh-QN-txu" secondAttribute="trailing" constant="10" id="JGs-lM-1W4"/>
+                                                <constraint firstItem="axh-QN-txu" firstAttribute="top" secondItem="58o-lH-5PN" secondAttribute="top" constant="10" id="Lt2-f6-krb"/>
+                                                <constraint firstAttribute="bottom" secondItem="syG-vm-dcC" secondAttribute="bottom" constant="10" id="SCk-2O-A03"/>
+                                                <constraint firstItem="syG-vm-dcC" firstAttribute="top" secondItem="58o-lH-5PN" secondAttribute="top" constant="10" id="Wkg-PS-9em"/>
+                                                <constraint firstItem="syG-vm-dcC" firstAttribute="leading" secondItem="58o-lH-5PN" secondAttribute="leading" constant="10" id="w3Z-YS-Trq"/>
+                                                <constraint firstItem="axh-QN-txu" firstAttribute="leading" secondItem="syG-vm-dcC" secondAttribute="trailing" constant="10" id="w83-di-DmB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="iconImageView" destination="syG-vm-dcC" id="qb1-uD-JgQ"/>
+                                            <outlet property="label" destination="axh-QN-txu" id="DIf-Qe-9yZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="t3L-xX-k0f" id="jcw-ak-G0a"/>
-                                    <outlet property="delegate" destination="t3L-xX-k0f" id="uPq-Sl-QSG"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lmk-sC-uue"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="dayExerciseTableView" destination="gY7-qU-4Oh" id="g3r-an-gjP"/>
+                        <outlet property="tableView" destination="pH8-tg-rSd" id="xZw-q7-392"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgr-9a-RmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
