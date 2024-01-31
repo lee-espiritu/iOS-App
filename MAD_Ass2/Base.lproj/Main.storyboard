@@ -291,25 +291,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7K-pl-Jzm">
-                                                    <rect key="frame" x="214" y="11" width="98" height="21"/>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHG-1b-yfU">
+                                                    <rect key="frame" x="20" y="0.0" width="323" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjL-4C-11c">
-                                                    <rect key="frame" x="20" y="11" width="153" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <viewLayoutGuide key="contentLayoutGuide" id="mit-VH-E0c"/>
+                                                    <viewLayoutGuide key="frameLayoutGuide" id="XTm-ge-BhX"/>
+                                                </scrollView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="leftLabel" destination="YjL-4C-11c" id="toq-Bj-m68"/>
-                                            <outlet property="rightLabel" destination="I7K-pl-Jzm" id="TsM-cI-QqL"/>
+                                            <outlet property="horizontalScrollView" destination="xHG-1b-yfU" id="d9d-8R-o40"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
