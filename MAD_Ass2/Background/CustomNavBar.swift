@@ -15,6 +15,9 @@ class CustomNavBar: UIView {
         super.init(frame: frame)
         setupUI()
     }
+    convenience init() {
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
+    }    
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

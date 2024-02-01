@@ -19,7 +19,7 @@ class ViewDatabaseScreen: UIViewController {
         //Apply background gradient
         GradientHelper.addGradient(to: view, colors: [UIColor.cyan, UIColor.systemBlue], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y:1.0))
         
-        view.addSubview(CustomNavBar)
+        view.addSubview(CustomNavBar())
         
         
         reloadData()
