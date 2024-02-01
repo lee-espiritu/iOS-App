@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		5057617F2B6A381000EC54DD /* ProgramDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057617E2B6A381000EC54DD /* ProgramDayCell.swift */; };
 		505761812B6A389300EC54DD /* ProgramExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505761802B6A389300EC54DD /* ProgramExerciseCell.swift */; };
+		50808D042B6B8FC50024923E /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50808D032B6B8FC50024923E /* CustomNavBar.swift */; };
 		508E99EA2B611B51002337AC /* DBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99E92B611B51002337AC /* DBConstants.swift */; };
 		508E99EC2B611B85002337AC /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99EB2B611B85002337AC /* DBManager.swift */; };
 		508E99EE2B611E44002337AC /* ViewDatabaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */; };
 		50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */; };
-		50BA60DD2B624B3300D7A099 /* ExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BA60DC2B624B3300D7A099 /* ExercisesTableViewCell.swift */; };
 		50DA5DAB2B61019E00566B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DAA2B61019E00566B73 /* AppDelegate.swift */; };
 		50DA5DAD2B61019E00566B73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DAC2B61019E00566B73 /* SceneDelegate.swift */; };
 		50DA5DAF2B61019E00566B73 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DAE2B61019E00566B73 /* HomeScreen.swift */; };
@@ -26,7 +26,6 @@
 		50DA5DD12B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DD02B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift */; };
 		50DA5DDE2B610A5900566B73 /* SetUpExerciseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */; };
 		50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */; };
-		50E63CED2B67612700FC4A22 /* ExerciseDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E63CEC2B67612700FC4A22 /* ExerciseDetailsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,11 +48,11 @@
 /* Begin PBXFileReference section */
 		5057617E2B6A381000EC54DD /* ProgramDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDayCell.swift; sourceTree = "<group>"; };
 		505761802B6A389300EC54DD /* ProgramExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramExerciseCell.swift; sourceTree = "<group>"; };
+		50808D032B6B8FC50024923E /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
 		508E99E92B611B51002337AC /* DBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConstants.swift; sourceTree = "<group>"; };
 		508E99EB2B611B85002337AC /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDatabaseScreen.swift; sourceTree = "<group>"; };
 		50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientHelper.swift; sourceTree = "<group>"; };
-		50BA60DC2B624B3300D7A099 /* ExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		50DA5DA72B61019E00566B73 /* MAD_Ass2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAD_Ass2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50DA5DAA2B61019E00566B73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50DA5DAC2B61019E00566B73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,7 +69,6 @@
 		50DA5DD02B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAD_Ass2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpExerciseScreen.swift; sourceTree = "<group>"; };
 		50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpDailyProgramScreen.swift; sourceTree = "<group>"; };
-		50E63CEC2B67612700FC4A22 /* ExerciseDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +96,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50808CF92B6B6C9E0024923E /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				50DA5DB32B61019E00566B73 /* MAD_Ass2.xcdatamodeld */,
+				508E99EB2B611B85002337AC /* DBManager.swift */,
+				508E99E92B611B51002337AC /* DBConstants.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		50808CFA2B6B6D6E0024923E /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */,
+				50808D032B6B8FC50024923E /* CustomNavBar.swift */,
+			);
+			path = Background;
+			sourceTree = "<group>";
+		};
+		50808CFB2B6B6D850024923E /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				50DA5DAE2B61019E00566B73 /* HomeScreen.swift */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		50808CFD2B6B6D990024923E /* Set Up Exercise Screen */ = {
+			isa = PBXGroup;
+			children = (
+				50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */,
+			);
+			path = "Set Up Exercise Screen";
+			sourceTree = "<group>";
+		};
+		50808CFF2B6B6DAB0024923E /* Set Up Daily Program Screen */ = {
+			isa = PBXGroup;
+			children = (
+				50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */,
+				505761802B6A389300EC54DD /* ProgramExerciseCell.swift */,
+				5057617E2B6A381000EC54DD /* ProgramDayCell.swift */,
+			);
+			path = "Set Up Daily Program Screen";
+			sourceTree = "<group>";
+		};
+		50808D002B6B6DCA0024923E /* View Database Screen */ = {
+			isa = PBXGroup;
+			children = (
+				508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */,
+			);
+			path = "View Database Screen";
+			sourceTree = "<group>";
+		};
 		50DA5D9E2B61019E00566B73 = {
 			isa = PBXGroup;
 			children = (
@@ -121,24 +172,18 @@
 		50DA5DA92B61019E00566B73 /* MAD_Ass2 */ = {
 			isa = PBXGroup;
 			children = (
+				50808D002B6B6DCA0024923E /* View Database Screen */,
+				50808CFF2B6B6DAB0024923E /* Set Up Daily Program Screen */,
+				50808CFD2B6B6D990024923E /* Set Up Exercise Screen */,
+				50808CFB2B6B6D850024923E /* Home Screen */,
+				50808CFA2B6B6D6E0024923E /* Background */,
+				50808CF92B6B6C9E0024923E /* Database */,
 				50DA5DB02B61019E00566B73 /* Main.storyboard */,
-				50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */,
 				50DA5DAA2B61019E00566B73 /* AppDelegate.swift */,
 				50DA5DAC2B61019E00566B73 /* SceneDelegate.swift */,
-				50DA5DAE2B61019E00566B73 /* HomeScreen.swift */,
-				50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */,
 				50DA5DB62B6101A000566B73 /* Assets.xcassets */,
 				50DA5DB82B6101A000566B73 /* LaunchScreen.storyboard */,
 				50DA5DBB2B6101A000566B73 /* Info.plist */,
-				50DA5DB32B61019E00566B73 /* MAD_Ass2.xcdatamodeld */,
-				508E99E92B611B51002337AC /* DBConstants.swift */,
-				508E99EB2B611B85002337AC /* DBManager.swift */,
-				50BA60DC2B624B3300D7A099 /* ExercisesTableViewCell.swift */,
-				50E63CEC2B67612700FC4A22 /* ExerciseDetailsTableViewCell.swift */,
-				508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */,
-				50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */,
-				505761802B6A389300EC54DD /* ProgramExerciseCell.swift */,
-				5057617E2B6A381000EC54DD /* ProgramDayCell.swift */,
 			);
 			path = MAD_Ass2;
 			sourceTree = "<group>";
@@ -292,13 +337,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				50DA5DAF2B61019E00566B73 /* HomeScreen.swift in Sources */,
+				50808D042B6B8FC50024923E /* CustomNavBar.swift in Sources */,
 				50DA5DAB2B61019E00566B73 /* AppDelegate.swift in Sources */,
 				50DA5DDE2B610A5900566B73 /* SetUpExerciseScreen.swift in Sources */,
 				505761812B6A389300EC54DD /* ProgramExerciseCell.swift in Sources */,
-				50BA60DD2B624B3300D7A099 /* ExercisesTableViewCell.swift in Sources */,
 				508E99EE2B611E44002337AC /* ViewDatabaseScreen.swift in Sources */,
 				50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */,
-				50E63CED2B67612700FC4A22 /* ExerciseDetailsTableViewCell.swift in Sources */,
 				50DA5DAD2B61019E00566B73 /* SceneDelegate.swift in Sources */,
 				50DA5DB52B61019E00566B73 /* MAD_Ass2.xcdatamodeld in Sources */,
 				5057617F2B6A381000EC54DD /* ProgramDayCell.swift in Sources */,

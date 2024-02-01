@@ -10,106 +10,114 @@ import UIKit
 
 class DBManager: NSObject {
     
+    //==============================================PREFILL==============================================
+    // Prefill Category Entity
     static func prefillCategories() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        for categoryName in DBConstants.categoryNames {
-            let categoryEntity = NSEntityDescription.entity(forEntityName: "Categories", in: managedContext)!
-            let category = NSManagedObject(entity: categoryEntity, insertInto: managedContext)
-            category.setValue(categoryName, forKeyPath: "name")
-        }
-        
-        do {
-            try managedContext.save()
-            print("DBManager: Prefilled categories")
-        } catch let error as NSError{
-            print("Error saving prefill data: \(error.localizedDescription)")
-        }
+        prefillEntity(entityName: "Category", names: DBConstants.categoryNames)
+    }
+
+    // Prefill Exercise Entity
+    static func prefillExercises() {
+        prefillEntity(entityName: "Exercise", names: DBConstants.exerciseNames)
     }
     
-    static func prefillExercises(){
+    //Used by prefillExercises() and prefillCategories() as a parent function
+    static func prefillEntity(entityName: String, names: [String]) {
+        // Get the app delegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
+        // Access the managed context
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        var exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercises", in: managedContext)!
-        var exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext)
-        exercise.setValue(DBConstants.exerciseSquats, forKey: "name")
-        exercise.setValue(DBConstants.categoryLegs, forKey: "category")
-        
-        exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercises", in: managedContext)!
-        exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext)
-        exercise.setValue(DBConstants.exerciseLegPress, forKey: "name")
-        exercise.setValue(DBConstants.categoryLegs, forKey: "category")
-        
-        exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercises", in: managedContext)!
-        exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext)
-        exercise.setValue(DBConstants.exerciseCalfRaise, forKey: "name")
-        exercise.setValue(DBConstants.categoryLegs, forKey: "category")
-        
-        exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercises", in: managedContext)!
-        exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext)
-        exercise.setValue(DBConstants.exerciseShoulderPress, forKey: "name")
-        exercise.setValue(DBConstants.categoryShoulders, forKey: "category")
-        
-        exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercises", in: managedContext)!
-        exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext)
-        exercise.setValue(DBConstants.exerciseBenchPress, forKey: "name")
-        exercise.setValue(DBConstants.categoryChest, forKey: "category")
-        
-        exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercises", in: managedContext)!
-        exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext)
-        exercise.setValue(DBConstants.exerciseBicepCurl, forKey: "name")
-        exercise.setValue(DBConstants.categoryArms, forKey: "category")
-        
-        exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercises", in: managedContext)!
-        exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext)
-        exercise.setValue(DBConstants.exerciseCrunches, forKey: "name")
-        exercise.setValue(DBConstants.categoryAbs, forKey: "category")
-        
-        do {
-            try managedContext.save()
-            print("DBManager: Prefilled Exercises")
-        } catch let error as NSError{
-            print("Error saving prefill data: \(error.localizedDescription)")
-        }
-    }
-    
-    static func prefillExerciseDetails() {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        // Loop through names
+        for name in names {
+            // Create an entity
+            let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedContext)!
             
-            let managedContext = appDelegate.persistentContainer.viewContext
-
-            for _ in 1...10 {
-                let exerciseDetailsEntity = NSEntityDescription.entity(forEntityName: "ExerciseDetails", in: managedContext)!
-                let exerciseDetails = NSManagedObject(entity: exerciseDetailsEntity, insertInto: managedContext)
-                
-                // Random values for sets, repetitions, and initialWeight
-                let sets = Int.random(in: 3...5)
-                let repetitions = Int.random(in: 8...12)
-                let initialWeight = Int.random(in: 20...50)
-                
-                // Select a random category and exercise name
-                let category = DBConstants.categoryNames.randomElement() ?? ""
-                let exerciseName = DBConstants.exerciseNames[category]?.randomElement() ?? ""
-                
-                // Set values for attributes
-                exerciseDetails.setValue(exerciseName, forKey: "name")
-                exerciseDetails.setValue(category, forKey: "category")
-                exerciseDetails.setValue(sets, forKey: "sets")
-                exerciseDetails.setValue(repetitions, forKey: "repetitions")
-                exerciseDetails.setValue(initialWeight, forKey: "initialWeight")
-            }
-
-            do {
-                try managedContext.save()
-                print("DBManager: Prefilled ExerciseDetails")
-            } catch let error as NSError {
-                print("Error saving prefill data: \(error.localizedDescription)")
-            }
+            // Create a managed object
+            let object = NSManagedObject(entity: entity, insertInto: managedContext)
+            
+            // Set the name
+            object.setValue(name.lowercased(), forKeyPath: "name")
         }
+        
+        // Save changes to the managed context
+        do {
+            try managedContext.save()
+            print("DBManager: Prefilled \(entityName)")
+        } catch let error as NSError {
+            // Handle save errors
+            print("DBManager: Error saving prefill data for \(entityName): \(error.localizedDescription)")
+        }
+    }
+    
+    static func prefillExerciseCategory() {
+        // Get the app delegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        // Access the managed context
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        // Loop through exerciseCategory array
+        for exerciseTuple in DBConstants.exerciseCategory {
+            // Create an ExerciseCategory entity
+            let exerciseCategoryEntity = NSEntityDescription.entity(forEntityName: "ExerciseCategory", in: managedContext)!
+
+            // Create a managed object for the ExerciseCategory
+            let exerciseCategory = NSManagedObject(entity: exerciseCategoryEntity, insertInto: managedContext)
+
+            // Set the exerciseName and categoryName
+            exerciseCategory.setValue(exerciseTuple.name.lowercased(), forKeyPath: "exerciseName")
+            exerciseCategory.setValue(exerciseTuple.category.lowercased(), forKeyPath: "categoryName")
+        }
+
+        // Save changes to the managed context
+        do {
+            try managedContext.save()
+            print("DBManager: Prefilled ExerciseCategory")
+        } catch let error as NSError {
+            // Handle save errors
+            print("DBManager: Error saving prefill data for ExerciseCategory: \(error.localizedDescription)")
+        }
+    }
+    
+    static func prefillDefaultExercise() {
+        // Get the app delegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        // Access the managed context
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        // Loop through defaultExercise array
+        for defaultTuple in DBConstants.defaultExercise {
+            // Create an DefaultExercise entity
+            let defaultExerciseCategoryEntity = NSEntityDescription.entity(forEntityName: "DefaultExercise", in: managedContext)!
+
+            // Create a managed object for the defaultExercise
+            let defaultExerciseCategory = NSManagedObject(entity: defaultExerciseCategoryEntity, insertInto: managedContext)
+
+            // Set the exerciseName and categoryName
+            defaultExerciseCategory.setValue(defaultTuple.exerciseName.lowercased(), forKeyPath: "exerciseName")
+            defaultExerciseCategory.setValue(defaultTuple.categoryName.lowercased(), forKeyPath: "categoryName")
+            defaultExerciseCategory.setValue(defaultTuple.sets, forKeyPath: "sets")
+            defaultExerciseCategory.setValue(defaultTuple.repetitions, forKeyPath: "repetitions")
+            defaultExerciseCategory.setValue(defaultTuple.weight, forKeyPath: "weight")
+        }
+
+        // Save changes to the managed context
+        do {
+            try managedContext.save()
+            print("DBManager: Prefilled DefaultExercise")
+        } catch let error as NSError {
+            // Handle save errors
+            print("DBManager: Error saving prefill data for DefaultExercise: \(error.localizedDescription)")
+        }
+    }
+    //===================================================================================================
+
+    
+
+    
     
     static func retrieveCategoriesCount() -> Int {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return 0 }
