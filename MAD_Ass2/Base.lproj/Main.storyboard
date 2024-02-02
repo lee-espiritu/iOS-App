@@ -193,9 +193,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQS-DX-nVD">
-                                <rect key="frame" x="143" y="743" width="89" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQS-DX-nVD">
+                                <rect key="frame" x="143" y="657" width="89" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Go Back">
                                     <backgroundConfiguration key="background" cornerRadius="30"/>
@@ -206,86 +205,90 @@
                                     <action selector="goBackPressed:" destination="t3L-xX-k0f" eventType="touchUpInside" id="BCr-OH-Z7X"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pH8-tg-rSd">
-                                <rect key="frame" x="16" y="50" width="351" height="685"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dayCell" id="XwF-Vd-k6Q" customClass="ProgramDayCell" customModule="MAD_Ass2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="351" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XwF-Vd-k6Q" id="wmi-2d-VkT">
-                                            <rect key="frame" x="0.0" y="0.0" width="351" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C01-OR-NlX">
-                                                    <rect key="frame" x="20" y="0.0" width="335" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qf2-c4-Nu9">
-                                                            <rect key="frame" x="8" y="5" width="89" height="35"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="Add Day"/>
-                                                            <connections>
-                                                                <action selector="plusButtonPressed:" destination="XwF-Vd-k6Q" eventType="touchUpInside" id="4Fh-Sz-a2O"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <viewLayoutGuide key="contentLayoutGuide" id="Kf8-na-1TJ"/>
-                                                    <viewLayoutGuide key="frameLayoutGuide" id="LhB-gE-WWE"/>
-                                                </scrollView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="addDayButton" destination="qf2-c4-Nu9" id="PVw-WG-mTH"/>
-                                            <outlet property="horizontalScrollView" destination="C01-OR-NlX" id="8Y0-7L-eqm"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exerciseCell" rowHeight="117" id="7Ez-hE-HkI" customClass="ProgramExerciseCell" customModule="MAD_Ass2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="93.666667938232422" width="351" height="117"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Ez-hE-HkI" id="58o-lH-5PN">
-                                            <rect key="frame" x="0.0" y="0.0" width="351" height="117"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="syG-vm-dcC">
-                                                    <rect key="frame" x="10" y="10" width="100" height="97"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="6nx-r4-mwT"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axh-QN-txu">
-                                                    <rect key="frame" x="120" y="10" width="221" height="97"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="axh-QN-txu" secondAttribute="bottom" constant="10" id="0Rl-ov-t5Q"/>
-                                                <constraint firstAttribute="trailing" secondItem="axh-QN-txu" secondAttribute="trailing" constant="10" id="JGs-lM-1W4"/>
-                                                <constraint firstItem="axh-QN-txu" firstAttribute="top" secondItem="58o-lH-5PN" secondAttribute="top" constant="10" id="Lt2-f6-krb"/>
-                                                <constraint firstAttribute="bottom" secondItem="syG-vm-dcC" secondAttribute="bottom" constant="10" id="SCk-2O-A03"/>
-                                                <constraint firstItem="syG-vm-dcC" firstAttribute="top" secondItem="58o-lH-5PN" secondAttribute="top" constant="10" id="Wkg-PS-9em"/>
-                                                <constraint firstItem="syG-vm-dcC" firstAttribute="leading" secondItem="58o-lH-5PN" secondAttribute="leading" constant="10" id="w3Z-YS-Trq"/>
-                                                <constraint firstItem="axh-QN-txu" firstAttribute="leading" secondItem="syG-vm-dcC" secondAttribute="trailing" constant="10" id="w83-di-DmB"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="iconImageView" destination="syG-vm-dcC" id="qb1-uD-JgQ"/>
-                                            <outlet property="label" destination="axh-QN-txu" id="DIf-Qe-9yZ"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E4j-Rp-sFD">
+                                <rect key="frame" x="0.0" y="729" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Home" image="house.fill" catalog="system" id="L7C-gM-exs"/>
+                                    <tabBarItem title="Exercise" image="scalemass.fill" catalog="system" id="XJs-Cb-Ude"/>
+                                    <tabBarItem title="Daily Program" image="calendar.circle.fill" catalog="system" id="ZLt-88-8nI"/>
+                                    <tabBarItem title="Record" image="clock.fill" catalog="system" id="duD-hn-Q65"/>
+                                    <tabBarItem title="Log" image="chart.line.uptrend.xyaxis" catalog="system" id="Sr2-4E-zBY"/>
+                                </items>
+                            </tabBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oa9-5I-q4k">
+                                <rect key="frame" x="18" y="104" width="341" height="140"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yd9-Sa-3MT">
+                                        <rect key="frame" x="59" y="4" width="240" height="128"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OS9-42-Zmn">
+                                                <rect key="frame" x="8" y="47" width="75" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfb-uL-okw">
+                                                <rect key="frame" x="91" y="47" width="75" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQD-9z-RKr">
+                                                <rect key="frame" x="174" y="47" width="75" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPe-1M-2JQ">
+                                                <rect key="frame" x="257" y="47" width="75" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMP-g2-apk">
+                                                <rect key="frame" x="340" y="47" width="75" height="35"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAj-tn-Qec">
+                                                <rect key="frame" x="423" y="47" width="75" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONG-eG-Q2g">
+                                                <rect key="frame" x="505" y="47" width="75" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="xMP-g2-apk" firstAttribute="leading" secondItem="Yd9-Sa-3MT" secondAttribute="trailing" constant="100" id="U1b-ST-egC"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Yd9-Sa-3MT" secondAttribute="bottom" constant="8" id="bil-7C-b6g"/>
+                                    <constraint firstItem="Yd9-Sa-3MT" firstAttribute="leading" secondItem="oa9-5I-q4k" secondAttribute="leading" constant="59" id="e28-Ay-ps6"/>
+                                    <constraint firstItem="Yd9-Sa-3MT" firstAttribute="top" secondItem="H9r-VW-f1Q" secondAttribute="top" constant="4" id="wTI-wQ-bQl"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="aEK-Of-KyA"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="H9r-VW-f1Q"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lmk-sC-uue"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oa9-5I-q4k" firstAttribute="top" secondItem="lmk-sC-uue" secondAttribute="top" constant="54" id="GIb-cO-7P8"/>
+                            <constraint firstItem="DQS-DX-nVD" firstAttribute="top" secondItem="oa9-5I-q4k" secondAttribute="bottom" constant="413" id="fkQ-gc-92Q"/>
+                            <constraint firstItem="oa9-5I-q4k" firstAttribute="leading" secondItem="lmk-sC-uue" secondAttribute="leading" constant="18" id="oXm-Fj-XvL"/>
+                            <constraint firstItem="lmk-sC-uue" firstAttribute="trailing" secondItem="oa9-5I-q4k" secondAttribute="trailing" constant="16" id="qso-pF-ZKQ"/>
+                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="tableView" destination="pH8-tg-rSd" id="xZw-q7-392"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgr-9a-RmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

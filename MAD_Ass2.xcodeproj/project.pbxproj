@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5057617F2B6A381000EC54DD /* ProgramDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057617E2B6A381000EC54DD /* ProgramDayCell.swift */; };
-		505761812B6A389300EC54DD /* ProgramExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505761802B6A389300EC54DD /* ProgramExerciseCell.swift */; };
 		50808D042B6B8FC50024923E /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50808D032B6B8FC50024923E /* CustomNavBar.swift */; };
 		508E99EA2B611B51002337AC /* DBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99E92B611B51002337AC /* DBConstants.swift */; };
 		508E99EC2B611B85002337AC /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99EB2B611B85002337AC /* DBManager.swift */; };
@@ -48,8 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5057617E2B6A381000EC54DD /* ProgramDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDayCell.swift; sourceTree = "<group>"; };
-		505761802B6A389300EC54DD /* ProgramExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramExerciseCell.swift; sourceTree = "<group>"; };
 		50808D032B6B8FC50024923E /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
 		508E99E92B611B51002337AC /* DBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConstants.swift; sourceTree = "<group>"; };
 		508E99EB2B611B85002337AC /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -141,8 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */,
-				505761802B6A389300EC54DD /* ProgramExerciseCell.swift */,
-				5057617E2B6A381000EC54DD /* ProgramDayCell.swift */,
 			);
 			path = "Set Up Daily Program Screen";
 			sourceTree = "<group>";
@@ -346,13 +340,11 @@
 				50808D042B6B8FC50024923E /* CustomNavBar.swift in Sources */,
 				50DA5DAB2B61019E00566B73 /* AppDelegate.swift in Sources */,
 				50DA5DDE2B610A5900566B73 /* SetUpExerciseScreen.swift in Sources */,
-				505761812B6A389300EC54DD /* ProgramExerciseCell.swift in Sources */,
 				508E99EE2B611E44002337AC /* ViewDatabaseScreen.swift in Sources */,
 				50C915B62B6CB55300018182 /* CategoryAlertController.swift in Sources */,
 				50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */,
 				50DA5DAD2B61019E00566B73 /* SceneDelegate.swift in Sources */,
 				50DA5DB52B61019E00566B73 /* MAD_Ass2.xcdatamodeld in Sources */,
-				5057617F2B6A381000EC54DD /* ProgramDayCell.swift in Sources */,
 				50C915B82B6CC14600018182 /* ExerciseAlertController.swift in Sources */,
 				508E99EA2B611B51002337AC /* DBConstants.swift in Sources */,
 				508E99EC2B611B85002337AC /* DBManager.swift in Sources */,
