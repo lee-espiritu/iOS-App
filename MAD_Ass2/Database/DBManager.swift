@@ -38,7 +38,7 @@ class DBManager: NSObject {
             let object = NSManagedObject(entity: entity, insertInto: managedContext)
             
             // Set the name
-            object.setValue(name.lowercased(), forKeyPath: "name")
+            object.setValue(name, forKeyPath: "name")
         }
         
         // Save changes to the managed context
@@ -67,8 +67,8 @@ class DBManager: NSObject {
             let exerciseCategory = NSManagedObject(entity: exerciseCategoryEntity, insertInto: managedContext)
 
             // Set the exerciseName and categoryName
-            exerciseCategory.setValue(exerciseTuple.name.lowercased(), forKeyPath: "exerciseName")
-            exerciseCategory.setValue(exerciseTuple.category.lowercased(), forKeyPath: "categoryName")
+            exerciseCategory.setValue(exerciseTuple.name, forKeyPath: "exerciseName")
+            exerciseCategory.setValue(exerciseTuple.category, forKeyPath: "categoryName")
         }
 
         // Save changes to the managed context
@@ -97,8 +97,8 @@ class DBManager: NSObject {
             let defaultExerciseCategory = NSManagedObject(entity: defaultExerciseCategoryEntity, insertInto: managedContext)
 
             // Set the exerciseName and categoryName
-            defaultExerciseCategory.setValue(defaultTuple.exerciseName.lowercased(), forKeyPath: "exerciseName")
-            defaultExerciseCategory.setValue(defaultTuple.categoryName.lowercased(), forKeyPath: "categoryName")
+            defaultExerciseCategory.setValue(defaultTuple.exerciseName, forKeyPath: "exerciseName")
+            defaultExerciseCategory.setValue(defaultTuple.categoryName, forKeyPath: "categoryName")
             defaultExerciseCategory.setValue(defaultTuple.sets, forKeyPath: "sets")
             defaultExerciseCategory.setValue(defaultTuple.repetitions, forKeyPath: "repetitions")
             defaultExerciseCategory.setValue(defaultTuple.weight, forKeyPath: "weight")
