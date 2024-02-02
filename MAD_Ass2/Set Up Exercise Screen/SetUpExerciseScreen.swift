@@ -92,7 +92,7 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
     //This function grabs categories from the database and prepares the contents for selection at the pickerView
     func loadCategories() {
         //Retrieve categories from database
-        categories = DBManager.retrieveCategories()
+        //categories = DBManager.retrieveCategories()
         //Update pickerView with categories
         dynamicPickerView.reloadAllComponents()
     }

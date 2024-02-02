@@ -115,38 +115,67 @@ class DBManager: NSObject {
     }
     //===================================================================================================
 
-    
-
-    
-    
-    static func retrieveCategoriesCount() -> Int {
+    //=================================GET ROWS COUNT===============================================
+    static func getNumRows(entityName: String) -> Int {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return 0 }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Categories")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         
         do {
-            let categories = try managedContext.fetch(fetchRequest)
-            return categories.count
+            let rows = try managedContext.fetch(fetchRequest)
+            return rows.count
         } catch let error as NSError {
-            print("Error retrieving categories count: \(error.localizedDescription)")
+            print("Error retrieving \(entityName) rows: \(error.localizedDescription)")
             return 0
         }
     }
+    //===================================================================================================
     
-    static func retrieveCategories() -> [String] {
+    
+    //=============================================DELETE===============================================
+    static func deleteAllRows(entityName: String){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        do {
+            let rows = try managedContext.fetch(fetchRequest)
+            for row in rows {
+                managedContext.delete(row)
+            }
+            try managedContext.save()
+            print("Deleted all rows for \(entityName)")
+        } catch {
+            print("Error deleting rows in \(entityName): \(error)")
+        }
+    }
+    //===================================================================================================
+    
+    
+    //==============================================GETTERS==============================================
+    static func getAllRows(entityName: String) -> [[String: Any]] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Categories")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         
         do {
-            let categories = try managedContext.fetch(fetchRequest)
-            return categories.compactMap { $0.value(forKeyPath: "name") as? String }
+            let entities = try managedContext.fetch(fetchRequest)
+            return entities.map { entity in
+                var attributes = [String: Any]()
+                let entityDescription = entity.entity
+                for property in entityDescription.properties {
+                    let propertyName = property.name
+                    attributes[propertyName] = entity.value(forKey: propertyName)
+                }
+                return attributes
+            }
         } catch let error as NSError {
-            print("Error retrieving categories: \(error.localizedDescription)")
+            print("Error retrieving \(entityName) rows: \(error.localizedDescription)")
             return []
         }
     }
+    //===================================================================================================
+    
     
     static func categoryExists(category: String) -> Bool {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
@@ -316,20 +345,7 @@ class DBManager: NSObject {
         }
     }
     
-    static func deleteAllCategories(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Categories")
-        do {
-            let categories = try managedContext.fetch(fetchRequest)
-            for category in categories {
-                managedContext.delete(category)
-            }
-            try managedContext.save()
-        } catch {
-            print("Error deleting categories: \(error)")
-        }
-    }
+    
     
     static func deleteAllExercises(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
