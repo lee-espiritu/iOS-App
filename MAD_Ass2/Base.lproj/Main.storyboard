@@ -334,6 +334,9 @@
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="P4E-KB-06d">
                                         <rect key="frame" x="200" y="248" width="94" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="setsStepperPressed:" destination="OxN-A2-7KX" eventType="valueChanged" id="guK-Ru-1BE"/>
+                                        </connections>
                                     </stepper>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Initial Weight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYz-Um-Q4F">
                                         <rect key="frame" x="100" y="295" width="103" height="21"/>
@@ -362,21 +365,27 @@
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="OrL-Q3-J9J">
                                         <rect key="frame" x="10" y="367" width="273" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="weightSliderChanged:" destination="OxN-A2-7KX" eventType="valueChanged" id="qrL-K8-70v"/>
+                                        </connections>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSU-1q-E4g">
                                         <rect key="frame" x="8" y="133" width="286" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Please select an Exercise ▼"/>
+                                        <connections>
+                                            <action selector="selectExercisePressed:" destination="OxN-A2-7KX" eventType="touchUpInside" id="8Iy-z7-NIs"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUH-dh-kTh">
-                                        <rect key="frame" x="38" y="205" width="35" height="35"/>
+                                        <rect key="frame" x="33" y="205" width="45" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="0"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9g-rt-lwy">
-                                        <rect key="frame" x="230" y="205" width="35" height="35"/>
+                                        <rect key="frame" x="225" y="205" width="45" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="0"/>
@@ -384,9 +393,12 @@
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="8of-Gm-BcF">
                                         <rect key="frame" x="8" y="248" width="94" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="repetitionsStepperPressed:" destination="OxN-A2-7KX" eventType="valueChanged" id="JHy-GP-Wj4"/>
+                                        </connections>
                                     </stepper>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHi-S8-BIN">
-                                        <rect key="frame" x="109" y="324" width="75" height="35"/>
+                                        <rect key="frame" x="104" y="324" width="85" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="100 kg"/>
@@ -435,6 +447,12 @@
                     </view>
                     <connections>
                         <outlet property="categoryButton" destination="aay-sl-23o" id="hEO-t0-kXG"/>
+                        <outlet property="exerciseButton" destination="pSU-1q-E4g" id="Q3W-Oi-6pJ"/>
+                        <outlet property="repetitionsNumber" destination="LUH-dh-kTh" id="DQ6-Zs-ydy"/>
+                        <outlet property="saveExerciseButton" destination="a6s-Oh-ElG" id="3c4-vY-Wyh"/>
+                        <outlet property="setsNumber" destination="Y9g-rt-lwy" id="62b-Uu-Geu"/>
+                        <outlet property="viewForm" destination="WGS-0K-Y5B" id="dAq-JD-mRE"/>
+                        <outlet property="weightNumber" destination="rHi-S8-BIN" id="KqO-US-DTg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ss-Fw-cse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

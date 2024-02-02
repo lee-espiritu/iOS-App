@@ -9,9 +9,8 @@ import UIKit
 
 class CategoryAlertController: UIAlertController, UIPickerViewDataSource, UIPickerViewDelegate {
 
-    // Add your custom properties and methods here
     private let pickerView = UIPickerView()
-    private var selectedRow: Int?
+    private var selectedRow: Int = 0
 
     var categories = DBManager.getAllRows(entityName: "Category")
     var maxRows = DBManager.getNumRows(entityName: "Category")
@@ -52,7 +51,7 @@ class CategoryAlertController: UIAlertController, UIPickerViewDataSource, UIPick
         if selectedRow == maxRows {
             return "Custom"
         } else {
-            return categories[selectedRow!]["name"] as? String
+            return categories[selectedRow]["name"] as? String
         }
     }
 

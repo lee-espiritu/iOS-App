@@ -15,6 +15,7 @@
 		508E99EE2B611E44002337AC /* ViewDatabaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */; };
 		50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */; };
 		50C915B62B6CB55300018182 /* CategoryAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C915B52B6CB55300018182 /* CategoryAlertController.swift */; };
+		50C915B82B6CC14600018182 /* ExerciseAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C915B72B6CC14600018182 /* ExerciseAlertController.swift */; };
 		50DA5DAB2B61019E00566B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DAA2B61019E00566B73 /* AppDelegate.swift */; };
 		50DA5DAD2B61019E00566B73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DAC2B61019E00566B73 /* SceneDelegate.swift */; };
 		50DA5DAF2B61019E00566B73 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DAE2B61019E00566B73 /* HomeScreen.swift */; };
@@ -55,6 +56,7 @@
 		508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDatabaseScreen.swift; sourceTree = "<group>"; };
 		50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientHelper.swift; sourceTree = "<group>"; };
 		50C915B52B6CB55300018182 /* CategoryAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAlertController.swift; sourceTree = "<group>"; };
+		50C915B72B6CC14600018182 /* ExerciseAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAlertController.swift; sourceTree = "<group>"; };
 		50DA5DA72B61019E00566B73 /* MAD_Ass2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAD_Ass2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50DA5DAA2B61019E00566B73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50DA5DAC2B61019E00566B73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				50DA5DAE2B61019E00566B73 /* HomeScreen.swift */,
-				50C915B52B6CB55300018182 /* CategoryAlertController.swift */,
 			);
 			path = "Home Screen";
 			sourceTree = "<group>";
@@ -130,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */,
+				50C915B52B6CB55300018182 /* CategoryAlertController.swift */,
+				50C915B72B6CC14600018182 /* ExerciseAlertController.swift */,
 			);
 			path = "Set Up Exercise Screen";
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				50DA5DAD2B61019E00566B73 /* SceneDelegate.swift in Sources */,
 				50DA5DB52B61019E00566B73 /* MAD_Ass2.xcdatamodeld in Sources */,
 				5057617F2B6A381000EC54DD /* ProgramDayCell.swift in Sources */,
+				50C915B82B6CC14600018182 /* ExerciseAlertController.swift in Sources */,
 				508E99EA2B611B51002337AC /* DBConstants.swift in Sources */,
 				508E99EC2B611B85002337AC /* DBManager.swift in Sources */,
 				50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */,
