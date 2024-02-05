@@ -19,7 +19,7 @@ class HomeScreen: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         //Add custom navbar
-        view.addSubview(CustomNavBar())
+        view.addSubview(CustomNavBar(title: "Home Screen"))
         
     }
     

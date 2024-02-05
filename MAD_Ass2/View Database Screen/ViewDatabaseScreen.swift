@@ -61,6 +61,7 @@ class ViewDatabaseScreen: UIViewController, UITableViewDelegate, UITableViewData
         DBManager.deleteAllRows(entityName: "Exercise")
         DBManager.deleteAllRows(entityName: "ExerciseCategory")
         DBManager.deleteAllRows(entityName: "DefaultExercise")
+        DBManager.deleteAllRows(entityName: "PlanWorkout")
         reloadData()
     }
     

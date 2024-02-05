@@ -26,6 +26,8 @@
 		50DA5DD12B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DD02B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift */; };
 		50DA5DDE2B610A5900566B73 /* SetUpExerciseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */; };
 		50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */; };
+		50F5AFB82B70555D00733DF4 /* ExercisePlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */; };
+		50F5AFBA2B70750200733DF4 /* DailyProgramValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		50DA5DD02B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAD_Ass2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpExerciseScreen.swift; sourceTree = "<group>"; };
 		50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpDailyProgramScreen.swift; sourceTree = "<group>"; };
+		50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlanTableViewCell.swift; sourceTree = "<group>"; };
+		50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyProgramValidationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */,
+				50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */,
+				50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */,
 			);
 			path = "Set Up Daily Program Screen";
 			sourceTree = "<group>";
@@ -345,7 +351,9 @@
 				50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */,
 				50DA5DAD2B61019E00566B73 /* SceneDelegate.swift in Sources */,
 				50DA5DB52B61019E00566B73 /* MAD_Ass2.xcdatamodeld in Sources */,
+				50F5AFBA2B70750200733DF4 /* DailyProgramValidationManager.swift in Sources */,
 				50C915B82B6CC14600018182 /* ExerciseAlertController.swift in Sources */,
+				50F5AFB82B70555D00733DF4 /* ExercisePlanTableViewCell.swift in Sources */,
 				508E99EA2B611B51002337AC /* DBConstants.swift in Sources */,
 				508E99EC2B611B85002337AC /* DBManager.swift in Sources */,
 				50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */,

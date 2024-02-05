@@ -17,4 +17,9 @@
         <attribute name="categoryName" optional="YES" attributeType="String"/>
         <attribute name="exerciseName" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="PlanWorkout" representedClassName="PlanWorkout" syncable="YES" codeGenerationType="class">
+        <attribute name="categoryName" optional="YES" attributeType="String"/>
+        <attribute name="day" optional="YES" attributeType="String"/>
+        <attribute name="exerciseName" optional="YES" attributeType="String"/>
+    </entity>
 </model>
