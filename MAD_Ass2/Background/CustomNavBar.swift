@@ -44,7 +44,9 @@ class CustomNavBar: UIView {
         // Set up constraints for the title label (adjust as needed)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        //titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        // Adjust the y-coordinate with a constant value to move the label down
+        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive = true
     }
     
     // Method to set the title
