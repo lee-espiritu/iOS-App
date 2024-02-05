@@ -3,7 +3,8 @@
 //  MAD_Ass2
 //
 //  Created by Lee Espiritu on 5/2/2024.
-//
+//  Version: 1.4
+//  Description: Class responsible for the session workout tableview, shows the current workout progress
 
 import UIKit
 
@@ -27,6 +28,7 @@ class RecordSession: UITableViewCell {
     var restTimer: Int = 10
     var repetitions: Int = 0
     var sets: Int = 0
+    var totalTimeLeft: Int = 0
     
     private var timer: Timer?
     private var secondsLeft: Int = 0
@@ -40,8 +42,6 @@ class RecordSession: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     @IBAction func restButtonPressed(_ sender: Any) {
@@ -49,6 +49,7 @@ class RecordSession: UITableViewCell {
     
     @IBAction func startButtonPressed(_ sender: Any) {
         if isTimerRunning {
+            print("Pausing timer")
             // Pause the timer
             pauseTimer()
         } else {
@@ -71,14 +72,8 @@ class RecordSession: UITableViewCell {
         repetitions = Int(repValue) ?? 0
         print("Sets \(sets), repetitions \(repetitions)")
         print("Total Time Left: \(intervalTimer * repetitions * (sets == 0 ? 1 : sets))")
-        timeLeftLabel.text = "Time Left: - \(formattedTimeLeft())"
-    }
-    
-    private func formattedTimeLeft() -> String {
-        let totalSeconds = intervalTimer * repetitions * (sets == 0 ? 1 : sets)
-        let minutes = totalSeconds / 60
-        let seconds = totalSeconds % 60
-        return String(format: "%02d:%02d", minutes, seconds)
+        totalTimeLeft = intervalTimer * repetitions * (sets == 0 ? 1 : sets)
+        updateTimeLeftLabel()
     }
 
 
@@ -113,8 +108,14 @@ class RecordSession: UITableViewCell {
     }
 
     @objc private func updateTimer() {
+        guard isTimerRunning else {
+            return //Do not update the timer if paused
+        }
+        
         secondsLeft -= 1
+        totalTimeLeft -= 1
         updateTimerLabel()
+        updateTimeLeftLabel()
         
         if secondsLeft <= 0 {
             stopTimer()
@@ -125,6 +126,12 @@ class RecordSession: UITableViewCell {
         let minutes = secondsLeft / 60
         let seconds = secondsLeft % 60
         timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+    private func updateTimeLeftLabel() {
+        let minutes = totalTimeLeft / 60
+        let seconds = totalTimeLeft % 60
+        timeLeftLabel.text = "Time Left: \(String(format: "%02d:%02d", minutes, seconds))"
     }
 
     private func updateButtonTitle(isPause: Bool) {
