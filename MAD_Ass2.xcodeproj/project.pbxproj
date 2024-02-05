@@ -29,6 +29,8 @@
 		50F5AFB82B70555D00733DF4 /* ExercisePlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */; };
 		50F5AFBA2B70750200733DF4 /* DailyProgramValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */; };
 		50F5AFBD2B70837200733DF4 /* RecordWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFBC2B70837200733DF4 /* RecordWorkout.swift */; };
+		50F5AFBF2B70911500733DF4 /* RecordWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFBE2B70911500733DF4 /* RecordWorkoutTableViewCell.swift */; };
+		50F5B03B2B70AF3B00733DF4 /* RecordSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5B03A2B70AF3B00733DF4 /* RecordSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlanTableViewCell.swift; sourceTree = "<group>"; };
 		50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyProgramValidationManager.swift; sourceTree = "<group>"; };
 		50F5AFBC2B70837200733DF4 /* RecordWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordWorkout.swift; sourceTree = "<group>"; };
+		50F5AFBE2B70911500733DF4 /* RecordWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordWorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		50F5B03A2B70AF3B00733DF4 /* RecordSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				50F5AFBC2B70837200733DF4 /* RecordWorkout.swift */,
+				50F5AFBE2B70911500733DF4 /* RecordWorkoutTableViewCell.swift */,
+				50F5B03A2B70AF3B00733DF4 /* RecordSession.swift */,
 			);
 			path = "Record Workout Screen";
 			sourceTree = "<group>";
@@ -367,6 +373,8 @@
 				50F5AFB82B70555D00733DF4 /* ExercisePlanTableViewCell.swift in Sources */,
 				508E99EA2B611B51002337AC /* DBConstants.swift in Sources */,
 				508E99EC2B611B85002337AC /* DBManager.swift in Sources */,
+				50F5AFBF2B70911500733DF4 /* RecordWorkoutTableViewCell.swift in Sources */,
+				50F5B03B2B70AF3B00733DF4 /* RecordSession.swift in Sources */,
 				50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */,
 				50F5AFBD2B70837200733DF4 /* RecordWorkout.swift in Sources */,
 			);

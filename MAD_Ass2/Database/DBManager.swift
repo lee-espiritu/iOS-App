@@ -256,6 +256,71 @@ class DBManager: NSObject {
         return exercisePlan
     }
     
+    static func getExercisePlan(forDay day: String, index: Int) -> (exerciseName: String, categoryName: String)? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+        var exercisePlan: (exerciseName: String, categoryName: String)?
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PlanWorkout")
+
+        // Add a predicate to filter by the specified day
+        fetchRequest.predicate = NSPredicate(format: "day == %@", day)
+
+        do {
+            // Execute the fetch request
+            let results = try managedContext.fetch(fetchRequest)
+
+            // Check if the index is within bounds
+            if index >= 0, index < results.count {
+                let result = results[index] as! NSManagedObject
+
+                // Extract exerciseName and categoryName attributes
+                if let exerciseName = result.value(forKey: "exerciseName") as? String,
+                   let categoryName = result.value(forKey: "categoryName") as? String {
+                    // Create a tuple for the exercise
+                    exercisePlan = (exerciseName: exerciseName, categoryName: categoryName)
+                }
+            }
+        } catch let error as NSError {
+            print("Error fetching exercise plan: \(error.localizedDescription)")
+        }
+
+        return exercisePlan
+    }
+
+    //Retrieve the default values (Set, repetition, weight) for a given exercise and category
+    static func getDefaultValue(forExercise exercise: String, forCategory category: String) -> (sets: String, repetitions: String, weight: String)? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+        var defaultValue: (sets: String, repetitions: String, weight: String)?
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DefaultExercise")
+
+        // Add predicates to filter by exerciseName and categoryName
+        fetchRequest.predicate = NSPredicate(format: "exerciseName == %@ AND categoryName == %@", exercise, category)
+
+        do {
+            // Execute the fetch request
+            let results = try managedContext.fetch(fetchRequest)
+
+            // Check if there is a matching record
+            if let result = results.first as? NSManagedObject {
+                // Extract sets, repetitions, and weight attributes
+                if let sets = result.value(forKey: "sets") as? Int,
+                   let repetitions = result.value(forKey: "repetitions") as? Int,
+                   let weight = result.value(forKey: "weight") as? Int {
+                    // Create a tuple for the default values
+                    defaultValue = (sets: String(sets), repetitions: String(repetitions), weight: String(weight))
+                }
+            }
+        } catch let error as NSError {
+            print("Error fetching default values: \(error.localizedDescription)")
+        }
+
+        return defaultValue
+    }
+
+    
     //Retrieve the category name given an index
     static func getCategory(index: Int) -> String {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return "" }
