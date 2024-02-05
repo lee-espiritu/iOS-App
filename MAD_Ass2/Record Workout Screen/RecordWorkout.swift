@@ -57,6 +57,7 @@ class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSourc
             cell.exerciseLabel.text? = selectedExerciseName
             cell.setLabel.text? = selectedSet
             cell.repLabel.text? = selectedRep
+            cell.updateSetsAndRepetitions(setValue: selectedSet, repValue: selectedRep)
             cell.weightLabel.text? = selectedWeight
             return cell
         } else {

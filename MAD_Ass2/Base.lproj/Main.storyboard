@@ -746,7 +746,7 @@
                                                         <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="restButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="LG6-XJ-vEt"/>
+                                                        <action selector="restButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="LnF-jU-dFx"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="254-G9-3sh">
@@ -759,8 +759,7 @@
                                                         <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="quitButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="aFv-nL-CIN"/>
-                                                        <action selector="restButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="u6E-1f-5VM"/>
+                                                        <action selector="quitButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="VIp-i5-vNc"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RB-06-5e0">
@@ -773,7 +772,7 @@
                                                         <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="startButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="TbQ-q9-rDZ"/>
+                                                        <action selector="startButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="AEq-BA-UiC"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDc-4F-yFx">
@@ -786,7 +785,7 @@
                                                         <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="stopButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="wwb-8O-f3Z"/>
+                                                        <action selector="stopButtonPressed:" destination="cib-sg-vAM" eventType="touchUpInside" id="5Rh-3N-8h8"/>
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow.3.trianglepath" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wah-Yj-TsZ">
@@ -853,11 +852,13 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="exerciseLabel" destination="laE-Y5-ufj" id="KfO-8N-g2O"/>
-                                            <outlet property="repLabel" destination="i5A-R7-jIS" id="juc-4V-fMb"/>
-                                            <outlet property="setLabel" destination="zTP-q8-HWH" id="j7B-SQ-5wU"/>
-                                            <outlet property="timerLabel" destination="6bz-X9-KZ8" id="2IE-nQ-wQC"/>
-                                            <outlet property="weightLabel" destination="ShS-Io-f0L" id="do5-kn-Zhr"/>
+                                            <outlet property="exerciseLabel" destination="laE-Y5-ufj" id="6sk-Ft-CG8"/>
+                                            <outlet property="repLabel" destination="i5A-R7-jIS" id="X3O-4r-67N"/>
+                                            <outlet property="setLabel" destination="zTP-q8-HWH" id="aBr-2O-gTw"/>
+                                            <outlet property="startButton" destination="5RB-06-5e0" id="lam-4g-oGn"/>
+                                            <outlet property="timeLeftLabel" destination="HGF-rJ-DUx" id="026-ns-wae"/>
+                                            <outlet property="timerLabel" destination="6bz-X9-KZ8" id="Cyr-hL-2Tn"/>
+                                            <outlet property="weightLabel" destination="ShS-Io-f0L" id="uhb-4x-xGj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
