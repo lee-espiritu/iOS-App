@@ -29,6 +29,10 @@ class RecordSession: UITableViewCell {
     var repetitions: Int = 0
     var sets: Int = 0
     var totalTimeLeft: Int = 0
+    var totalTimeLeftOriginal: Int = 0
+    
+    var setCounter: Int = 0
+    var repCounter: Int = 0
     
     private var timer: Timer?
     private var secondsLeft: Int = 0
@@ -60,7 +64,14 @@ class RecordSession: UITableViewCell {
 
     @IBAction func stopButtonPressed(_ sender: Any) {
         // Stop the timer
-        stopTimer()
+        isTimerRunning = false
+        timer?.invalidate()
+        timer = nil
+        secondsLeft = intervalTimer
+        totalTimeLeft = totalTimeLeftOriginal
+        updateButtonTitle(isPause: false)
+        updateTimerLabel()
+        updateTimeLeftLabel()
     }
 
     @IBAction func quitButtonPressed(_ sender: Any) {
@@ -73,6 +84,7 @@ class RecordSession: UITableViewCell {
         print("Sets \(sets), repetitions \(repetitions)")
         print("Total Time Left: \(intervalTimer * repetitions * (sets == 0 ? 1 : sets))")
         totalTimeLeft = intervalTimer * repetitions * (sets == 0 ? 1 : sets)
+        totalTimeLeftOriginal = totalTimeLeft
         updateTimeLeftLabel()
     }
 
@@ -83,6 +95,7 @@ class RecordSession: UITableViewCell {
             isTimerRunning = true
             updateButtonTitle(isPause: true)
             secondsLeft = intervalTimer
+            totalTimeLeft = totalTimeLeftOriginal
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         } else {
             // Resume the timer
@@ -100,11 +113,12 @@ class RecordSession: UITableViewCell {
     private func stopTimer() {
         // Stop the timer
         isTimerRunning = false
-        updateButtonTitle(isPause: false)
         timer?.invalidate()
         timer = nil
         secondsLeft = 0
+        updateButtonTitle(isPause: false)
         updateTimerLabel()
+        updateTimeLeftLabel()
     }
 
     @objc private func updateTimer() {
@@ -119,6 +133,20 @@ class RecordSession: UITableViewCell {
         
         if secondsLeft <= 0 {
             stopTimer()
+            
+            //Increase repetition counter
+            repCounter += 1
+            //Check if the rep target is reached
+            if repCounter == repetitions {
+                //Increase set counter
+                setCounter += 1
+                //Check if the set target is reached
+                if setCounter == sets {
+                    return
+                }
+            }
+            startOrResumeTimer()
+            updateTimerLabel()
         }
     }
 
@@ -137,6 +165,10 @@ class RecordSession: UITableViewCell {
     private func updateButtonTitle(isPause: Bool) {
         if isPause {
             startButton.setTitle("Pause", for: .normal)
+        } else if setCounter == sets && repCounter == repetitions{
+            startButton.setTitle("Start", for: .normal)
+        } else if secondsLeft == 0 {
+            startButton.setTitle("Start", for: .normal)
         } else {
             startButton.setTitle("Resume", for: .normal)
         }

@@ -65,11 +65,11 @@ class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSourc
             cell.exerciseLabel.text? = DBManager.getExercisePlan(forDay: dayOfWeek, index: indexPath.row)!.exerciseName
             cell.categoryLabel.text? = DBManager.getExercisePlan(forDay: dayOfWeek, index: indexPath.row)!.categoryName
             cell.setNumberLabel.text? = DBManager.getDefaultValue(forExercise: cell.exerciseLabel.text!, forCategory: cell.categoryLabel.text!)!.sets
-            cell.setStepper.minimumValue = 0
+            cell.setStepper.minimumValue = 1 //Cannot have 0 sets
             cell.setStepper.maximumValue = 20
             cell.setStepper.value = Double(cell.setNumberLabel.text!)!
             cell.repetitionNumberLabel.text? = DBManager.getDefaultValue(forExercise: cell.exerciseLabel.text!, forCategory: cell.categoryLabel.text!)!.repetitions
-            cell.repetitionStepper.minimumValue = 0
+            cell.repetitionStepper.minimumValue = 0 //Cannot have 0 repetitions
             cell.repetitionStepper.maximumValue = 10
             cell.repetitionStepper.value = Double(cell.repetitionNumberLabel.text!)!
             cell.weightNumberLabel.text? = "\(DBManager.getDefaultValue(forExercise: cell.exerciseLabel.text!, forCategory: cell.categoryLabel.text!)!.weight) kg"
