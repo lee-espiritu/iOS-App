@@ -41,4 +41,10 @@ class HomeScreen: UIViewController {
             navigationController?.pushViewController(nextVC, animated: true)
         }
     }
+    
+    @IBAction func recordWorkoutPressed(_ sender: Any) {
+        if let nextVC = storyboard?.instantiateViewController(withIdentifier: "RecordWorkout") as? RecordWorkout{
+            navigationController?.pushViewController(nextVC, animated: true)
+        }
+    }
 }

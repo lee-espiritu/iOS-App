@@ -47,7 +47,10 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         dayString = "Monday"
         exercises = DBManager.getExercisePlan(forDay: dayString)
         print("Size of exercises: \(exercises.count)")
-        tableView.reloadData()
+        //Animation
+        let sectionToReload = 0 // Select the section to reload
+        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
     @IBAction func tuePressed(_ sender: Any) {
@@ -55,7 +58,11 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         dayString = "Tuesday"
         exercises = DBManager.getExercisePlan(forDay: dayString)
         print("Size of exercises: \(exercises.count)")
-        tableView.reloadData()
+        
+        //Animation
+        let sectionToReload = 0 // Select the section to reload
+        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
     @IBAction func wedPressed(_ sender: Any) {
@@ -63,7 +70,10 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         dayString = "Wednesday"
         exercises = DBManager.getExercisePlan(forDay: dayString)
         print("Size of exercises: \(exercises.count)")
-        tableView.reloadData()
+        //Animation
+        let sectionToReload = 0 // Select the section to reload
+        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
     @IBAction func thuPressed(_ sender: Any) {
@@ -71,7 +81,10 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         dayString = "Thursday"
         exercises = DBManager.getExercisePlan(forDay: dayString)
         print("Size of exercises: \(exercises.count)")
-        tableView.reloadData()
+        //Animation
+        let sectionToReload = 0 // Select the section to reload
+        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
     @IBAction func friPressed(_ sender: Any) {
@@ -79,7 +92,10 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         dayString = "Friday"
         exercises = DBManager.getExercisePlan(forDay: dayString)
         print("Size of exercises: \(exercises.count)")
-        tableView.reloadData()
+        //Animation
+        let sectionToReload = 0 // Select the section to reload
+        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
     @IBAction func satPressed(_ sender: Any) {
@@ -87,7 +103,10 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         dayString = "Saturday"
         exercises = DBManager.getExercisePlan(forDay: dayString)
         print("Size of exercises: \(exercises.count)")
-        tableView.reloadData()
+        //Animation
+        let sectionToReload = 0 // Select the section to reload
+        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
     @IBAction func sunPressed(_ sender: Any) {
@@ -95,7 +114,10 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         dayString = "Sunday"
         exercises = DBManager.getExercisePlan(forDay: dayString)
         print("Size of exercises: \(exercises.count)")
-        tableView.reloadData()
+        //Animation
+        let sectionToReload = 0 // Select the section to reload
+        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
     @IBAction func saveProgramPlanButtonPressed(_ sender: Any) {

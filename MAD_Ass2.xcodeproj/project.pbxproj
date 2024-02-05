@@ -28,6 +28,7 @@
 		50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */; };
 		50F5AFB82B70555D00733DF4 /* ExercisePlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */; };
 		50F5AFBA2B70750200733DF4 /* DailyProgramValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */; };
+		50F5AFBD2B70837200733DF4 /* RecordWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFBC2B70837200733DF4 /* RecordWorkout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpDailyProgramScreen.swift; sourceTree = "<group>"; };
 		50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlanTableViewCell.swift; sourceTree = "<group>"; };
 		50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyProgramValidationManager.swift; sourceTree = "<group>"; };
+		50F5AFBC2B70837200733DF4 /* RecordWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordWorkout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 		50DA5DA92B61019E00566B73 /* MAD_Ass2 */ = {
 			isa = PBXGroup;
 			children = (
+				50F5AFBB2B70833A00733DF4 /* Record Workout Screen */,
 				50808D002B6B6DCA0024923E /* View Database Screen */,
 				50808CFF2B6B6DAB0024923E /* Set Up Daily Program Screen */,
 				50808CFD2B6B6D990024923E /* Set Up Exercise Screen */,
@@ -209,6 +212,14 @@
 				50DA5DD02B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift */,
 			);
 			path = MAD_Ass2UITests;
+			sourceTree = "<group>";
+		};
+		50F5AFBB2B70833A00733DF4 /* Record Workout Screen */ = {
+			isa = PBXGroup;
+			children = (
+				50F5AFBC2B70837200733DF4 /* RecordWorkout.swift */,
+			);
+			path = "Record Workout Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +368,7 @@
 				508E99EA2B611B51002337AC /* DBConstants.swift in Sources */,
 				508E99EC2B611B85002337AC /* DBManager.swift in Sources */,
 				50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */,
+				50F5AFBD2B70837200733DF4 /* RecordWorkout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

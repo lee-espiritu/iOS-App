@@ -3,7 +3,8 @@
 //  MAD_Ass2
 //
 //  Created by Lee Espiritu on 24/1/2024.
-//
+//  Version: 1.2
+//  Description: Responsible for database actions in the workout program
 
 import CoreData
 import UIKit
@@ -51,6 +52,7 @@ class DBManager: NSObject {
         }
     }
     
+    //Prefill ExerciseCategory Entity
     static func prefillExerciseCategory() {
         // Get the app delegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -81,6 +83,7 @@ class DBManager: NSObject {
         }
     }
     
+    //Prefill DefaultExercise Entity
     static func prefillDefaultExercise() {
         // Get the app delegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -116,6 +119,7 @@ class DBManager: NSObject {
     //===================================================================================================
 
     //=================================GET ROWS COUNT===============================================
+    //Retrieve the number of rows for a given Entity
     static func getNumRows(entityName: String) -> Int {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return 0 }
         
@@ -131,6 +135,7 @@ class DBManager: NSObject {
         }
     }
     
+    //Retrieve the number of rows for a given entity using an attribute filter
     static func getNumRows(entityName: String, categoryName: String) -> Int {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return 0 }
         
@@ -152,6 +157,7 @@ class DBManager: NSObject {
     
     
     //=============================================DELETE===============================================
+    //Delete all rows for a given entity
     static func deleteAllRows(entityName: String){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -171,6 +177,7 @@ class DBManager: NSObject {
     
     
     //==============================================GETTERS==============================================
+    //Retrieve all rows for a given entity
     static func getAllRows(entityName: String) -> [[String: Any]] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -217,6 +224,7 @@ class DBManager: NSObject {
         return exercises
     }
     
+    //Retrieve all exercise plans from the ExercisePlan category
     static func getExercisePlan(forDay: String) -> [[String: String]] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
         var exercisePlan: [[String: String]] = []
@@ -273,6 +281,7 @@ class DBManager: NSObject {
         return ""
     }
     
+    //Retrieve the exercise name given an index and a category from the ExerciseCategory entity
     static func getExercise(index: Int, category: String) -> String {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return "" }
 
@@ -307,6 +316,7 @@ class DBManager: NSObject {
     
     
     //=============================================ADD===================================================
+    //Add a row to PlanWorkout entity given parameters
     static func addRowPlanWorkout(day: Int, exerciseName: String, categoryName: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
@@ -359,6 +369,7 @@ class DBManager: NSObject {
     //===================================================================================================
     
     //===================================SET UP DAILY PROGRAM VALIDATION=================================
+    //Retrieve the number of unique days selected
     static func uniqueDaysCount() -> Int {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return 0 }
 
@@ -387,7 +398,7 @@ class DBManager: NSObject {
         return 0
     }
 
-    
+    //Retrieve the number of exercises for each selected day
     static func getExerciseCountsForDays() -> [Int] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
 
@@ -424,6 +435,7 @@ class DBManager: NSObject {
     }
 
     //===================================================================================================
+    
     static func categoryExists(category: String) -> Bool {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
         
