@@ -133,6 +133,8 @@ class RecordSession: UITableViewCell {
         timer = nil
         secondsLeft = intervalTimer
         totalTimeLeft = totalTimeLeftOriginal
+        setCounter = 0
+        repCounter = 0
         updateButtonTitle(isPause: false)
         updateTimerLabel()
         updateTimeLeftLabel()
@@ -140,6 +142,15 @@ class RecordSession: UITableViewCell {
     }
 
     @IBAction func quitButtonPressed(_ sender: Any) {
+        //Kill all timers, that is, those using totalTimeLeft, secondsLeft and restSecondsLeft
+        // Stop the main timer
+        timer?.invalidate()
+        timer = nil
+        
+        // Stop the rest timer
+        restTimer?.invalidate()
+        restTimer = nil
+        
         delegate?.quitButtonPressed(in: self)
     }
     
@@ -160,6 +171,7 @@ class RecordSession: UITableViewCell {
             isTimerRunning = true
             updateButtonTitle(isPause: true)
             secondsLeft = intervalTimer
+            totalTimeLeft = totalTimeLeftOriginal
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         } else {
             // Resume the timer
@@ -180,6 +192,8 @@ class RecordSession: UITableViewCell {
         timer?.invalidate()
         timer = nil
         secondsLeft = 0
+        setCounter = 0
+        repCounter = 0
         updateButtonTitle(isPause: false)
         updateTimerLabel()
         updateTimeLeftLabel()
