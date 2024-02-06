@@ -23,6 +23,9 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
     @IBOutlet weak var setsNumber: UIButton!
     @IBOutlet weak var weightNumber: UIButton!
     @IBOutlet weak var exerciseButton: UIButton!
+    @IBOutlet weak var repetitionsStepper: UIStepper!
+    @IBOutlet weak var setsStepper: UIStepper!
+    @IBOutlet weak var weightSlider: UISlider!
     
     var categories: [[String: Any]] = []
 
@@ -181,4 +184,14 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
 
     }
     
+    @IBAction func saveExerciseButtonPressed(_ sender: Any) {
+        if let categoryTitle = categoryButton.titleLabel?.text,
+           let exerciseTitle = exerciseButton.titleLabel?.text {
+
+            print("Category: \(categoryTitle), Exercise: \(exerciseTitle), Repetitions: \(Int(repetitionsStepper.value)), Sets: \(Int(setsStepper.value)), Weight: \(Int(weightSlider.value))")
+            DBManager.setUpExercise(category: categoryTitle, exercise: exerciseTitle, reps: Int(repetitionsStepper.value), sets: Int(setsStepper.value), weight: Int(weightSlider.value))
+        } else {
+            print("Category or Exercise title is nil")
+        }
+    }
 }

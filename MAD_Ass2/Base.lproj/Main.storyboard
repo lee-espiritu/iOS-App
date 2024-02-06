@@ -499,6 +499,9 @@
                                             <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="saveExerciseButtonPressed:" destination="OxN-A2-7KX" eventType="touchUpInside" id="gPw-us-ikv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -536,10 +539,13 @@
                         <outlet property="categoryButton" destination="aay-sl-23o" id="hEO-t0-kXG"/>
                         <outlet property="exerciseButton" destination="pSU-1q-E4g" id="Q3W-Oi-6pJ"/>
                         <outlet property="repetitionsNumber" destination="LUH-dh-kTh" id="DQ6-Zs-ydy"/>
+                        <outlet property="repetitionsStepper" destination="8of-Gm-BcF" id="CSo-a8-T2Z"/>
                         <outlet property="saveExerciseButton" destination="a6s-Oh-ElG" id="3c4-vY-Wyh"/>
                         <outlet property="setsNumber" destination="Y9g-rt-lwy" id="62b-Uu-Geu"/>
+                        <outlet property="setsStepper" destination="P4E-KB-06d" id="xpD-i3-jWp"/>
                         <outlet property="viewForm" destination="WGS-0K-Y5B" id="dAq-JD-mRE"/>
                         <outlet property="weightNumber" destination="rHi-S8-BIN" id="KqO-US-DTg"/>
+                        <outlet property="weightSlider" destination="OrL-Q3-J9J" id="a3S-1D-A3a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ss-Fw-cse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

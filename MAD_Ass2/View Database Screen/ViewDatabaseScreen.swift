@@ -144,7 +144,7 @@ class ViewDatabaseScreen: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 weightLabel.text = "N/A"
             }
-            weightLabel.frame = CGRect(x: 300, y: 10, width: 30, height: 30)  // Adjusted position and width
+            weightLabel.frame = CGRect(x: 300, y: 10, width: 40, height: 30)  // Adjusted position and width
             cell.contentView.addSubview(weightLabel)
 
             return cell

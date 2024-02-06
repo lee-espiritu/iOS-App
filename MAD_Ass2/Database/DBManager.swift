@@ -175,7 +175,7 @@ class DBManager: NSObject {
     }
     //===================================================================================================
     
-    //======================================UPDATE ROWS=================================================
+    //======================================UPDATE=======================================================
     static func updateDefaultExercise(exerciseName: String, categoryName: String, sets: Int, repetitions: Int, weight: Int) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -193,6 +193,193 @@ class DBManager: NSObject {
             }
         } catch let error as NSError {
             print("Error updating DefaultExercise: \(error.localizedDescription)")
+        }
+    }
+    
+
+    //This function adds input retrieved from the Set Up Exercise screen into their relevant tables
+    static func setUpExercise(category: String, exercise: String, reps: Int, sets: Int, weight: Int){
+        //Attempt to add category into Category table
+        let categoryExists = !addCategory(category: category)
+        
+        //Attempt to add exercise into Exercise table
+        let exerciseExists = !addExercise(exercise: exercise)
+        
+        //If either exercise or category did not previously exist
+        if categoryExists == false || exerciseExists == false {
+            //Add category and exercise to ExerciseCategory entity
+            addExerciseCategory(category: category, exercise: exercise)
+        }
+        
+        //Add or update row in DefaultExercise
+        addUpdateDefaultExercise(category: category, exercise: exercise, reps: reps, sets: sets, weight: weight)
+        
+        print("Category: \(categoryExists), Exercise: \(exerciseExists)")
+    }
+    
+    //This function adds or updates a row in DefaultExercise using categoryName and exerciseName as attributes to match
+    static func addUpdateDefaultExercise(category: String, exercise: String, reps: Int, sets: Int, weight: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        // Check if DefaultExercise exists
+        let defaultExerciseFetchRequest = NSFetchRequest<DefaultExercise>(entityName: "DefaultExercise")
+        defaultExerciseFetchRequest.predicate = NSPredicate(format: "categoryName == %@ AND exerciseName == %@", category, exercise)
+
+        do {
+            let defaultExercises = try managedContext.fetch(defaultExerciseFetchRequest)
+
+            if defaultExercises.isEmpty {
+                // DefaultExercise does not exist, add it
+                let newDefaultExercise = DefaultExercise(context: managedContext)
+                newDefaultExercise.categoryName = category
+                newDefaultExercise.exerciseName = exercise
+                newDefaultExercise.repetitions = Int32(reps)
+                newDefaultExercise.sets = Int32(sets)
+                newDefaultExercise.weight = Int32(weight)
+
+                // Save changes to the managed context
+                do {
+                    try managedContext.save()
+                    print("Added new record to DefaultExercise")
+                } catch {
+                    print("Error saving changes: \(error.localizedDescription)")
+                }
+            } else {
+                // DefaultExercise already exists, update the repetitions, sets and weight attributes accordingly.
+                let existingDefaultExercise = defaultExercises[0]
+                existingDefaultExercise.repetitions = Int32(reps)
+                existingDefaultExercise.sets = Int32(sets)
+                existingDefaultExercise.weight = Int32(weight)
+
+                // Save changes to the managed context
+                do {
+                    try managedContext.save()
+                    print("Updated record in DefaultExercise")
+                } catch {
+                    print("Error saving changes: \(error.localizedDescription)")
+                }
+            }
+        } catch {
+            print("Error fetching DefaultExercise: \(error.localizedDescription)")
+        }
+    }
+    
+    //This function attempts to add a category into Category entity. Returns true if there is a successful add, otherwise false
+    static func addCategory(category: String) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return false
+            }
+
+            let managedContext = appDelegate.persistentContainer.viewContext
+
+            // Check if Category exists
+            let categoryFetchRequest = NSFetchRequest<Category>(entityName: "Category")
+            categoryFetchRequest.predicate = NSPredicate(format: "name == %@", category)
+
+            do {
+                let categories = try managedContext.fetch(categoryFetchRequest)
+
+                if categories.isEmpty {
+                    // Category does not exist, add it
+                    let newCategory = Category(context: managedContext)
+                    newCategory.name = category
+
+                    // Save changes to the managed context
+                    do {
+                        try managedContext.save()
+                        print("Added Category (\(category))")
+                        return true
+                    } catch {
+                        print("Error saving changes: \(error.localizedDescription)")
+                    }
+                } else {
+                    // Category already exists
+                    print("Category (\(category)) already exists")
+                    return false
+                }
+            } catch {
+                print("Error fetching Category: \(error.localizedDescription)")
+            }
+            return false
+    }
+    
+    //This function adds an exercise into the Exercise entity, returns true if there was an addition, otherwise false (already exists)
+    static func addExercise(exercise: String) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return false
+        }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        // Check if Exercise exists
+        let exerciseFetchRequest = NSFetchRequest<Exercise>(entityName: "Exercise")
+        exerciseFetchRequest.predicate = NSPredicate(format: "name == %@", exercise)
+
+        do {
+            let exercises = try managedContext.fetch(exerciseFetchRequest)
+
+            if exercises.isEmpty {
+                // Exercise does not exist, add it
+                let newExercise = Exercise(context: managedContext)
+                newExercise.name = exercise
+
+                // Save changes to the managed context
+                do {
+                    try managedContext.save()
+                    print("Added Exercise (\(exercise))")
+                    return true
+                } catch {
+                    print("Error saving changes: \(error.localizedDescription)")
+                }
+            } else {
+                // Exercise already exists
+                print("Exercise (\(exercise)) already exists")
+                return false
+            }
+        } catch {
+            print("Error fetching Exercise: \(error.localizedDescription)")
+        }
+
+        return false
+    }
+    
+    //This function adds an entry to ExerciseCategory entity given paramters
+    static func addExerciseCategory(category: String, exercise: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        // Check if ExerciseCategory exists
+        let exerciseCategoryFetchRequest = NSFetchRequest<ExerciseCategory>(entityName: "ExerciseCategory")
+        exerciseCategoryFetchRequest.predicate = NSPredicate(format: "exerciseName == %@ AND categoryName == %@", exercise, category)
+
+        do {
+            let exerciseCategories = try managedContext.fetch(exerciseCategoryFetchRequest)
+
+            if exerciseCategories.isEmpty {
+                // ExerciseCategory does not exist, add it
+                let newExerciseCategory = ExerciseCategory(context: managedContext)
+                newExerciseCategory.exerciseName = exercise
+                newExerciseCategory.categoryName = category
+
+                // Save changes to the managed context
+                do {
+                    try managedContext.save()
+                } catch {
+                    print("Error saving changes: \(error.localizedDescription)")
+                }
+            } else {
+                // ExerciseCategory already exists
+                print("ExerciseCategory already exists for the given exercise and category.")
+            }
+        } catch {
+            print("Error fetching ExerciseCategory: \(error.localizedDescription)")
         }
     }
     //===================================================================================================
@@ -538,21 +725,5 @@ class DBManager: NSObject {
         }
     }
     
-    static func addCategory(categoryName: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let categoryEntity = NSEntityDescription.entity(forEntityName: "Categories", in: managedContext)!
-        
-        let newCategory = NSManagedObject(entity: categoryEntity, insertInto: managedContext)
-        newCategory.setValue(categoryName, forKey: "name")
-        
-        do {
-            try managedContext.save()
-            print("Category '\(categoryName)' added successfully.")
-        } catch let error as NSError {
-            print("Error adding category: \(error.localizedDescription)")
-        }
-    }
     
 }
