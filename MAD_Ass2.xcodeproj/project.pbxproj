@@ -27,6 +27,7 @@
 		50DA5DCF2B6101A000566B73 /* MAD_Ass2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DCE2B6101A000566B73 /* MAD_Ass2UITests.swift */; };
 		50DA5DD12B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DD02B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift */; };
 		50DA5DDE2B610A5900566B73 /* SetUpExerciseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */; };
+		50DEF5732B720E70009FB02E /* TakePhotoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DEF5722B720E70009FB02E /* TakePhotoScreen.swift */; };
 		50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */; };
 		50F5AFB82B70555D00733DF4 /* ExercisePlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */; };
 		50F5AFBA2B70750200733DF4 /* DailyProgramValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */; };
@@ -77,6 +78,7 @@
 		50DA5DCE2B6101A000566B73 /* MAD_Ass2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAD_Ass2UITests.swift; sourceTree = "<group>"; };
 		50DA5DD02B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAD_Ass2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		50DA5DDD2B610A5900566B73 /* SetUpExerciseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpExerciseScreen.swift; sourceTree = "<group>"; };
+		50DEF5722B720E70009FB02E /* TakePhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePhotoScreen.swift; sourceTree = "<group>"; };
 		50E63CEA2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpDailyProgramScreen.swift; sourceTree = "<group>"; };
 		50F5AFB72B70555D00733DF4 /* ExercisePlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlanTableViewCell.swift; sourceTree = "<group>"; };
 		50F5AFB92B70750200733DF4 /* DailyProgramValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyProgramValidationManager.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		50DA5DA92B61019E00566B73 /* MAD_Ass2 */ = {
 			isa = PBXGroup;
 			children = (
+				50DEF5712B720E53009FB02E /* Take Photo Screen */,
 				5098FA622B71C6D100B5A477 /* Display Logs Screen */,
 				50F5AFBB2B70833A00733DF4 /* Record Workout Screen */,
 				50808D002B6B6DCA0024923E /* View Database Screen */,
@@ -230,6 +233,14 @@
 				50DA5DD02B6101A000566B73 /* MAD_Ass2UITestsLaunchTests.swift */,
 			);
 			path = MAD_Ass2UITests;
+			sourceTree = "<group>";
+		};
+		50DEF5712B720E53009FB02E /* Take Photo Screen */ = {
+			isa = PBXGroup;
+			children = (
+				50DEF5722B720E70009FB02E /* TakePhotoScreen.swift */,
+			);
+			path = "Take Photo Screen";
 			sourceTree = "<group>";
 		};
 		50F5AFBB2B70833A00733DF4 /* Record Workout Screen */ = {
@@ -390,6 +401,7 @@
 				508E99EA2B611B51002337AC /* DBConstants.swift in Sources */,
 				508E99EC2B611B85002337AC /* DBManager.swift in Sources */,
 				50F5AFBF2B70911500733DF4 /* RecordWorkoutTableViewCell.swift in Sources */,
+				50DEF5732B720E70009FB02E /* TakePhotoScreen.swift in Sources */,
 				50F5B03B2B70AF3B00733DF4 /* RecordSession.swift in Sources */,
 				50E63CEB2B674F3100FC4A22 /* SetUpDailyProgramScreen.swift in Sources */,
 				50F5AFBD2B70837200733DF4 /* RecordWorkout.swift in Sources */,

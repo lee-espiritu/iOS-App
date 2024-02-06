@@ -703,6 +703,72 @@
             </objects>
             <point key="canvasLocation" x="2238.9312977099235" y="1620.4225352112676"/>
         </scene>
+        <!--Take Photo Screen-->
+        <scene sceneID="UeL-f8-Vwb">
+            <objects>
+                <viewController storyboardIdentifier="TakePhotoScreen" id="QF3-Tw-sqx" customClass="TakePhotoScreen" customModule="MAD_Ass2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qhq-Y3-CGt">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiy-4x-Oul">
+                                <rect key="frame" x="123" y="763" width="107" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Go Back">
+                                    <backgroundConfiguration key="background" cornerRadius="30"/>
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goBackPressed:" destination="vdP-Rf-kdf" eventType="touchUpInside" id="Bb1-BD-8s6"/>
+                                    <action selector="goBackPressed:" destination="QF3-Tw-sqx" eventType="touchUpInside" id="NmM-4m-UMh"/>
+                                    <action selector="goBackPressed:" destination="bck-eW-ceW" eventType="touchUpInside" id="QH9-zi-RNg"/>
+                                    <action selector="goBackPressed:" destination="t3L-xX-k0f" eventType="touchUpInside" id="aq4-EG-ka5"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9SW-gc-PQL">
+                                <rect key="frame" x="16" y="97" width="361" height="486"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHS-mf-xYy">
+                                <rect key="frame" x="228" y="688" width="121" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Select Photo">
+                                    <backgroundConfiguration key="background" cornerRadius="30"/>
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="selectPhotoButtonPressed:" destination="QF3-Tw-sqx" eventType="touchUpInside" id="KQ0-t9-J4T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3X-mf-0Sz">
+                                <rect key="frame" x="44" y="688" width="109" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Take Photo">
+                                    <backgroundConfiguration key="background" cornerRadius="30"/>
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="takePhotoButtonPressed:" destination="QF3-Tw-sqx" eventType="touchUpInside" id="LSs-2a-eAd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CPE-OC-2ij"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="9SW-gc-PQL" id="ixb-Z5-vHo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kwW-Zk-0t2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3183.969465648855" y="1619.7183098591549"/>
+        </scene>
         <!--Record Workout-->
         <scene sceneID="uzO-dM-ISF">
             <objects>
@@ -1052,13 +1118,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.3.trianglepath" catalog="system" width="32" height="32"/>
-        <image name="calendar.circle.fill" catalog="system" width="32" height="32"/>
-        <image name="chart.line.uptrend.xyaxis" catalog="system" width="32" height="32"/>
-        <image name="circle.grid.2x1.right.filled" catalog="system" width="32" height="32"/>
-        <image name="clock.fill" catalog="system" width="32" height="32"/>
-        <image name="house.fill" catalog="system" width="32" height="32"/>
-        <image name="scalemass.fill" catalog="system" width="32" height="32"/>
+        <image name="arrow.3.trianglepath" catalog="system" width="128" height="123"/>
+        <image name="calendar.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="102"/>
+        <image name="circle.grid.2x1.right.filled" catalog="system" width="128" height="60"/>
+        <image name="clock.fill" catalog="system" width="128" height="123"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="scalemass.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

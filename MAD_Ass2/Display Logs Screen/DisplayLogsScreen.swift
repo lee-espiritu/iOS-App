@@ -43,6 +43,9 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
 
     func didPressTakePhotoButton(in cell: LogsTableViewCell) {
         print("Hello")
+        if let nextVC = storyboard?.instantiateViewController(withIdentifier: "TakePhotoScreen") as? TakePhotoScreen {
+            navigationController?.pushViewController(nextVC, animated: true)
+        }
     }
 
     
