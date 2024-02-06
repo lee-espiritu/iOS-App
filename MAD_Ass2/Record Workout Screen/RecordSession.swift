@@ -25,18 +25,24 @@ class RecordSession: UITableViewCell {
     weak var delegate: RecordSessionDelegate?
     
     var intervalTimer: Int = 5
-    var restTimer: Int = 10
     var repetitions: Int = 0
     var sets: Int = 0
     var totalTimeLeft: Int = 0
     var totalTimeLeftOriginal: Int = 0
     
+    //Counter for set/reps to go
     var setCounter: Int = 0
     var repCounter: Int = 0
     
+    //Main timer properties
     private var timer: Timer?
     private var secondsLeft: Int = 0
     private var isTimerRunning: Bool = false
+    
+    //Rest timer properties
+    private var restTimer: Timer?
+    private var restSecondsLeft: Int = 0
+    private let restDuration: Int = 3
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,6 +55,58 @@ class RecordSession: UITableViewCell {
     }
 
     @IBAction func restButtonPressed(_ sender: Any) {
+        // Pause the main timer
+        pauseTimers()
+
+        // Initialize rest timer variables
+        restSecondsLeft = restDuration
+
+        // Create the rest timer alert
+        let restAlert = UIAlertController(title: "Rest Timer", message: "Time Left: \(formattedTimeLeft(restSecondsLeft))", preferredStyle: .alert)
+
+        // Start the rest timer countdown
+        restTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateRestTimer), userInfo: ["alert": restAlert], repeats: true)
+
+        // Present the alert
+        if let viewController = delegate as? UIViewController {
+            viewController.present(restAlert, animated: true, completion: nil)
+        }
+    }
+    
+    @objc private func updateRestTimer() {
+        restSecondsLeft -= 1
+
+        // Access restAlert and update its message timer
+        if let userInfo = restTimer?.userInfo as? [String: Any],
+           let restAlert = userInfo["alert"] as? UIAlertController {
+            restAlert.message = "Time Left: \(formattedTimeLeft(restSecondsLeft))"
+        }
+        
+        // Check if the rest timer has reached 0
+        if restSecondsLeft <= 0 {
+            // Stop the rest timer
+            restTimer?.invalidate()
+            restTimer = nil
+            
+            // Resume the main timer
+            resumeTimers()
+
+            // Dismiss the rest timer alert
+            (delegate as? UIViewController)?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func formattedTimeLeft(_ seconds: Int) -> String {
+        let minutes = seconds / 60
+        let remainingSeconds = seconds % 60
+        return String(format: "%02d:%02d", minutes, remainingSeconds)
+    }
+    
+    private func pauseTimers() {
+        isTimerRunning = false
+    }
+    private func resumeTimers() {
+        isTimerRunning = true
     }
     
     @IBAction func startButtonPressed(_ sender: Any) {
@@ -58,6 +116,7 @@ class RecordSession: UITableViewCell {
             pauseTimer()
         } else {
             // Start or resume the timer
+            print("Resuming timer")
             startOrResumeTimer()
         }
     }
@@ -72,6 +131,7 @@ class RecordSession: UITableViewCell {
         updateButtonTitle(isPause: false)
         updateTimerLabel()
         updateTimeLeftLabel()
+        startButton.setTitle("Start", for: .normal)
     }
 
     @IBAction func quitButtonPressed(_ sender: Any) {
@@ -95,7 +155,6 @@ class RecordSession: UITableViewCell {
             isTimerRunning = true
             updateButtonTitle(isPause: true)
             secondsLeft = intervalTimer
-            totalTimeLeft = totalTimeLeftOriginal
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         } else {
             // Resume the timer
@@ -132,20 +191,24 @@ class RecordSession: UITableViewCell {
         updateTimeLeftLabel()
         
         if secondsLeft <= 0 {
-            stopTimer()
-            
             //Increase repetition counter
             repCounter += 1
             //Check if the rep target is reached
             if repCounter == repetitions {
                 //Increase set counter
                 setCounter += 1
+                //Reset the rep counter
+                repCounter = 0
                 //Check if the set target is reached
                 if setCounter == sets {
+                    //Stop the timer
+                    stopTimer()
                     return
                 }
             }
-            startOrResumeTimer()
+            //reset interval timer
+            secondsLeft = intervalTimer
+            //startOrResumeTimer()
             updateTimerLabel()
         }
     }
@@ -157,6 +220,7 @@ class RecordSession: UITableViewCell {
     }
     
     private func updateTimeLeftLabel() {
+        print("TotalTimeLeft: \(totalTimeLeft)")
         let minutes = totalTimeLeft / 60
         let seconds = totalTimeLeft % 60
         timeLeftLabel.text = "Time Left: \(String(format: "%02d:%02d", minutes, seconds))"

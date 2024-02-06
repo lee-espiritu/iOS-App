@@ -42,6 +42,11 @@ class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSourc
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func finishWorkoutButtonPressed(_ sender: Any) {
+   
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isWorkingOut {
             return 1
@@ -91,23 +96,27 @@ class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? RecordWorkoutTableViewCell {
-            selectedExerciseName = cell.exerciseLabel.text!
-            selectedSet = cell.setNumberLabel.text!
-            selectedRep = cell.repetitionNumberLabel.text!
-            selectedWeight = cell.weightNumberLabel.text!
-        }
-        print("User is going into workout mode")
-        isWorkingOut = true
-        
-        tableView.deselectRow(at: indexPath, animated: true)
+        if isWorkingOut {
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            if let cell = tableView.cellForRow(at: indexPath) as? RecordWorkoutTableViewCell {
+                selectedExerciseName = cell.exerciseLabel.text!
+                selectedSet = cell.setNumberLabel.text!
+                selectedRep = cell.repetitionNumberLabel.text!
+                selectedWeight = cell.weightNumberLabel.text!
+            }
+            print("User is going into workout mode")
+            isWorkingOut = true
+            
+            tableView.deselectRow(at: indexPath, animated: true)
 
-        // Add a small delay or use DispatchQueue to ensure the animation has time to complete
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            // Reload data after the deselect animation has finished
-            let sectionToReload = 0 // Select the section to reload
-            let animation = UITableView.RowAnimation.left // Choose the animation type you prefer
-            tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
+            // Add a small delay or use DispatchQueue to ensure the animation has time to complete
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                // Reload data after the deselect animation has finished
+                let sectionToReload = 0 // Select the section to reload
+                let animation = UITableView.RowAnimation.left // Choose the animation type you prefer
+                tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
+            }
         }
     }
     
