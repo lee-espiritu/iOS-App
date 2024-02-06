@@ -195,8 +195,10 @@ class DBManager: NSObject {
             print("Error updating DefaultExercise: \(error.localizedDescription)")
         }
     }
+    //===================================================================================================
     
-
+    
+    //===============================SET UP EXERCISE FUNCTION CHAIN=========================================================
     //This function adds input retrieved from the Set Up Exercise screen into their relevant tables
     static func setUpExercise(category: String, exercise: String, reps: Int, sets: Int, weight: Int){
         //Attempt to add category into Category table
@@ -216,6 +218,7 @@ class DBManager: NSObject {
         
         print("Category: \(categoryExists), Exercise: \(exerciseExists)")
     }
+    
     
     //This function adds or updates a row in DefaultExercise using categoryName and exerciseName as attributes to match
     static func addUpdateDefaultExercise(category: String, exercise: String, reps: Int, sets: Int, weight: Int) {
@@ -638,6 +641,33 @@ class DBManager: NSObject {
         }
     }
 
+    
+    static func addWorkoutRecord(date: Date, category: String, exercise: String, sets: Int32, repetitions: Int32, weight: Int32) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entityName = "WorkoutRecord"
+        let workoutRecordEntity = NSEntityDescription.entity(forEntityName: entityName, in: managedContext)!
+        let newWorkoutRecord = NSManagedObject(entity: workoutRecordEntity, insertInto: managedContext)
+
+        // Set attributes for WorkoutRecord
+        newWorkoutRecord.setValue(date, forKey: "date")
+        newWorkoutRecord.setValue(exercise, forKey: "exerciseName")
+        newWorkoutRecord.setValue(category, forKey: "categoryName")
+        newWorkoutRecord.setValue(sets, forKey: "sets")
+        newWorkoutRecord.setValue(repetitions, forKey: "repetitions")
+        newWorkoutRecord.setValue(weight, forKey: "weight")
+
+        do {
+            try managedContext.save()
+            print("Added [\(date), \(category), \(exercise), \(sets), \(repetitions), \(weight)] to WorkoutRecord!")
+        } catch {
+            print("Error saving Workout Record: \(error.localizedDescription)")
+        }
+    }
     
     //===================================================================================================
     

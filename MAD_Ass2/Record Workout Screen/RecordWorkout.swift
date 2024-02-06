@@ -43,7 +43,26 @@ class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @IBAction func finishWorkoutButtonPressed(_ sender: Any) {
+        //Retrieve all cell.exerciseLabel.text? and print them
+        guard !isWorkingOut else { return }// Return if it's currently in workout mode
+
+        // Print the information for the days exercises
+        for b in DBManager.getExercisePlan(forDay: dayOfWeek) {
+            if let a = DBManager.getDefaultValue(forExercise: b["exerciseName"]!, forCategory: b["categoryName"]!) {
+                print("\(b["exerciseName"]!) \(b["categoryName"]!) \(a.sets) \(a.repetitions) \(a.weight)")
+                DBManager.addWorkoutRecord(date: Date(), category: b["categoryName"]!, exercise: b["exerciseName"]!, sets: Int32(a.sets)!, repetitions: Int32(a.repetitions)!, weight: Int32(a.weight)!)
+            }
+        }
         
+        // Show an alert indicating that the workout is saved
+        let alertController = UIAlertController(title: "Workout Saved", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            // Pop the view controller
+            self.navigationController?.popViewController(animated: true)
+        }))
+
+        // Present the alert
+        present(alertController, animated: true, completion: nil)
     }
     
     
