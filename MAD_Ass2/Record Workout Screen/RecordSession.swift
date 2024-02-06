@@ -27,8 +27,6 @@ class RecordSession: UITableViewCell {
     var intervalTimer: Int = 5
     var repetitions: Int = 0
     var sets: Int = 0
-    var totalTimeLeft: Int = 0
-    var totalTimeLeftOriginal: Int = 0
     
     //Counter for set/reps to go
     var setCounter: Int = 0
@@ -37,6 +35,8 @@ class RecordSession: UITableViewCell {
     //Main timer properties
     private var timer: Timer?
     private var secondsLeft: Int = 0
+    var totalTimeLeft: Int = 0
+    var totalTimeLeftOriginal: Int = 0
     private var isTimerRunning: Bool = false
     
     //Rest timer properties
@@ -55,6 +55,11 @@ class RecordSession: UITableViewCell {
     }
 
     @IBAction func restButtonPressed(_ sender: Any) {
+        showRestAlert()
+        
+    }
+    
+    private func showRestAlert() {
         // Pause the main timer
         pauseTimers()
 
@@ -205,6 +210,9 @@ class RecordSession: UITableViewCell {
                     stopTimer()
                     return
                 }
+                
+                //Show rest timer as part of assignment spec
+                showRestAlert()
             }
             //reset interval timer
             secondsLeft = intervalTimer

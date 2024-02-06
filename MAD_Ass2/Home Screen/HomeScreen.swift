@@ -47,4 +47,9 @@ class HomeScreen: UIViewController {
             navigationController?.pushViewController(nextVC, animated: true)
         }
     }
+    @IBAction func displayLogsPressed(_ sender: Any) {
+        if let nextVC = storyboard?.instantiateViewController(withIdentifier: "DisplayLogs") as? DisplayLogsScreen{
+            navigationController?.pushViewController(nextVC, animated: true)
+        }
+    }
 }

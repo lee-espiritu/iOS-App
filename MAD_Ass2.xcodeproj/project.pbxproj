@@ -11,6 +11,7 @@
 		508E99EA2B611B51002337AC /* DBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99E92B611B51002337AC /* DBConstants.swift */; };
 		508E99EC2B611B85002337AC /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99EB2B611B85002337AC /* DBManager.swift */; };
 		508E99EE2B611E44002337AC /* ViewDatabaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */; };
+		5098FA642B71C70300B5A477 /* DisplayLogsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098FA632B71C70300B5A477 /* DisplayLogsScreen.swift */; };
 		50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */; };
 		50C915B62B6CB55300018182 /* CategoryAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C915B52B6CB55300018182 /* CategoryAlertController.swift */; };
 		50C915B82B6CC14600018182 /* ExerciseAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C915B72B6CC14600018182 /* ExerciseAlertController.swift */; };
@@ -55,6 +56,7 @@
 		508E99E92B611B51002337AC /* DBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConstants.swift; sourceTree = "<group>"; };
 		508E99EB2B611B85002337AC /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDatabaseScreen.swift; sourceTree = "<group>"; };
+		5098FA632B71C70300B5A477 /* DisplayLogsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLogsScreen.swift; sourceTree = "<group>"; };
 		50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientHelper.swift; sourceTree = "<group>"; };
 		50C915B52B6CB55300018182 /* CategoryAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAlertController.swift; sourceTree = "<group>"; };
 		50C915B72B6CC14600018182 /* ExerciseAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAlertController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,14 @@
 			path = "View Database Screen";
 			sourceTree = "<group>";
 		};
+		5098FA622B71C6D100B5A477 /* Display Logs Screen */ = {
+			isa = PBXGroup;
+			children = (
+				5098FA632B71C70300B5A477 /* DisplayLogsScreen.swift */,
+			);
+			path = "Display Logs Screen";
+			sourceTree = "<group>";
+		};
 		50DA5D9E2B61019E00566B73 = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +194,7 @@
 		50DA5DA92B61019E00566B73 /* MAD_Ass2 */ = {
 			isa = PBXGroup;
 			children = (
+				5098FA622B71C6D100B5A477 /* Display Logs Screen */,
 				50F5AFBB2B70833A00733DF4 /* Record Workout Screen */,
 				50808D002B6B6DCA0024923E /* View Database Screen */,
 				50808CFF2B6B6DAB0024923E /* Set Up Daily Program Screen */,
@@ -359,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5098FA642B71C70300B5A477 /* DisplayLogsScreen.swift in Sources */,
 				50DA5DAF2B61019E00566B73 /* HomeScreen.swift in Sources */,
 				50808D042B6B8FC50024923E /* CustomNavBar.swift in Sources */,
 				50DA5DAB2B61019E00566B73 /* AppDelegate.swift in Sources */,

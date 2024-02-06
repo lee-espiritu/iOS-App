@@ -175,6 +175,27 @@ class DBManager: NSObject {
     }
     //===================================================================================================
     
+    //======================================UPDATE ROWS=================================================
+    static func updateDefaultExercise(exerciseName: String, categoryName: String, sets: Int, repetitions: Int, weight: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DefaultExercise")
+
+        fetchRequest.predicate = NSPredicate(format: "exerciseName == %@ AND categoryName == %@", exerciseName, categoryName)
+
+        do {
+            if let existingExercise = try managedContext.fetch(fetchRequest).first {
+                existingExercise.setValue(sets, forKey: "sets")
+                existingExercise.setValue(repetitions, forKey: "repetitions")
+                existingExercise.setValue(weight, forKey: "weight")
+
+                try managedContext.save()
+            }
+        } catch let error as NSError {
+            print("Error updating DefaultExercise: \(error.localizedDescription)")
+        }
+    }
+    //===================================================================================================
     
     //==============================================GETTERS==============================================
     //Retrieve all rows for a given entity

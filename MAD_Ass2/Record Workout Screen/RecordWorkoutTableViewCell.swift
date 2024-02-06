@@ -38,4 +38,8 @@ class RecordWorkoutTableViewCell: UITableViewCell {
     @IBAction func weightSliderChanged(_ sender: UISlider) {
         weightNumberLabel.text = "\(String(Int(sender.value))) kg"
     }
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        DBManager.updateDefaultExercise(exerciseName: exerciseLabel.text!, categoryName: categoryLabel.text!, sets: Int(setStepper.value), repetitions: Int(repetitionStepper.value), weight: Int(weightSlider.value))
+        print("Updated workout!")
+    }
 }

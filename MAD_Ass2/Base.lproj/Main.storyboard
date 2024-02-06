@@ -152,6 +152,9 @@
                                     <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="displayLogsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dZA-lv-kqi"/>
+                                </connections>
                             </button>
                             <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQ6-9w-0Qw">
                                 <rect key="frame" x="0.0" y="769" width="393" height="49"/>
@@ -561,6 +564,50 @@
             </objects>
             <point key="canvasLocation" x="-16.800000000000001" y="-27.339901477832512"/>
         </scene>
+        <!--Display Logs Screen-->
+        <scene sceneID="qsg-G5-BLl">
+            <objects>
+                <viewController storyboardIdentifier="DisplayLogs" id="bck-eW-ceW" customClass="DisplayLogsScreen" customModule="MAD_Ass2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XKu-iD-dcC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PA8-cG-8YC">
+                                <rect key="frame" x="0.0" y="769" width="393" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Home" image="house.fill" catalog="system" id="hoX-MK-3Bz"/>
+                                    <tabBarItem title="Exercise" image="scalemass.fill" catalog="system" id="PjT-xE-tYX"/>
+                                    <tabBarItem title="Daily Program" image="calendar.circle.fill" catalog="system" id="eTG-MC-B4O"/>
+                                    <tabBarItem title="Record" image="clock.fill" catalog="system" id="7u6-0e-hd8"/>
+                                    <tabBarItem title="Log" image="chart.line.uptrend.xyaxis" catalog="system" id="oF4-VA-7x3"/>
+                                </items>
+                            </tabBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jb-dN-hJ5">
+                                <rect key="frame" x="143" y="634" width="107" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Go Back">
+                                    <backgroundConfiguration key="background" cornerRadius="30"/>
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goBackPressed:" destination="bck-eW-ceW" eventType="touchUpInside" id="1tA-A6-yFJ"/>
+                                    <action selector="goBackPressed:" destination="vdP-Rf-kdf" eventType="touchUpInside" id="4kf-qR-HL2"/>
+                                    <action selector="goBackPressed:" destination="t3L-xX-k0f" eventType="touchUpInside" id="mW0-54-pPG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KL8-vF-KWz"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bpX-w0-ceI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="920" y="823"/>
+        </scene>
         <!--Record Workout-->
         <scene sceneID="uzO-dM-ISF">
             <objects>
@@ -701,6 +748,9 @@
                                                         <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="saveButtonPressed:" destination="Ceq-eZ-fex" eventType="touchUpInside" id="bCS-1V-BxZ"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
