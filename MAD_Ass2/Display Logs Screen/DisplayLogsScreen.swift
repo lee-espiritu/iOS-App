@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import MessageUI
+import UserNotifications
 
-class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, LogsTableViewCellDelegate{
+class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, LogsTableViewCellDelegate, MFMessageComposeViewControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,6 +21,15 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //Request notification permissions
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                print("Notification permission granted")
+            } else {
+                print("Notification permission denied")
+            }
+        }
     }
     
 
@@ -42,11 +53,74 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func didPressTakePhotoButton(in cell: LogsTableViewCell) {
-        print("Hello")
+        print("Take Photo button pressed")
         if let nextVC = storyboard?.instantiateViewController(withIdentifier: "TakePhotoScreen") as? TakePhotoScreen {
             navigationController?.pushViewController(nextVC, animated: true)
         }
     }
+    
+    func didPressSendSMSButton(in cell: LogsTableViewCell) {
+        print("SMS Button Pressed")
+        
+        //If the device is able to send a text
+        if canSendText(){
+            var messageVC = MFMessageComposeViewController()
+            
+            //Compose an appropriate body
+            messageVC.body = "I just completed a workout using MAD application";
+            
+            //Use an array of recipients to send to,
+            messageVC.recipients = ["+6144567899"]
+            messageVC.messageComposeDelegate = self;
+            
+            self.present(messageVC, animated: false, completion: nil)
+        } else { //Otherwise
+            print("SMS messaging is not supported.")
+            // Open the Messages app if SMS messaging is not supported
+            let sms: String = "sms:&body=I just completed a workout using MAD application"
+            let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            if let messagesURL = URL(string: strURL) {
+                if UIApplication.shared.canOpenURL(messagesURL) {
+                    //UIApplication.shared.open(messagesURL, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
+                } else {
+                    print("Unable to open Messages app.")
+                }
+            }
+        }
+        
+        //Send a notification
+        let content = UNMutableNotificationContent()
+        content.title = "Update"
+        content.body = "John has completed another workout, view it here!"
 
+        // Set up the notification trigger (in this example, trigger immediately)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+
+        // Create notification request
+        let request = UNNotificationRequest(identifier: "Notification", content: content, trigger: trigger)
+
+        // Add the notification request to the notification center
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Error scheduling notification: \(error.localizedDescription)")
+            } else {
+                print("Notification scheduled successfully")
+            }
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch result.rawValue {
+        case MessageComposeResult.cancelled.rawValue:
+            print("message cancelled")
+        default:
+            break
+        }
+    }
+    
+    func canSendText() -> Bool {
+        return MFMessageComposeViewController.canSendText()
+    }
     
 }

@@ -23,8 +23,12 @@ class LogsTableViewCell: UITableViewCell {
     @IBAction func takePhotoButtonPressed(_ sender: Any) {
         delegate?.didPressTakePhotoButton(in: self)
     }
+    @IBAction func sendSMSButtonPressed(_ sender: Any) {
+        delegate?.didPressSendSMSButton(in: self)
+    }
 }
 
 protocol LogsTableViewCellDelegate: AnyObject {
     func didPressTakePhotoButton(in cell: LogsTableViewCell)
+    func didPressSendSMSButton(in cell: LogsTableViewCell)
 }

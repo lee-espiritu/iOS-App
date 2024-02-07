@@ -610,11 +610,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logCell" rowHeight="113" id="Exo-cO-FED" customClass="LogsTableViewCell" customModule="MAD_Ass2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="361" height="113"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logCell" rowHeight="163" id="Exo-cO-FED" customClass="LogsTableViewCell" customModule="MAD_Ass2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="361" height="163"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Exo-cO-FED" id="pU4-k3-fC7">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="113"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="163"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DD/MM/YYYY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMT-E6-jcN">
@@ -659,18 +659,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYz-JM-c1a">
-                                                    <rect key="frame" x="234" y="11" width="107" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="Send SMS">
-                                                        <backgroundConfiguration key="background" cornerRadius="30"/>
-                                                        <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </buttonConfiguration>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPa-aj-vuU">
-                                                    <rect key="frame" x="233" y="61" width="109" height="35"/>
+                                                    <rect key="frame" x="224" y="117" width="117" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="Take Photo">
@@ -680,6 +670,24 @@
                                                     </buttonConfiguration>
                                                     <connections>
                                                         <action selector="takePhotoButtonPressed:" destination="Exo-cO-FED" eventType="touchUpInside" id="eLW-g5-gV0"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sZ4-tr-g0y">
+                                                    <rect key="frame" x="224" y="11" width="117" height="79"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" systemColor="systemIndigoColor"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYz-JM-c1a">
+                                                    <rect key="frame" x="20" y="117" width="192" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Send SMS">
+                                                        <backgroundConfiguration key="background" cornerRadius="30"/>
+                                                        <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="sendSMSButtonPressed:" destination="Exo-cO-FED" eventType="touchUpInside" id="JPw-Ff-frG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1124,6 +1132,7 @@
         <image name="circle.grid.2x1.right.filled" catalog="system" width="128" height="60"/>
         <image name="clock.fill" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="scalemass.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
