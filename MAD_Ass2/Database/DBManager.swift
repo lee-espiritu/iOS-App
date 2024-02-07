@@ -586,6 +586,27 @@ class DBManager: NSObject {
             return ""
         }
     }
+    
+    static func getFirstPhoto() -> UIImage? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return nil
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photos")
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            if let firstPhoto = (result as? [NSManagedObject])?.first, let imageData = firstPhoto.value(forKey: "image") as? Data {
+                return UIImage(data: imageData)
+            }
+        } catch let error as NSError {
+            print("Could not fetch photo. \(error), \(error.userInfo)")
+        }
+        
+        return nil
+    }
 
     //===================================================================================================
     
@@ -666,6 +687,25 @@ class DBManager: NSObject {
             print("Added [\(date), \(category), \(exercise), \(sets), \(repetitions), \(weight)] to WorkoutRecord!")
         } catch {
             print("Error saving Workout Record: \(error.localizedDescription)")
+        }
+    }
+    
+    static func addPhoto(imageData: Data) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Photos", in: managedContext)!
+        
+        let photo = NSManagedObject(entity: entity, insertInto: managedContext)
+        photo.setValue(imageData, forKeyPath: "image")
+        
+        do {
+            try managedContext.save()
+            print("Photo added successfully.")
+        } catch let error as NSError {
+            print("Could not save photo. \(error), \(error.userInfo)")
         }
     }
     

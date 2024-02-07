@@ -47,6 +47,11 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
 
     @IBAction func goBackPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -66,7 +71,11 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.setLabel.text = "\(rows[indexPath.row]["sets"] as! Int32) sets"
         cell.repLabel.text = "\(rows[indexPath.row]["repetitions"] as! Int32) reps"
         cell.weightLabel.text = "\(rows[indexPath.row]["weight"] as! Int32) kg"
-
+        
+        //Get the first image in Photos if there is one
+        if DBManager.getFirstPhoto() != nil {
+            cell.imageSlot.image = DBManager.getFirstPhoto()
+        }
         
         return cell
     }
