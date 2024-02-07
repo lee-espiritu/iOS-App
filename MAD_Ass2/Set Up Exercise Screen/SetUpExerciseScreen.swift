@@ -41,9 +41,19 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
         //Disable save exercise button
         saveExerciseButton.isEnabled = false
         
-        //Round the background of viewForm
-        viewForm.layer.cornerRadius = 10 // Adjust the corner radius as needed
+        // Set rounded corners for the view
+        viewForm.layer.cornerRadius = 10
         viewForm.layer.masksToBounds = true
+
+        // Add a glow effect using shadow properties
+        viewForm.layer.shadowColor = UIColor(red: 0.5, green: 1.0, blue: 0.5, alpha: 1.0).cgColor
+        viewForm.layer.shadowOffset = CGSize.zero
+        viewForm.layer.shadowOpacity = 1.0
+        viewForm.layer.shadowRadius = 10 // Adjust the radius to control the glow effect
+        
+        // Add a glow effect using border properties
+        viewForm.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.7).cgColor
+        viewForm.layer.borderWidth = 2 // Adjust the width of the border
     }
     
     private func updateSaveButton() {

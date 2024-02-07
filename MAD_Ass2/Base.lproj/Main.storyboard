@@ -386,9 +386,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WGS-0K-Y5B">
-                                <rect key="frame" x="32" y="147" width="302" height="459"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGS-0K-Y5B">
+                                <rect key="frame" x="46" y="146" width="302" height="459"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyS-P6-oW4">
                                         <rect key="frame" x="8" y="37" width="75" height="21"/>
@@ -504,21 +503,8 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.15673828125" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSC-aw-Vje">
-                                <rect key="frame" x="53" y="681" width="88" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Go back">
-                                    <backgroundConfiguration key="background" cornerRadius="30"/>
-                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="goBackPressed:" destination="OxN-A2-7KX" eventType="touchUpInside" id="zKM-tZ-Uui"/>
-                                </connections>
-                            </button>
                             <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zm8-Cf-4YP">
                                 <rect key="frame" x="1" y="769" width="393" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -531,9 +517,28 @@
                                     <tabBarItem title="Log" image="chart.line.uptrend.xyaxis" catalog="system" id="fJG-Gu-F7C"/>
                                 </items>
                             </tabBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSC-aw-Vje">
+                                <rect key="frame" x="152" y="687" width="88" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Go back">
+                                    <backgroundConfiguration key="background" cornerRadius="30"/>
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goBackPressed:" destination="OxN-A2-7KX" eventType="touchUpInside" id="zKM-tZ-Uui"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LIV-VD-Lbf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                        <constraints>
+                            <constraint firstItem="LIV-VD-Lbf" firstAttribute="trailing" secondItem="WGS-0K-Y5B" secondAttribute="trailing" constant="45" id="JEb-vb-4CR"/>
+                            <constraint firstItem="LIV-VD-Lbf" firstAttribute="bottom" secondItem="WGS-0K-Y5B" secondAttribute="bottom" constant="213" id="fri-v1-ovp"/>
+                            <constraint firstItem="WGS-0K-Y5B" firstAttribute="top" secondItem="LIV-VD-Lbf" secondAttribute="top" constant="87" id="rmq-VE-kpV"/>
+                            <constraint firstItem="WGS-0K-Y5B" firstAttribute="leading" secondItem="LIV-VD-Lbf" secondAttribute="leading" constant="46" id="yv5-Dm-jBM"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="categoryButton" destination="aay-sl-23o" id="hEO-t0-kXG"/>
@@ -543,7 +548,7 @@
                         <outlet property="saveExerciseButton" destination="a6s-Oh-ElG" id="3c4-vY-Wyh"/>
                         <outlet property="setsNumber" destination="Y9g-rt-lwy" id="62b-Uu-Geu"/>
                         <outlet property="setsStepper" destination="P4E-KB-06d" id="xpD-i3-jWp"/>
-                        <outlet property="viewForm" destination="WGS-0K-Y5B" id="dAq-JD-mRE"/>
+                        <outlet property="viewForm" destination="WGS-0K-Y5B" id="jF3-e9-geo"/>
                         <outlet property="weightNumber" destination="rHi-S8-BIN" id="KqO-US-DTg"/>
                         <outlet property="weightSlider" destination="OrL-Q3-J9J" id="a3S-1D-A3a"/>
                     </connections>
