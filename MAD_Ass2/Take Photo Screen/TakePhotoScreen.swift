@@ -30,10 +30,19 @@ class TakePhotoScreen: UIViewController, UIImagePickerControllerDelegate, UINavi
     //Function triggered when 'Take Photo' button is pressed
     //Inputs: @sender - The object that triggered the function
     @IBAction func takePhotoButtonPressed(_ sender: Any) {
-        imagePicker = UIImagePickerController() //Initialize UIImagePickerController
-        imagePicker.delegate = self //Set the delegate to self for handling image picker events
-        imagePicker.sourceType = .camera //This will crash if the device has no camera
-        present(imagePicker, animated: true, completion: nil) //Present image
+        // Check if the selected source type is available
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker = UIImagePickerController() // Initialize UIImagePickerController
+            imagePicker.delegate = self // Set the delegate to self for handling image picker events
+            imagePicker.sourceType = .camera //Set the camera source
+            present(imagePicker, animated: true, completion: nil) // Present image picker
+        } else {
+            // If camera is not available, display an alert to the user
+            let alert = UIAlertController(title: "Camera Not Available", message: "Sorry, your device doesn't support the camera.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     //Function triggered when 'Select Photo' button is pressed
@@ -60,6 +69,10 @@ class TakePhotoScreen: UIViewController, UIImagePickerControllerDelegate, UINavi
         guard let image = imageView.image else {
             // Handle the case where the imageView does not contain an image
             print("No image available to apply.")
+            let alert = UIAlertController(title: "Image not selected", message: "Please take a photo or select an image from your library.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
             return
         }
         
