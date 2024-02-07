@@ -72,6 +72,7 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
             default:
                 print("Case Default")
         }
+
     }
 
     @IBAction func goBackPressed(_ sender: Any) {
@@ -234,29 +235,6 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
                 }
             }
         }
-            
-        
-        
-        /*
-        // The calendarsForEntityType returns all calendars that supports events
-        // The event has a start date of the current time and an end date from the current time
-        let startDate = Date()
-        // 2 hours = 2 hours x 60 minutes x 60 seconds
-        let endDate = startDate.addingTimeInterval(2 * 60 * 60)
-        // Create event with a title of "New meeting"
-        let event = EKEvent(eventStore: store)
-        event.calendar = store.defaultCalendarForNewEvents
-        event.title = "New Meeting"
-        event.startDate = startDate
-        event.endDate = endDate
-        // Save Event in Calendar
-        do {
-            try store.save(event, span: .thisEvent)
-            print("Stored an event")
-        } catch {
-            print("An error occured")
-        }
-         */
     }
     
     
@@ -330,6 +308,8 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         if selectedDay == 0 {
             return UITableViewCell()
         }
+        
+        
         
         if isSelectingCategory {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
@@ -409,5 +389,6 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         // Deselect the row to remove the highlight
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
 
 }
