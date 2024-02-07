@@ -6,10 +6,24 @@
 //
 
 import UIKit
+import EventKit
 
 class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    let workoutEvent = EKEventStore()
+    
+    //Weekday abbreviations for calendar weekly symbol
+    let weekdayAbbreviations: [String: String] = [
+        "Sunday": "Sun",
+        "Monday": "Mon",
+        "Tuesday": "Tue",
+        "Wednesday": "Wed",
+        "Thursday": "Thu",
+        "Friday": "Fri",
+        "Saturday": "Sat"
+    ]
     
     var exercises: [[String: String]] = []
     var selectedDay: Int = 0
@@ -18,6 +32,8 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
     var isSelectingExercise: Bool = false
     var categorySelected: String = ""
     var exerciseSelected: String = ""
+    
+
     
     @IBOutlet weak var saveProgramPlanButton: UIButton!
     
@@ -35,6 +51,27 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
 
         //Disable the save program plan button
         saveProgramPlanButton.isEnabled = false
+        
+        //Calendar setup
+        switch EKEventStore.authorizationStatus(for: EKEntityType.event) {
+            case .authorized:
+                print("Authorized")
+                //Do extra things here if needed after verifying authority
+            case .denied:
+                print("Access denied")
+            case .notDetermined:
+                // If the status is not yet determined the user is prompted to deny or grant access using the requestAccessToEntityType(entityType:completion) method.
+                workoutEvent.requestAccess(to: EKEntityType.event, completion: {(granted, error) in
+                    if granted {
+                        print("Permission granted")
+                        //Do extra things here if wanted after user gives permission
+                    } else {
+                        print("Access denied")
+                    }
+                })
+            default:
+                print("Case Default")
+        }
     }
 
     @IBAction func goBackPressed(_ sender: Any) {
@@ -135,6 +172,141 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
 
         // Present the alert from the current view controller
         present(alert, animated: true, completion: nil)
+        
+        //Add workouts to device calendar
+        addToDeviceCalendar()
+    }
+    
+    private func addToDeviceCalendar() {
+        //Get all the planned workouts
+        let rows = DBManager.getAllRows(entityName: "PlanWorkout")
+        print(rows)
+        
+        // Extract unique days using map, compactMap, and Set initializer
+        let uniqueDays = Set(rows.compactMap { $0["day"] as? String })
+        
+        //Extract unique exercises
+        let exercises = Set(rows.compactMap { $0["exerciseName"] as? String })
+
+        //Extract unique categories
+        let categories = Set(rows.compactMap { $0["categoryName"] as? String })
+        
+        //Prepare note description for event
+        let exercisesString = "Exercises today: " + exercises.joined(separator: ", ")
+        let categoriesString = "Categories worked on: " + categories.joined(separator: ", ")
+        
+        // Print the unique days
+        print(uniqueDays)
+        print(exercises)
+        print(categories)
+        
+        //For each unique day
+        for day in uniqueDays {
+            //Get the day for the next 3 occurrences
+            let currentDate = Date()
+            let nextOccurrences = nextOccurrence(of: weekdayAbbreviations[day]!, startingFrom: currentDate, calendar: Calendar(identifier: .gregorian), occurrences: 3)
+            
+            // Print or use the next occurrences as needed
+            for occurrence in nextOccurrences {
+                // Create a DateFormatter for the desired format
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "EEEE: dd/MM/yy" // Use "EEEE" for the full day name
+                
+                // Format the occurrence date
+                let formattedDate = dateFormatter.string(from: occurrence)
+                print(formattedDate)
+                
+                //Add workout event
+                let startDate = Calendar.current.startOfDay(for: occurrence) // Set this as the occurrence date starting at midnight
+                let endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
+                let event = EKEvent(eventStore: workoutEvent)
+                event.calendar = workoutEvent.defaultCalendarForNewEvents
+                event.title = "\(day) Workout by MAD"
+                event.notes = "\(exercisesString)\n\n\(categoriesString)\n\nEnjoy your workout!"
+                event.startDate = startDate
+                event.endDate = endDate
+                // Save Event in Calendar
+                do {
+                    try workoutEvent.save(event, span: .thisEvent)
+                    print("Stored an event")
+                } catch {
+                    print("An error occured")
+                }
+            }
+        }
+            
+        
+        
+        /*
+        // The calendarsForEntityType returns all calendars that supports events
+        // The event has a start date of the current time and an end date from the current time
+        let startDate = Date()
+        // 2 hours = 2 hours x 60 minutes x 60 seconds
+        let endDate = startDate.addingTimeInterval(2 * 60 * 60)
+        // Create event with a title of "New meeting"
+        let event = EKEvent(eventStore: store)
+        event.calendar = store.defaultCalendarForNewEvents
+        event.title = "New Meeting"
+        event.startDate = startDate
+        event.endDate = endDate
+        // Save Event in Calendar
+        do {
+            try store.save(event, span: .thisEvent)
+            print("Stored an event")
+        } catch {
+            print("An error occured")
+        }
+         */
+    }
+    
+    
+    //This function grabs the occurrences of a given day. For example if given Monday and the current date is the 4th Feb 2024, then it will grab
+    //the next occurences of Monday which would be 5th Feb 2024, 12th, 19th etc.
+    func nextOccurrence(of day: String, startingFrom date: Date, calendar: Calendar, occurrences: Int) -> [Date] {
+        //Get the weekday index where Monday-Sunday are 1-7 respectively
+        let weekdayIndex = calendar.weekdaySymbols.firstIndex(of: day)!
+        print("weekdayIndex \(weekdayIndex)")
+        
+        // Initialize an array to store the next occurrences
+        var nextOccurrences: [Date] = []
+        
+        // Start from the provided date and iterate until we find the desired number of occurrences
+        var currentDate = date
+        var occurrenceCount = 0
+        while occurrenceCount < occurrences {
+            // Move to the next day
+            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+            
+            // Check if the weekday of the current date matches the desired weekday index
+            if calendar.component(.weekday, from: currentDate) == (weekdayIndex % 7) + 1 {
+                // If it matches, add it to the next occurrences array
+                nextOccurrences.append(currentDate)
+                occurrenceCount += 1 // Increment the occurrence count
+            }
+        }
+        
+        // Return the array of next occurrences
+        return nextOccurrences
+    }
+
+    func insertEvent(_ store: EKEventStore) {
+        // The calendarsForEntityType returns all calendars that supports events
+        // The event has a start date of the current time and an end date from the current time
+        let startDate = Date()
+        // 2 hours = 2 hours x 60 minutes x 60 seconds
+        let endDate = startDate.addingTimeInterval(2 * 60 * 60)
+        // Create event with a title of "New meeting"
+        let event = EKEvent(eventStore: store)
+        event.calendar = store.defaultCalendarForNewEvents
+        event.title = "New Meeting"
+        event.startDate = startDate
+        event.endDate = endDate
+        // Save Event in Calendar
+        do {
+            try store.save(event, span: .thisEvent)
+        } catch {
+            print("An error occured")
+        }
     }
 
     
