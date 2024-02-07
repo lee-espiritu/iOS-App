@@ -13,6 +13,12 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var tableView: UITableView!
     
+    var rows: [[String: Any]] = []
+    
+    // Date formatter for date of workout
+    let dateFormatter = DateFormatter()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +36,15 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
                 print("Notification permission denied")
             }
         }
+        
+        //Get all rows
+        rows = DBManager.getAllRows(entityName: "WorkoutRecord")
+        for row in rows {
+            print(row)
+        }
+        
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
     }
     
 
@@ -44,6 +59,15 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell
         cell.delegate = self
+        
+        cell.dateLabel.text = (rows[indexPath.row]["date"] as? Date).flatMap { dateFormatter.string(from: $0) } ?? "Invalid Date"
+        cell.exerciseLabel.text? = rows[indexPath.row]["exerciseName"] as! String
+        cell.categoryLabel.text? = rows[indexPath.row]["categoryName"] as! String
+        cell.setLabel.text = "\(rows[indexPath.row]["sets"] as! Int32) sets"
+        cell.repLabel.text = "\(rows[indexPath.row]["repetitions"] as! Int32) reps"
+        cell.weightLabel.text = "\(rows[indexPath.row]["weight"] as! Int32) kg"
+
+        
         return cell
     }
     

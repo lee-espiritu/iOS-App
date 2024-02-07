@@ -9,6 +9,16 @@ import UIKit
 
 class LogsTableViewCell: UITableViewCell {
 
+
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var exerciseLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var setLabel: UILabel!
+    @IBOutlet weak var repLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var imageSlot: UIImageView!
+    
+    
     var delegate: LogsTableViewCellDelegate?
     
     override func awakeFromNib() {
