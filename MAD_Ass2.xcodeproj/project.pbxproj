@@ -13,6 +13,7 @@
 		508E99EE2B611E44002337AC /* ViewDatabaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */; };
 		5098FA642B71C70300B5A477 /* DisplayLogsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098FA632B71C70300B5A477 /* DisplayLogsScreen.swift */; };
 		5098FA662B71F10900B5A477 /* LogsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098FA652B71F10900B5A477 /* LogsTableViewCell.swift */; };
+		50B4527A2B74781B00C5E2F5 /* MonthPickerAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B452792B74781B00C5E2F5 /* MonthPickerAlertController.swift */; };
 		50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */; };
 		50BC0E472B74521C003EC8C4 /* DayPickerAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC0E462B74521C003EC8C4 /* DayPickerAlertController.swift */; };
 		50BC0E492B74684A003EC8C4 /* WeekPickerAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC0E482B74684A003EC8C4 /* WeekPickerAlertController.swift */; };
@@ -62,6 +63,7 @@
 		508E99ED2B611E44002337AC /* ViewDatabaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDatabaseScreen.swift; sourceTree = "<group>"; };
 		5098FA632B71C70300B5A477 /* DisplayLogsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLogsScreen.swift; sourceTree = "<group>"; };
 		5098FA652B71F10900B5A477 /* LogsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsTableViewCell.swift; sourceTree = "<group>"; };
+		50B452792B74781B00C5E2F5 /* MonthPickerAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPickerAlertController.swift; sourceTree = "<group>"; };
 		50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientHelper.swift; sourceTree = "<group>"; };
 		50BC0E462B74521C003EC8C4 /* DayPickerAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerAlertController.swift; sourceTree = "<group>"; };
 		50BC0E482B74684A003EC8C4 /* WeekPickerAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekPickerAlertController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				5098FA652B71F10900B5A477 /* LogsTableViewCell.swift */,
 				50BC0E462B74521C003EC8C4 /* DayPickerAlertController.swift */,
 				50BC0E482B74684A003EC8C4 /* WeekPickerAlertController.swift */,
+				50B452792B74781B00C5E2F5 /* MonthPickerAlertController.swift */,
 			);
 			path = "Display Logs Screen";
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				50DA5DB52B61019E00566B73 /* MAD_Ass2.xcdatamodeld in Sources */,
 				5098FA662B71F10900B5A477 /* LogsTableViewCell.swift in Sources */,
 				50F5AFBA2B70750200733DF4 /* DailyProgramValidationManager.swift in Sources */,
+				50B4527A2B74781B00C5E2F5 /* MonthPickerAlertController.swift in Sources */,
 				50C915B82B6CC14600018182 /* ExerciseAlertController.swift in Sources */,
 				50F5AFB82B70555D00733DF4 /* ExercisePlanTableViewCell.swift in Sources */,
 				508E99EA2B611B51002337AC /* DBConstants.swift in Sources */,

@@ -31,10 +31,12 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     var selectedDate: String = "" //day
     var weekStart: Date = Date() //start of the week
     var weekEnd: Date = Date() //end of the week
+    var selectedMonth: Int = 0
     
     //State of the screen whether the user is searching by day/week/month
     var isSearchingDay: Bool = false
     var isSearchingWeek: Bool = false
+    var isSearchingMonth: Bool = false
     
     // Date formatter for date of workout
     let dateFormatter = DateFormatter()
@@ -137,17 +139,40 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func monthButtonPressed(_ sender: Any) {
-        
+        // Create an instance of MonthPickerAlertController
+        let monthPickerAlert = MonthPickerAlertController(title: "Select a Month", message: nil, preferredStyle: .alert)
+
+        // Add any custom actions if needed
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        monthPickerAlert.addAction(cancelAction)
+
+        // Add the "OK" action
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            //Store selected month
+            self.selectedMonth = monthPickerAlert.getSelectedMonth()
+            
+            //Toggle month search
+            self.isSearchingMonth = true
+            
+            //Reload tableView
+            self.tableView.reloadData()
+        }
+        monthPickerAlert.addAction(okAction)
+
+        // Present the alert from the current view controller
+        present(monthPickerAlert, animated: true, completion: nil)
     }
     
     @IBAction func allButtonPressed(_ sender: Any) {
         //Turn off all day/week/month activity
         isSearchingDay = false
         isSearchingWeek = false
+        isSearchingMonth = false
         
         //Reload tableView
         tableView.reloadData()
     }
+    
     //Required stub function
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearchingDay { //If the user is currently searching for a day
@@ -186,6 +211,20 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
                 return false
             }
             return filteredRows.count // Return results of filter
+        } else if isSearchingMonth {
+            filteredRows = rows.filter { row in
+                // Extract the "date" value from the row dictionary
+                if let rowDate = row["date"] as? Date {
+                    // Extract the month component from the row's date
+                    let calendar = Calendar.current
+                    let rowMonth = calendar.component(.month, from: rowDate)
+                    
+                    // Compare the row's month with the selected month
+                    return rowMonth == selectedMonth
+                }
+                return false
+            }
+            return filteredRows.count
         } else {
             return DBManager.getNumRows(entityName: "WorkoutRecord") //Return count for WorkoutRecord entity
         }
@@ -212,6 +251,24 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
             
             return cell
         } else if isSearchingWeek {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell //Initialise reusable cell
+            cell.delegate = self //Set cell delegate
+            
+            //Update UI elements in cell
+            cell.dateLabel.text = (filteredRows[indexPath.row]["date"] as? Date).flatMap { dateFormatter.string(from: $0) } ?? "Invalid Date"
+            cell.exerciseLabel.text? = filteredRows[indexPath.row]["exerciseName"] as! String
+            cell.categoryLabel.text? = filteredRows[indexPath.row]["categoryName"] as! String
+            cell.setLabel.text = "\(filteredRows[indexPath.row]["sets"] as! Int32) sets"
+            cell.repLabel.text = "\(filteredRows[indexPath.row]["repetitions"] as! Int32) reps"
+            cell.weightLabel.text = "\(filteredRows[indexPath.row]["weight"] as! Int32) kg"
+            
+            //Get the first image in Photos if there is one
+            if DBManager.getFirstPhoto() != nil {
+                cell.imageSlot.image = DBManager.getFirstPhoto() //Update UIImage of cell
+            }
+            
+            return cell
+        } else if isSearchingMonth {
             let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell //Initialise reusable cell
             cell.delegate = self //Set cell delegate
             
@@ -256,6 +313,9 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
             let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell
             return cell.bounds.height //Height of cell as seen in storyboard
         } else if isSearchingWeek {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell
+            return cell.bounds.height //Height of cell as seen in storyboard
+        } else if isSearchingMonth {
             let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell
             return cell.bounds.height //Height of cell as seen in storyboard
         } else {
