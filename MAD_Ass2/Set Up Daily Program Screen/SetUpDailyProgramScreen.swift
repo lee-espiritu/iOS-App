@@ -3,13 +3,21 @@
 //  MAD_Ass2
 //
 //  Created by Lee Espiritu on 29/1/2024.
+//  Student ID: 17459857
+//  Campus: Parramatta South
+//  Tutor Name: Mark Johnston
+//  Class Day: Monday & Wednesday
+//  Class Time: 12PM - 2PM
+//  Version: 1.0
 //
+//  Class Description: This class handles main operations of the Set Up Daily Program screen
 
 import UIKit
 import EventKit
 
 class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDelegate, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
 
+    //Reference outlet for table view
     @IBOutlet weak var tableView: UITableView!
     
     //Tab Bar reference outlets
@@ -20,6 +28,7 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
     @IBOutlet weak var recordTabBarItem: UITabBarItem!
     @IBOutlet weak var logTabBarItem: UITabBarItem!
     
+    //Calendar event holder
     let workoutEvent = EKEventStore()
     
     //Weekday abbreviations for calendar weekly symbol
@@ -33,6 +42,7 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         "Saturday": "Sat"
     ]
     
+    //Variables to handle selections
     var exercises: [[String: String]] = []
     var selectedDay: Int = 0
     var dayString: String = ""
@@ -41,12 +51,13 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
     var categorySelected: String = ""
     var exerciseSelected: String = ""
     
-
-    
+    //Reference Outlet for the Save Program Plan button
     @IBOutlet weak var saveProgramPlanButton: UIButton!
     
+    //Default function created on class creation
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Set background
         GradientHelper.addGradient(to: view, colors: [UIColor.cyan, UIColor.systemBlue], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y:1.0))
 
@@ -65,7 +76,6 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         switch EKEventStore.authorizationStatus(for: EKEntityType.event) {
             case .authorized:
                 print("Authorized")
-                //Do extra things here if needed after verifying authority
             case .denied:
                 print("Access denied")
             case .notDetermined:
@@ -73,7 +83,6 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
                 workoutEvent.requestAccess(to: EKEntityType.event, completion: {(granted, error) in
                     if granted {
                         print("Permission granted")
-                        //Do extra things here if wanted after user gives permission
                     } else {
                         print("Access denied")
                     }
@@ -81,100 +90,112 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
             default:
                 print("Case Default")
         }
-
     }
 
+    //Function triggered when 'Go Back' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func goBackPressed(_ sender: Any) {
-        //pop the stack, assuming that it will always lead to home screen
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true) //Return to home screen via root view controller
     }
     
+    //Function triggered when 'MON' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func monPressed(_ sender: Any) {
-        selectedDay = 1
-        dayString = "Monday"
-        exercises = DBManager.getExercisePlan(forDay: dayString)
-        print("Size of exercises: \(exercises.count)")
-        //Animation
-        let sectionToReload = 0 // Select the section to reload
-        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
-        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
-    }
-    
-    @IBAction func tuePressed(_ sender: Any) {
-        selectedDay = 2
-        dayString = "Tuesday"
-        exercises = DBManager.getExercisePlan(forDay: dayString)
-        print("Size of exercises: \(exercises.count)")
+        selectedDay = 1 //Set the selectedDay to 1 indicating Monday
+        dayString = "Monday" //Set String version of the day
+        exercises = DBManager.getExercisePlan(forDay: dayString) //Retrieve exercises for Monday
         
         //Animation
         let sectionToReload = 0 // Select the section to reload
-        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        let animation = UITableView.RowAnimation.automatic
         tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
+    //Function triggered when 'TUE' button is pressed
+    //Inputs: @sender - The object that triggered the function
+    @IBAction func tuePressed(_ sender: Any) {
+        selectedDay = 2 //Set the selectedDay to 2 indicating Tuesday
+        dayString = "Tuesday" //Set String version of the day
+        exercises = DBManager.getExercisePlan(forDay: dayString) //Retrieve exercises for Tuesday
+        
+        //Animation
+        let sectionToReload = 0 // Select the section to reload
+        let animation = UITableView.RowAnimation.automatic
+        tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
+    }
+    
+    //Function triggered when 'WED' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func wedPressed(_ sender: Any) {
-        selectedDay = 3
-        dayString = "Wednesday"
-        exercises = DBManager.getExercisePlan(forDay: dayString)
-        print("Size of exercises: \(exercises.count)")
+        selectedDay = 3 //Set the selectedDay to 3 indicating Wednesday
+        dayString = "Wednesday" //Set String version of the day
+        exercises = DBManager.getExercisePlan(forDay: dayString) //Retrieve exercises for Wednesday
+ 
         //Animation
         let sectionToReload = 0 // Select the section to reload
-        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        let animation = UITableView.RowAnimation.automatic
         tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
+    //Function triggered when 'THU' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func thuPressed(_ sender: Any) {
-        selectedDay = 4
-        dayString = "Thursday"
-        exercises = DBManager.getExercisePlan(forDay: dayString)
-        print("Size of exercises: \(exercises.count)")
+        selectedDay = 4 //Set the selectedDay to 4 indicating Thursday
+        dayString = "Thursday" //Set String version of the day
+        exercises = DBManager.getExercisePlan(forDay: dayString) //Retrieve exercises for Thursday
+
         //Animation
         let sectionToReload = 0 // Select the section to reload
-        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        let animation = UITableView.RowAnimation.automatic
         tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
+    //Function triggered when 'FRI' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func friPressed(_ sender: Any) {
-        selectedDay = 5
-        dayString = "Friday"
-        exercises = DBManager.getExercisePlan(forDay: dayString)
-        print("Size of exercises: \(exercises.count)")
+        selectedDay = 5 //Set the selectedDay to 5 indicating Friday
+        dayString = "Friday" //Set String version of the day
+        exercises = DBManager.getExercisePlan(forDay: dayString) //Retrieve exercises for Friday
+
         //Animation
         let sectionToReload = 0 // Select the section to reload
         let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
         tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
+    //Function triggered when 'SAT' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func satPressed(_ sender: Any) {
-        selectedDay = 6
-        dayString = "Saturday"
-        exercises = DBManager.getExercisePlan(forDay: dayString)
-        print("Size of exercises: \(exercises.count)")
+        selectedDay = 6 //Set the selectedDay to 6 indicating Saturday
+        dayString = "Saturday" //Set String version of the day
+        exercises = DBManager.getExercisePlan(forDay: dayString) //Retrieve exercises for Saturday
+        
         //Animation
         let sectionToReload = 0 // Select the section to reload
-        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        let animation = UITableView.RowAnimation.automatic
         tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
+    //Function triggered when 'SUN' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func sunPressed(_ sender: Any) {
-        selectedDay = 7
-        dayString = "Sunday"
-        exercises = DBManager.getExercisePlan(forDay: dayString)
-        print("Size of exercises: \(exercises.count)")
+        selectedDay = 7 //Set the selectedDay to 6 indicating Sunday
+        dayString = "Sunday" //Set String version of the day
+        exercises = DBManager.getExercisePlan(forDay: dayString) //Retrieve exercises for Sunday
+
         //Animation
         let sectionToReload = 0 // Select the section to reload
-        let animation = UITableView.RowAnimation.automatic // Choose the animation type you prefer
+        let animation = UITableView.RowAnimation.automatic
         tableView.reloadSections(IndexSet(integer: sectionToReload), with: animation)
     }
     
+    //Function triggered when 'Save Program Plan' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func saveProgramPlanButtonPressed(_ sender: Any) {
+        //Create a UIAlertController
         let alert = UIAlertController(title: "Program Saved", message: nil, preferredStyle: .alert)
 
-        // Cancel button
-        //let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        //categoryAlert.addAction(cancelAction)
-
-        // Add the "OK" action
+        // Add an "OK" action
         let okAction = UIAlertAction(title: "OK", style: .default) { action in
             self.navigationController?.popViewController(animated: true)
         }
@@ -187,6 +208,7 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         addToDeviceCalendar()
     }
     
+    //This function adds planned workouts to the device calendar for the next 3 weeks.
     private func addToDeviceCalendar() {
         //Get all the planned workouts
         let rows = DBManager.getAllRows(entityName: "PlanWorkout")
@@ -205,11 +227,6 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         let exercisesString = "Exercises today: " + exercises.joined(separator: ", ")
         let categoriesString = "Categories worked on: " + categories.joined(separator: ", ")
         
-        // Print the unique days
-        print(uniqueDays)
-        print(exercises)
-        print(categories)
-        
         //For each unique day
         for day in uniqueDays {
             //Get the day for the next 3 occurrences
@@ -224,7 +241,6 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
                 
                 // Format the occurrence date
                 let formattedDate = dateFormatter.string(from: occurrence)
-                print(formattedDate)
                 
                 //Add workout event
                 let startDate = Calendar.current.startOfDay(for: occurrence) // Set this as the occurrence date starting at midnight
