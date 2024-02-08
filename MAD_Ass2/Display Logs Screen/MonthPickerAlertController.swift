@@ -3,7 +3,13 @@
 //  MAD_Ass2
 //
 //  Created by Lee Espiritu on 8/2/2024.
+//  Student ID: 17459857
+//  Campus: Parramatta South
+//  Tutor Name: Mark Johnston
+//  Class Day: Monday & Wednesday
+//  Class Time: 12PM - 2PM
 //
+//  Class Description: Custom Alert Controller that allows a user to select a month, from January to December.
 
 import UIKit
 

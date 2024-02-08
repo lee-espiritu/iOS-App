@@ -95,7 +95,6 @@ class TakePhotoScreen: UIViewController, UIImagePickerControllerDelegate, UINavi
             dismiss(animated: true, completion: nil) //Dismiss the image picker
         }
     }
-
 }
 
 

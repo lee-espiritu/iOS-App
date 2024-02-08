@@ -10,7 +10,6 @@
 //  Class Time: 12PM - 2PM
 //
 //  Class Description: Handles the Display Logs screen
-//
 
 import UIKit
 import MessageUI
@@ -19,6 +18,7 @@ import UserNotifications
 
 class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, LogsTableViewCellDelegate, MFMessageComposeViewControllerDelegate, UITabBarDelegate{
     
+    //Table view reference outlet
     @IBOutlet weak var tableView: UITableView!
     
     //Tab Bar reference outlets
@@ -96,11 +96,11 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         // Create an instance of DayPickerAlertController
         let dayPickerAlert = DayPickerAlertController(title: "Select a Date", message: nil, preferredStyle: .alert)
 
-        // Add any custom actions if needed
+        // Create and add a cancel action button
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         dayPickerAlert.addAction(cancelAction)
 
-        // Add the "OK" action
+        // Create and add a "OK" action with instructions when pressed
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             // Store the users selected date
             self.selectedDate = self.dateFormatter.string(from: dayPickerAlert.getSelectedDate())
@@ -117,20 +117,18 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         present(dayPickerAlert, animated: true, completion: nil)
     }
     
+    //Function triggered when 'Week' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func weekButtonPressed(_ sender: Any) {
         // Create an instance of WeekPickerAlertController
         let weekPickerAlert = WeekPickerAlertController(title: "Select a Date", message: nil, preferredStyle: .alert)
 
-        // Add any custom actions if needed
+        // Create and add a cancel action button
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         weekPickerAlert.addAction(cancelAction)
 
-        // Add the "OK" action
+        // Create and add a "OK" action with instructions when pressed
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            print("Selected week number: \(weekPickerAlert.getSelectedWeek().weekNumber)")
-            print("Week Start: \(weekPickerAlert.getSelectedWeek().startDate)")
-            print("Week End: \(weekPickerAlert.getSelectedWeek().endDate)")
-            
             //store start and end week dates
             self.weekStart = weekPickerAlert.getSelectedWeek().startDate
             self.weekEnd = weekPickerAlert.getSelectedWeek().endDate
@@ -147,15 +145,17 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         present(weekPickerAlert, animated: true, completion: nil)
     }
     
+    //Function triggered when 'Month' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func monthButtonPressed(_ sender: Any) {
         // Create an instance of MonthPickerAlertController
         let monthPickerAlert = MonthPickerAlertController(title: "Select a Month", message: nil, preferredStyle: .alert)
 
-        // Add any custom actions if needed
+        // Create and add a cancel action button
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         monthPickerAlert.addAction(cancelAction)
 
-        // Add the "OK" action
+        // Create and add a "OK" action with instructions when pressed
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             //Store selected month
             self.selectedMonth = monthPickerAlert.getSelectedMonth()
@@ -172,6 +172,8 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         present(monthPickerAlert, animated: true, completion: nil)
     }
     
+    //Function triggered when 'All' button is pressed
+    //Inputs: @sender - The object that triggered the function
     @IBAction func allButtonPressed(_ sender: Any) {
         //Turn off all day/week/month activity
         isSearchingDay = false
@@ -393,38 +395,42 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
+    // This function is called when the user finishes composing a message using MFMessageComposeViewController.
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        // Switch to handle different cases of message composition result.
         switch result.rawValue {
-        case MessageComposeResult.cancelled.rawValue:
+        case MessageComposeResult.cancelled.rawValue: // If the message composition was cancelled by the user.
             print("message cancelled")
         default:
             break
         }
     }
     
+    // This function checks if an SMS message can be sent, returns true if possible else false.
     func canSendText() -> Bool {
         return MFMessageComposeViewController.canSendText()
     }
     
+    // This function handles the selection of each tab bar item and performs navigation actions accordingly.
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         // Check if the selected item is the homeTabBarItem
         if item == homeTabBarItem {
-            navigationController?.popToRootViewController(animated: true)
+            navigationController?.popToRootViewController(animated: true) //Pop to home screen which is root view controller
         } else if item == exerciseTabBarItem {
             if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpExerciseScreen") as? SetUpExerciseScreen{
-                navigationController?.pushViewController(nextVC, animated: true)
+                navigationController?.pushViewController(nextVC, animated: true) //Push Set up Exercise Screen View Controller
             }
         } else if item == dailyProgramTabBarItem {
             if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpDailyProgramScreen") as? SetUpDailyProgramScreen{
-                navigationController?.pushViewController(nextVC, animated: true)
+                navigationController?.pushViewController(nextVC, animated: true) //Push Set Up Daily Program Screen View Controller
             }
         } else if item == recordTabBarItem {
             if let nextVC = storyboard?.instantiateViewController(withIdentifier: "RecordWorkout") as? RecordWorkout{
-                navigationController?.pushViewController(nextVC, animated: true)
+                navigationController?.pushViewController(nextVC, animated: true) //Push Record Workout Screen View Controller
             }
         } else if item == logTabBarItem {
             if let nextVC = storyboard?.instantiateViewController(withIdentifier: "DisplayLogs") as? DisplayLogsScreen{
-                navigationController?.pushViewController(nextVC, animated: true)
+                navigationController?.pushViewController(nextVC, animated: true) //Push Display Logs Screen View Controller
             }
         }
     }
