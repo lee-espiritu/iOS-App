@@ -14,7 +14,7 @@
 
 import UIKit
 
-class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelegate{
+class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelegate, UITabBarDelegate{
     
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var saveExerciseButton: UIButton!
@@ -27,6 +27,14 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
     @IBOutlet weak var setsStepper: UIStepper!
     @IBOutlet weak var weightSlider: UISlider!
     
+    //Tab bar reference outlets
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var homeTabBarItem: UITabBarItem!
+    @IBOutlet weak var exerciseTabBarItem: UITabBarItem!
+    @IBOutlet weak var dailyProgramTabBarItem: UITabBarItem!
+    @IBOutlet weak var recordTabBarItem: UITabBarItem!
+    @IBOutlet weak var logTabBarItem: UITabBarItem!
+    
     var categories: [[String: Any]] = []
 
     override func viewDidLoad() {
@@ -38,6 +46,9 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
         //Add the top navbar
         view.addSubview(CustomNavBar(title: "Set Up Exercise"))
  
+        //Required
+        tabBar.delegate = self
+        
         //Disable save exercise button
         saveExerciseButton.isEnabled = false
         
@@ -202,6 +213,29 @@ class SetUpExerciseScreen: UIViewController, UIViewControllerTransitioningDelega
             DBManager.setUpExercise(category: categoryTitle, exercise: exerciseTitle, reps: Int(repetitionsStepper.value), sets: Int(setsStepper.value), weight: Int(weightSlider.value))
         } else {
             print("Category or Exercise title is nil")
+        }
+    }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        // Check if the selected item is the homeTabBarItem
+        if item == homeTabBarItem {
+            navigationController?.popToRootViewController(animated: true)
+        } else if item == exerciseTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpExerciseScreen") as? SetUpExerciseScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == dailyProgramTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpDailyProgramScreen") as? SetUpDailyProgramScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == recordTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "RecordWorkout") as? RecordWorkout{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == logTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "DisplayLogs") as? DisplayLogsScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
         }
     }
 }

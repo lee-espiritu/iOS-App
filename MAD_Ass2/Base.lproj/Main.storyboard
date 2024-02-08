@@ -80,7 +80,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kHP-Y8-CR1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
                         <constraints>
                             <constraint firstItem="76w-iZ-QrE" firstAttribute="top" secondItem="kHP-Y8-CR1" secondAttribute="top" constant="100" id="6PZ-y8-zhU"/>
                             <constraint firstItem="kHP-Y8-CR1" firstAttribute="trailing" secondItem="76w-iZ-QrE" secondAttribute="trailing" constant="10" id="Tfp-U0-jTN"/>
@@ -183,9 +183,17 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="mMR-ZI-cRc"/>
+                    <connections>
+                        <outlet property="dailyProgramTabBarItem" destination="715-RS-TW2" id="csc-lp-WdS"/>
+                        <outlet property="exerciseTabBarItem" destination="CTy-pz-cG4" id="aX5-hr-Fqv"/>
+                        <outlet property="homeTabBarItem" destination="mrh-gU-CoJ" id="eDk-Ed-j4d"/>
+                        <outlet property="logTabBarItem" destination="TOY-4a-keQ" id="rbw-UX-rKz"/>
+                        <outlet property="recordTabBarItem" destination="UeF-Fh-b05" id="hiN-X8-6ki"/>
+                        <outlet property="tabBar" destination="zQ6-9w-0Qw" id="wnR-oB-l3g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -370,7 +378,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dailyProgramTabBarItem" destination="ZLt-88-8nI" id="qsT-uR-Rww"/>
+                        <outlet property="exerciseTabBarItem" destination="XJs-Cb-Ude" id="IyP-Y2-Hyu"/>
+                        <outlet property="homeTabBarItem" destination="L7C-gM-exs" id="zGt-CL-RPN"/>
+                        <outlet property="logTabBarItem" destination="Sr2-4E-zBY" id="Bd9-0D-Pls"/>
+                        <outlet property="recordTabBarItem" destination="duD-hn-Q65" id="aQf-aP-j2H"/>
                         <outlet property="saveProgramPlanButton" destination="cqP-mX-f0W" id="ZrO-4Z-Qd3"/>
+                        <outlet property="tabBar" destination="E4j-Rp-sFD" id="vPw-8a-ac5"/>
                         <outlet property="tableView" destination="bnU-4g-bpy" id="X8P-F7-kaW"/>
                     </connections>
                 </viewController>
@@ -542,12 +556,18 @@
                     </view>
                     <connections>
                         <outlet property="categoryButton" destination="aay-sl-23o" id="hEO-t0-kXG"/>
+                        <outlet property="dailyProgramTabBarItem" destination="9GZ-V7-K2o" id="GtL-Ey-EXP"/>
                         <outlet property="exerciseButton" destination="pSU-1q-E4g" id="Q3W-Oi-6pJ"/>
+                        <outlet property="exerciseTabBarItem" destination="JHq-aB-TpI" id="aHl-zv-eaO"/>
+                        <outlet property="homeTabBarItem" destination="yvd-6h-KeP" id="NSB-Og-dzD"/>
+                        <outlet property="logTabBarItem" destination="fJG-Gu-F7C" id="iLb-bS-lAg"/>
+                        <outlet property="recordTabBarItem" destination="H8f-2R-XGE" id="fjg-ap-wLa"/>
                         <outlet property="repetitionsNumber" destination="LUH-dh-kTh" id="DQ6-Zs-ydy"/>
                         <outlet property="repetitionsStepper" destination="8of-Gm-BcF" id="CSo-a8-T2Z"/>
                         <outlet property="saveExerciseButton" destination="a6s-Oh-ElG" id="3c4-vY-Wyh"/>
                         <outlet property="setsNumber" destination="Y9g-rt-lwy" id="62b-Uu-Geu"/>
                         <outlet property="setsStepper" destination="P4E-KB-06d" id="xpD-i3-jWp"/>
+                        <outlet property="tabBar" destination="Zm8-Cf-4YP" id="4dZ-2u-TGj"/>
                         <outlet property="viewForm" destination="WGS-0K-Y5B" id="jF3-e9-geo"/>
                         <outlet property="weightNumber" destination="rHi-S8-BIN" id="KqO-US-DTg"/>
                         <outlet property="weightSlider" destination="OrL-Q3-J9J" id="a3S-1D-A3a"/>
