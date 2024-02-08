@@ -3,7 +3,14 @@
 //  MAD_Ass2
 //
 //  Created by Lee Espiritu on 24/1/2024.
+//  Student ID: 17459857
+//  Campus: Parramatta South
+//  Tutor Name: Mark Johnston
+//  Class Day: Monday & Wednesday
+//  Class Time: 12PM - 2PM
+//  Version: 1.0
 //
+//  Description: Abstract Struct to help prefill database entities with predefined values.
 
 import Foundation
 

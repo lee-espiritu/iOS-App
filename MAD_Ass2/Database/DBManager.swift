@@ -779,21 +779,7 @@ class DBManager: NSObject {
 
     //===================================================================================================
     
-    static func categoryExists(category: String) -> Bool {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Categories")
-        fetchRequest.predicate = NSPredicate(format: "name == %@", category)
-        
-        do {
-            let matchingCategories = try managedContext.fetch(fetchRequest)
-            return !matchingCategories.isEmpty
-        } catch let error as NSError {
-            print("Error retrieving category: \(error.localizedDescription)")
-            return false
-        }
-    }
+
     
     
 }
