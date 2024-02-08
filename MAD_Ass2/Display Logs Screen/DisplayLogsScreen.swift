@@ -17,9 +17,17 @@ import MessageUI
 import UserNotifications
 
 
-class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, LogsTableViewCellDelegate, MFMessageComposeViewControllerDelegate{
+class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, LogsTableViewCellDelegate, MFMessageComposeViewControllerDelegate, UITabBarDelegate{
     
     @IBOutlet weak var tableView: UITableView!
+    
+    //Tab Bar reference outlets
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var homeTabBarItem: UITabBarItem!
+    @IBOutlet weak var exerciseTabBarItem: UITabBarItem!
+    @IBOutlet weak var dailyProgramTabBarItem: UITabBarItem!
+    @IBOutlet weak var recordTabBarItem: UITabBarItem!
+    @IBOutlet weak var logTabBarItem: UITabBarItem!
     
     //Variable to contain all workout records
     var rows: [[String: Any]] = []
@@ -51,6 +59,7 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
         //Required
         tableView.delegate = self
         tableView.dataSource = self
+        tabBar.delegate = self
         
         //Request notification permissions
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
@@ -395,6 +404,29 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func canSendText() -> Bool {
         return MFMessageComposeViewController.canSendText()
+    }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        // Check if the selected item is the homeTabBarItem
+        if item == homeTabBarItem {
+            navigationController?.popToRootViewController(animated: true)
+        } else if item == exerciseTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpExerciseScreen") as? SetUpExerciseScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == dailyProgramTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpDailyProgramScreen") as? SetUpDailyProgramScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == recordTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "RecordWorkout") as? RecordWorkout{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == logTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "DisplayLogs") as? DisplayLogsScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        }
     }
     
 }

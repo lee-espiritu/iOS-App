@@ -802,6 +802,12 @@
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                     </view>
                     <connections>
+                        <outlet property="dailyProgramTabBarItem" destination="eTG-MC-B4O" id="HA0-cv-jF3"/>
+                        <outlet property="exerciseTabBarItem" destination="PjT-xE-tYX" id="lEk-9N-cKW"/>
+                        <outlet property="homeTabBarItem" destination="hoX-MK-3Bz" id="JlF-dE-xlW"/>
+                        <outlet property="logTabBarItem" destination="oF4-VA-7x3" id="8DZ-2F-GTh"/>
+                        <outlet property="recordTabBarItem" destination="7u6-0e-hd8" id="wUR-vz-Xvj"/>
+                        <outlet property="tabBar" destination="PA8-cG-8YC" id="3gl-pt-Xux"/>
                         <outlet property="tableView" destination="0ld-zG-eGd" id="OZB-Ui-6Iv"/>
                     </connections>
                 </viewController>
@@ -1228,6 +1234,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dailyProgramTabBarItem" destination="Ptd-so-riN" id="E3y-FC-vg5"/>
+                        <outlet property="exerciseTabBarItem" destination="vk7-2i-gEs" id="Ukv-lr-vTQ"/>
+                        <outlet property="homeTabBarItem" destination="Jj9-Zx-WbL" id="oMx-3z-ckN"/>
+                        <outlet property="logTabBarItem" destination="C4o-aS-HMl" id="d0O-uY-dZQ"/>
+                        <outlet property="recordTabBarItem" destination="6gI-gQ-OOH" id="9pW-ih-SXD"/>
+                        <outlet property="tabBar" destination="b79-QD-N6o" id="6YK-BL-s3v"/>
                         <outlet property="tableView" destination="3a0-Ms-Cop" id="9c0-Sx-u9b"/>
                     </connections>
                 </viewController>

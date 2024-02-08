@@ -7,10 +7,24 @@
 
 import UIKit
 
-class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
+    
+    //Tab Bar reference outlets
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var homeTabBarItem: UITabBarItem!
+    @IBOutlet weak var exerciseTabBarItem: UITabBarItem!
+    @IBOutlet weak var dailyProgramTabBarItem: UITabBarItem!
+    @IBOutlet weak var recordTabBarItem: UITabBarItem!
+    @IBOutlet weak var logTabBarItem: UITabBarItem!
+    
+    var selectedExerciseName: String = ""
+    var selectedSet: String = ""
+    var selectedRep: String = ""
+    var selectedWeight: String = ""
+    
     var dayOfWeek: String = ""
     var selectedIndexPath: IndexPath?
     var isWorkingOut = false
@@ -34,6 +48,7 @@ class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSourc
         //Required
         tableView.dataSource = self
         tableView.delegate = self
+        tabBar.delegate = self
         
     }
     
@@ -139,10 +154,30 @@ class RecordWorkout: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    var selectedExerciseName: String = ""
-    var selectedSet: String = ""
-    var selectedRep: String = ""
-    var selectedWeight: String = ""
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        // Check if the selected item is the homeTabBarItem
+        if item == homeTabBarItem {
+            navigationController?.popToRootViewController(animated: true)
+        } else if item == exerciseTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpExerciseScreen") as? SetUpExerciseScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == dailyProgramTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "SetUpDailyProgramScreen") as? SetUpDailyProgramScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == recordTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "RecordWorkout") as? RecordWorkout{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        } else if item == logTabBarItem {
+            if let nextVC = storyboard?.instantiateViewController(withIdentifier: "DisplayLogs") as? DisplayLogsScreen{
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
+        }
+    }
+    
+
 }
 
 extension RecordWorkout: RecordSessionDelegate {
