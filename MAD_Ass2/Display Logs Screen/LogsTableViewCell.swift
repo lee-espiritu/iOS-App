@@ -8,6 +8,7 @@
 //  Tutor Name: Mark Johnston
 //  Class Day: Monday & Wednesday
 //  Class Time: 12PM - 2PM
+//  Version: 1.0
 //
 //  Class Description: Contains the dynamic prototype cell content within the main tableview in Display Logs Screen
 
