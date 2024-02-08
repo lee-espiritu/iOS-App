@@ -27,11 +27,14 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     //Variable to hold filtered workout records based on day/week/month
     var filteredRows: [[String: Any]] = []
     
-    //Variable to hold user selected day
-    var selectedDate: String = ""
+    //Variable to hold user selections
+    var selectedDate: String = "" //day
+    var weekStart: Date = Date() //start of the week
+    var weekEnd: Date = Date() //end of the week
     
     //State of the screen whether the user is searching by day/week/month
     var isSearchingDay: Bool = false
+    var isSearchingWeek: Bool = false
     
     // Date formatter for date of workout
     let dateFormatter = DateFormatter()
@@ -104,6 +107,33 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func weekButtonPressed(_ sender: Any) {
+        // Create an instance of WeekPickerAlertController
+        let weekPickerAlert = WeekPickerAlertController(title: "Select a Date", message: nil, preferredStyle: .alert)
+
+        // Add any custom actions if needed
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        weekPickerAlert.addAction(cancelAction)
+
+        // Add the "OK" action
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            print("Selected week number: \(weekPickerAlert.getSelectedWeek().weekNumber)")
+            print("Week Start: \(weekPickerAlert.getSelectedWeek().startDate)")
+            print("Week End: \(weekPickerAlert.getSelectedWeek().endDate)")
+            
+            //store start and end week dates
+            self.weekStart = weekPickerAlert.getSelectedWeek().startDate
+            self.weekEnd = weekPickerAlert.getSelectedWeek().endDate
+            
+            //Toggle week search
+            self.isSearchingWeek = true
+            
+            //Reload tableView
+            self.tableView.reloadData()
+        }
+        weekPickerAlert.addAction(okAction)
+
+        // Present the alert from the current view controller
+        present(weekPickerAlert, animated: true, completion: nil)
     }
     
     @IBAction func monthButtonPressed(_ sender: Any) {
@@ -113,6 +143,7 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBAction func allButtonPressed(_ sender: Any) {
         //Turn off all day/week/month activity
         isSearchingDay = false
+        isSearchingWeek = false
         
         //Reload tableView
         tableView.reloadData()
@@ -132,6 +163,29 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
                 return false
             }
             return filteredRows.count //Return results of filter
+        } else if isSearchingWeek {
+            // Filter rows to the selected week
+            filteredRows = rows.filter { row in
+                // Extract the "date" value from the row dictionary
+                if let rowDate = row["date"] as? Date {
+                    // Extract the date components of the row's date, weekStart and weekEnd
+                    let rowDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: rowDate)
+                    let weekStartDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: weekStart)
+                    let weekEndDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: weekEnd)
+                    
+                    // Perform date comparison to check if the row's date falls within the specified week
+                    let isDateInWeek = rowDateComponents.year == weekStartDateComponents.year &&
+                        rowDateComponents.month == weekStartDateComponents.month &&
+                        rowDateComponents.day! >= weekStartDateComponents.day! &&
+                        rowDateComponents.year == weekEndDateComponents.year &&
+                        rowDateComponents.month == weekEndDateComponents.month &&
+                        rowDateComponents.day! <= weekEndDateComponents.day!
+                    
+                    return isDateInWeek
+                }
+                return false
+            }
+            return filteredRows.count // Return results of filter
         } else {
             return DBManager.getNumRows(entityName: "WorkoutRecord") //Return count for WorkoutRecord entity
         }
@@ -140,6 +194,24 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     //Required stub function
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isSearchingDay { //If the user is searching for a specific date
+            let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell //Initialise reusable cell
+            cell.delegate = self //Set cell delegate
+            
+            //Update UI elements in cell
+            cell.dateLabel.text = (filteredRows[indexPath.row]["date"] as? Date).flatMap { dateFormatter.string(from: $0) } ?? "Invalid Date"
+            cell.exerciseLabel.text? = filteredRows[indexPath.row]["exerciseName"] as! String
+            cell.categoryLabel.text? = filteredRows[indexPath.row]["categoryName"] as! String
+            cell.setLabel.text = "\(filteredRows[indexPath.row]["sets"] as! Int32) sets"
+            cell.repLabel.text = "\(filteredRows[indexPath.row]["repetitions"] as! Int32) reps"
+            cell.weightLabel.text = "\(filteredRows[indexPath.row]["weight"] as! Int32) kg"
+            
+            //Get the first image in Photos if there is one
+            if DBManager.getFirstPhoto() != nil {
+                cell.imageSlot.image = DBManager.getFirstPhoto() //Update UIImage of cell
+            }
+            
+            return cell
+        } else if isSearchingWeek {
             let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell //Initialise reusable cell
             cell.delegate = self //Set cell delegate
             
@@ -181,6 +253,9 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
     //Required stub function
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if isSearchingDay {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell
+            return cell.bounds.height //Height of cell as seen in storyboard
+        } else if isSearchingWeek {
             let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") as! LogsTableViewCell
             return cell.bounds.height //Height of cell as seen in storyboard
         } else {
