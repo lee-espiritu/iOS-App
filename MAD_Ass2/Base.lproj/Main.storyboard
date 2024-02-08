@@ -619,6 +619,9 @@
                                     <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="dayButtonPressed:" destination="bck-eW-ceW" eventType="touchUpInside" id="Ffc-LT-wlH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjw-Pl-fXt">
                                 <rect key="frame" x="109" y="151" width="85" height="35"/>
@@ -629,6 +632,9 @@
                                     <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="weekButtonPressed:" destination="bck-eW-ceW" eventType="touchUpInside" id="QGS-RZ-WKD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcX-ic-UDM">
                                 <rect key="frame" x="202" y="151" width="85" height="35"/>
@@ -639,6 +645,9 @@
                                     <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="monthButtonPressed:" destination="bck-eW-ceW" eventType="touchUpInside" id="G8y-XO-L4X"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0ld-zG-eGd">
                                 <rect key="frame" x="16" y="209" width="361" height="478"/>
@@ -764,6 +773,9 @@
                                     <color key="baseForegroundColor" red="0.23529411759999999" green="0.53725490200000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="baseBackgroundColor" red="0.75294117650000003" green="0.98039215690000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="allButtonPressed:" destination="bck-eW-ceW" eventType="touchUpInside" id="hXg-RU-abH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KL8-vF-KWz"/>

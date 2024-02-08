@@ -14,6 +14,7 @@
 		5098FA642B71C70300B5A477 /* DisplayLogsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098FA632B71C70300B5A477 /* DisplayLogsScreen.swift */; };
 		5098FA662B71F10900B5A477 /* LogsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098FA652B71F10900B5A477 /* LogsTableViewCell.swift */; };
 		50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */; };
+		50BC0E472B74521C003EC8C4 /* DayPickerAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC0E462B74521C003EC8C4 /* DayPickerAlertController.swift */; };
 		50C915B62B6CB55300018182 /* CategoryAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C915B52B6CB55300018182 /* CategoryAlertController.swift */; };
 		50C915B82B6CC14600018182 /* ExerciseAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C915B72B6CC14600018182 /* ExerciseAlertController.swift */; };
 		50DA5DAB2B61019E00566B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA5DAA2B61019E00566B73 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		5098FA632B71C70300B5A477 /* DisplayLogsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLogsScreen.swift; sourceTree = "<group>"; };
 		5098FA652B71F10900B5A477 /* LogsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsTableViewCell.swift; sourceTree = "<group>"; };
 		50BA60DA2B6241BD00D7A099 /* GradientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientHelper.swift; sourceTree = "<group>"; };
+		50BC0E462B74521C003EC8C4 /* DayPickerAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerAlertController.swift; sourceTree = "<group>"; };
 		50C915B52B6CB55300018182 /* CategoryAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAlertController.swift; sourceTree = "<group>"; };
 		50C915B72B6CC14600018182 /* ExerciseAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAlertController.swift; sourceTree = "<group>"; };
 		50DA5DA72B61019E00566B73 /* MAD_Ass2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAD_Ass2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 			children = (
 				5098FA632B71C70300B5A477 /* DisplayLogsScreen.swift */,
 				5098FA652B71F10900B5A477 /* LogsTableViewCell.swift */,
+				50BC0E462B74521C003EC8C4 /* DayPickerAlertController.swift */,
 			);
 			path = "Display Logs Screen";
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				50DA5DDE2B610A5900566B73 /* SetUpExerciseScreen.swift in Sources */,
 				508E99EE2B611E44002337AC /* ViewDatabaseScreen.swift in Sources */,
 				50C915B62B6CB55300018182 /* CategoryAlertController.swift in Sources */,
+				50BC0E472B74521C003EC8C4 /* DayPickerAlertController.swift in Sources */,
 				50BA60DB2B6241BD00D7A099 /* GradientHelper.swift in Sources */,
 				50DA5DAD2B61019E00566B73 /* SceneDelegate.swift in Sources */,
 				50DA5DB52B61019E00566B73 /* MAD_Ass2.xcdatamodeld in Sources */,
