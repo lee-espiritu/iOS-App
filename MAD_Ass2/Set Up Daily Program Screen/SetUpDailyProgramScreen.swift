@@ -414,6 +414,17 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         // Deselect the row to remove the highlight
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    //Optional function to set a header title for each section
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isSelectingCategory {
+            return "Select a Category"
+        } else if isSelectingExercise{
+            return "Select a Exercise"
+        } else {
+            return "Exercises"
+        }
+    }
 
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         // Check if the selected item is the homeTabBarItem
