@@ -351,8 +351,10 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
                 let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
                 if exercises.count < 6 {
                     cell.category.text? = "Select \(6 - exercises.count) more exercise"
+                    cell.deleteButton.isHidden = true
                 } else {
                     cell.category.text? = "Optional: Add more exercise"
+                    cell.deleteButton.isHidden = true
                 }
                 cell.exercise.text? = ""
                 return cell

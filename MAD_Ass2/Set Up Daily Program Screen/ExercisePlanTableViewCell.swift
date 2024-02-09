@@ -19,6 +19,7 @@ class ExercisePlanTableViewCell: UITableViewCell {
     //Reference outlets for the prototype cell
     @IBOutlet weak var category: UILabel!
     @IBOutlet weak var exercise: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
     
     //Default function created on class creation
     override func awakeFromNib() {
