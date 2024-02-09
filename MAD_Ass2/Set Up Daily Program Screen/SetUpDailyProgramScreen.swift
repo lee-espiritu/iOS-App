@@ -340,15 +340,18 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
             let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
             cell.category.text? = DBManager.getCategory(index: indexPath.row)
             cell.exercise.text? = ""
+            cell.deleteButton.isHidden = true
             return cell
         } else if isSelectingExercise {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
             cell.category.text? = DBManager.getExercise(index: indexPath.row, category: categorySelected)
             cell.exercise.text? = ""
+            cell.deleteButton.isHidden = true
             return cell
         } else {
             if indexPath.row == exercises.count {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
+                cell.deleteButton.isHidden = false
                 if exercises.count < 6 {
                     cell.category.text? = "Select \(6 - exercises.count) more exercise"
                     cell.deleteButton.isHidden = true
@@ -360,6 +363,7 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
+                cell.deleteButton.isHidden = false
                 cell.category.text? = DBManager.getExercisePlan(forDay: dayString)[indexPath.row]["categoryName"]!
                 cell.exercise.text? = DBManager.getExercisePlan(forDay: dayString)[indexPath.row]["exerciseName"]!
                 return cell

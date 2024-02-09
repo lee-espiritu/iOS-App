@@ -888,6 +888,9 @@ class DBManager: NSObject {
     //Method to add a photo into the Photos entity
     //Parameter: imageData - The photo to add
     static func addPhoto(imageData: Data) {
+        //Delete existing photos (For testing purposes, remove line for applicative use)
+        deleteAllRows(entityName: "Photos")
+        
         //Retrieve app delegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
