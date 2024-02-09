@@ -109,6 +109,10 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
             //Set toggle for day search
             self.isSearchingDay = true
             
+            //Disable other toggles
+            self.isSearchingWeek = false
+            self.isSearchingMonth = false
+            
             //Reload tableview
             self.tableView.reloadData()
         }
@@ -137,6 +141,10 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
             //Toggle week search
             self.isSearchingWeek = true
             
+            //Disable other toggles
+            self.isSearchingDay = false
+            self.isSearchingMonth = false
+            
             //Reload tableView
             self.tableView.reloadData()
         }
@@ -163,6 +171,10 @@ class DisplayLogsScreen: UIViewController, UITableViewDelegate, UITableViewDataS
             
             //Toggle month search
             self.isSearchingMonth = true
+            
+            //Disable other toggles
+            self.isSearchingDay = false
+            self.isSearchingWeek = false
             
             //Reload tableView
             self.tableView.reloadData()
