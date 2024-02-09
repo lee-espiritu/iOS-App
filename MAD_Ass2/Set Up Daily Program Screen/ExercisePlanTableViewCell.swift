@@ -55,5 +55,9 @@ class ExercisePlanTableViewCell: UITableViewCell {
         gradientLayer.colors = [UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.2).cgColor, UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2).cgColor] // Set gradient colors with lighter alpha component
         gradientLayer.cornerRadius = 5 // Set rounding to the corners
         layer.insertSublayer(gradientLayer, at: 0) // Add the gradient layer below other layers
+        
+        //Set label text colors
+        category.textColor = UIColor.white
+        exercise.textColor = UIColor.white
     }
 }

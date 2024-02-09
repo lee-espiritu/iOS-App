@@ -30,6 +30,9 @@ class RecordSession: UITableViewCell {
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var timeLeftLabel: UILabel!
+    @IBOutlet weak var fixedSetLabel: UILabel!
+    @IBOutlet weak var fixedRepLabel: UILabel!
+    @IBOutlet weak var fixedWeightLabel: UILabel!
     
     // Delegate for RecordSessionDelegate protocol
     weak var delegate: RecordSessionDelegate?
@@ -60,11 +63,48 @@ class RecordSession: UITableViewCell {
         
         //Set a default text for timerLabel
         timerLabel.text = "00:05"
+        
+        editCellAppearance()
     }
 
     //Default function created on class creation
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    //Function to edit the table view cells UI appearance
+    private func editCellAppearance() {
+        // Set the background color of the cell to clear
+        backgroundColor = .clear
+        
+        // Set rounding to the corners
+        layer.cornerRadius = 10
+        
+        // Create a bottom border
+        let bottomBorder = CALayer()
+        bottomBorder.frame = CGRect(x: 0, y: frame.size.height - 1, width: frame.size.width, height: 1) // Adjust the height as needed
+        bottomBorder.backgroundColor = UIColor.cyan.cgColor // Set the color of the bottom border
+        
+        // Add the bottom border to the cell's layer
+        layer.addSublayer(bottomBorder)
+        
+        // Create a custom background gradient
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(x: 0, y: 5, width: frame.size.width, height: frame.size.height - 10)
+        gradientLayer.colors = [UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.2).cgColor, UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2).cgColor] // Set gradient colors with lighter alpha component
+        gradientLayer.cornerRadius = 5 // Set rounding to the corners
+        layer.insertSublayer(gradientLayer, at: 0) // Add the gradient layer below other layers
+
+        //Change label text colours to white
+        exerciseLabel.textColor = UIColor.white
+        timerLabel.textColor = UIColor.white
+        setLabel.textColor = UIColor.white
+        repLabel.textColor = UIColor.white
+        weightLabel.textColor = UIColor.white
+        timeLeftLabel.textColor = UIColor.white
+        fixedRepLabel.textColor = UIColor.white
+        fixedSetLabel.textColor = UIColor.white
+        fixedWeightLabel.textColor = UIColor.white
     }
 
     //Function triggered when 'Rest' button is pressed. Shows a rest timer as an alert.
