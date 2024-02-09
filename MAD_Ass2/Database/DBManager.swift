@@ -211,6 +211,41 @@ class DBManager: NSObject {
             print("Error deleting rows in \(entityName): \(error)")
         }
     }
+    
+    //Function used to delete a row from PlanWorkout with selected category and exercise
+    //Parameters: exercise - Target exercise
+    //            category - Target category
+    //            day - Target day
+    static func deletePlanWorkoutRow(day: String, category: String, exercise: String){
+        //Retrieve the app delegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        //Access the managed context
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        //Create a fetch request to retrieve objects of PlanWorkout entity
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PlanWorkout")
+
+        //Create a predicate that matches day, exerciseName and categoryName attributes with the given category, day, exercise
+        fetchRequest.predicate = NSPredicate(format: "day == %@ AND exerciseName == %@ AND categoryName == %@", day, exercise, category)
+        
+        do {
+            //Fetch the objects that match the predicate
+            let results = try managedContext.fetch(fetchRequest)
+            
+            //Delete each fetched object
+            for object in results {
+                managedContext.delete(object)
+            }
+            
+            //Save the changes
+            try managedContext.save()
+            print("Deleted row from PlanWorkout")
+        } catch let error as NSError {
+            //Error handling
+            print("Error deleting row from PlanWorkout: \(error.localizedDescription)")
+        }
+    }
     //===================================================================================================
     
     //======================================UPDATE=======================================================

@@ -14,12 +14,23 @@
 
 import UIKit
 
+//Define a protocol for the delegate to communicate across main table view
+protocol ExercisePlanTableViewCellDelegate: AnyObject {
+    func didPressDeleteButton(for cell: ExercisePlanTableViewCell)
+}
+
 class ExercisePlanTableViewCell: UITableViewCell {
     
     //Reference outlets for the prototype cell
     @IBOutlet weak var category: UILabel!
     @IBOutlet weak var exercise: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
+    
+    //Variable to hold day string
+    var dayString: String = ""
+    
+    //Set delegate
+    weak var delegate: ExercisePlanTableViewCellDelegate?
     
     //Default function created on class creation
     override func awakeFromNib() {
@@ -61,4 +72,16 @@ class ExercisePlanTableViewCell: UITableViewCell {
         category.textColor = UIColor.white
         exercise.textColor = UIColor.white
     }
+    
+    //Function triggered when the delete button is pressed
+    //Parameters: sender - The object that triggered the function
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        print("Delete button pressed")
+        DBManager.deletePlanWorkoutRow(day: dayString, category: category.text!, exercise: exercise.text!)
+        
+        //Let delegate know to use didPressDeleteButton()
+        delegate?.didPressDeleteButton(for: self)
+    }
+    
 }
+

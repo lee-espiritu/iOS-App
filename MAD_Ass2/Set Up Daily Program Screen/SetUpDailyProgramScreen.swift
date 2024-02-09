@@ -15,7 +15,7 @@
 import UIKit
 import EventKit
 
-class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDelegate, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
+class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDelegate, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate, ExercisePlanTableViewCellDelegate {
 
     //Reference outlet for table view
     @IBOutlet weak var tableView: UITableView!
@@ -239,9 +239,6 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "EEEE: dd/MM/yy" // Use "EEEE" for the full day name
                 
-                // Format the occurrence date
-                let formattedDate = dateFormatter.string(from: occurrence)
-                
                 //Add workout event
                 let startDate = Calendar.current.startOfDay(for: occurrence) // Set this as the occurrence date starting at midnight
                 let endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
@@ -338,12 +335,14 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
         
         if isSelectingCategory {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
+            cell.delegate = self
             cell.category.text? = DBManager.getCategory(index: indexPath.row)
             cell.exercise.text? = ""
             cell.deleteButton.isHidden = true
             return cell
         } else if isSelectingExercise {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
+            cell.delegate = self
             cell.category.text? = DBManager.getExercise(index: indexPath.row, category: categorySelected)
             cell.exercise.text? = ""
             cell.deleteButton.isHidden = true
@@ -352,6 +351,7 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
             if indexPath.row == exercises.count {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
                 cell.deleteButton.isHidden = false
+                cell.delegate = self
                 if exercises.count < 6 {
                     cell.category.text? = "Select \(6 - exercises.count) more exercise"
                     cell.deleteButton.isHidden = true
@@ -364,10 +364,24 @@ class SetUpDailyProgramScreen: UIViewController, UIViewControllerTransitioningDe
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "exercisePlan", for: indexPath) as! ExercisePlanTableViewCell
                 cell.deleteButton.isHidden = false
+                cell.delegate = self
                 cell.category.text? = DBManager.getExercisePlan(forDay: dayString)[indexPath.row]["categoryName"]!
                 cell.exercise.text? = DBManager.getExercisePlan(forDay: dayString)[indexPath.row]["exerciseName"]!
+                cell.dayString = dayString
                 return cell
             }
+        }
+    }
+    
+    //Delegate function run when the delete button is pressed on a tableViewCell containing the delete button
+    func didPressDeleteButton(for cell: ExercisePlanTableViewCell) {
+        //If the indexPath is not nil
+        if tableView.indexPath(for: cell) != nil {
+            //Update exercises as a row has been deleted
+            exercises = DBManager.getExercisePlan(forDay: dayString)
+            
+            // Reload the table view
+            tableView.reloadData()
         }
     }
     

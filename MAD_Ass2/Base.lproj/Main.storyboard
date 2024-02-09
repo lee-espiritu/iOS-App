@@ -341,6 +341,9 @@
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="0.40581396241851203" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </backgroundConfiguration>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="deleteButtonPressed:" destination="A2h-TZ-AdZ" eventType="touchUpInside" id="s9E-eT-LmM"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
